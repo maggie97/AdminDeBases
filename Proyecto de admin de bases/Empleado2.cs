@@ -12,7 +12,12 @@ using System.Windows.Forms;
 
 namespace Proyecto_de_admin_de_bases
 {
-
+    public enum Tables {
+        Empleado = 1 ,
+        Producto = 2,
+        Vehiculo = 3,
+        Pedido = 4
+    };
     public partial class Empleado2 : Form
     {
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -129,23 +134,84 @@ namespace Proyecto_de_admin_de_bases
             ventana();
         }
 
-        private bool camposGrid()
+        private bool camposGrid(Tables table)
         {
+            SqlCommand command;
+            SqlDataReader dataReader;
+            String sql, output = "";
             try
             {
-                connectionString = @"Data Source=DESKTOP-CGHOG2P;Initial Catalog=Tienda;User ID=Maggie;Password=";
-                connection = new SqlConnection(connectionString);
-                connection.Open();
-                MessageBox.Show("Connection Open  !");
-                connection.Close();
+                if (connectionOpen())
+                {
+                    sql = "SELECT * FROM Empleado";
+                    command = new SqlCommand(sql, connection);
+                    dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        List<string> row = new List<string>();
+                        for (int i = 0; i < dataReader.FieldCount; i++)
+                        {
+                            row.Add(dataReader.GetValue(i).ToString());
+                        }
+                        dgvDatos.Rows.Add(row);
+                        //output += dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "\n";
+                    }
+                    MessageBox.Show(output);
+                }
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return false;
             }
 
             return true;
         }
+        public void VerTabla(Tables tabla, String[] datos)
+        {
+            Tables t = tabla;
+
+            dgvDatos.Columns.Clear();
+            switch (tabla)
+            {
+                case Tables.Empleado:
+
+                    break;
+                case Tables.Pedido:
+                    break;
+                case Tables.Producto:
+                    break;
+                case Tables.Vehiculo:
+                    break;
+            }
+
+            dgvDatos.Rows.Clear();
+            // if (e.Dir_Datos == -1) return;
+            foreach (var reg in datos)
+            {
+                //string[] except = { reg.First(), reg.Last() };
+                //string[] r = reg.Except(except).ToArray();
+                //reg.RemoveAt(0);
+                reg.Remove(reg.Last());
+            }
+        }
+
+        private bool connectionOpen()
+        {
+            try
+            {
+                connectionString = "Server=DESKTOP-CGHOG2P; Database=Tienda; Trusted_Connection=true";
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            return true;
+        }
+        
     }
 
     
