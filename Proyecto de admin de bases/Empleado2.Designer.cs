@@ -34,11 +34,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnVentas = new System.Windows.Forms.Button();
-            this.btnVehiculos = new System.Windows.Forms.Button();
-            this.btnProducto = new System.Windows.Forms.Button();
-            this.btnCliente = new System.Windows.Forms.Button();
-            this.btnAgregarEmpleado = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -52,10 +47,19 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelVentana = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnAgregarEmpleado = new System.Windows.Forms.Button();
+            this.btnProducto = new System.Windows.Forms.Button();
+            this.btnVentas = new System.Windows.Forms.Button();
+            this.btnCliente = new System.Windows.Forms.Button();
+            this.btnVehiculos = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.panelVentana.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,92 +128,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Menú del Administrador";
             // 
-            // btnVentas
-            // 
-            this.btnVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(119)))), ((int)(((byte)(38)))));
-            this.btnVentas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVentas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVentas.Image = ((System.Drawing.Image)(resources.GetObject("btnVentas.Image")));
-            this.btnVentas.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnVentas.Location = new System.Drawing.Point(0, 86);
-            this.btnVentas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnVentas.Name = "btnVentas";
-            this.btnVentas.Size = new System.Drawing.Size(157, 45);
-            this.btnVentas.TabIndex = 5;
-            this.btnVentas.Text = "Ventas";
-            this.btnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnVentas.UseVisualStyleBackColor = false;
-            // 
-            // btnVehiculos
-            // 
-            this.btnVehiculos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(148)))), ((int)(((byte)(3)))));
-            this.btnVehiculos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnVehiculos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVehiculos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVehiculos.Image = ((System.Drawing.Image)(resources.GetObject("btnVehiculos.Image")));
-            this.btnVehiculos.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnVehiculos.Location = new System.Drawing.Point(0, 0);
-            this.btnVehiculos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnVehiculos.Name = "btnVehiculos";
-            this.btnVehiculos.Size = new System.Drawing.Size(157, 45);
-            this.btnVehiculos.TabIndex = 4;
-            this.btnVehiculos.Text = "Vehiculos";
-            this.btnVehiculos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnVehiculos.UseVisualStyleBackColor = false;
-            this.btnVehiculos.Click += new System.EventHandler(this.btnVehiculos_Click);
-            // 
-            // btnProducto
-            // 
-            this.btnProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(119)))), ((int)(((byte)(38)))));
-            this.btnProducto.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProducto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProducto.Image = ((System.Drawing.Image)(resources.GetObject("btnProducto.Image")));
-            this.btnProducto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnProducto.Location = new System.Drawing.Point(0, 131);
-            this.btnProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnProducto.Name = "btnProducto";
-            this.btnProducto.Size = new System.Drawing.Size(157, 45);
-            this.btnProducto.TabIndex = 3;
-            this.btnProducto.Text = "Producto";
-            this.btnProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnProducto.UseVisualStyleBackColor = false;
-            // 
-            // btnCliente
-            // 
-            this.btnCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(148)))), ((int)(((byte)(3)))));
-            this.btnCliente.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCliente.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnCliente.Image")));
-            this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCliente.Location = new System.Drawing.Point(0, 45);
-            this.btnCliente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnCliente.Name = "btnCliente";
-            this.btnCliente.Size = new System.Drawing.Size(157, 41);
-            this.btnCliente.TabIndex = 2;
-            this.btnCliente.Text = "Cleinte";
-            this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCliente.UseVisualStyleBackColor = false;
-            // 
-            // btnAgregarEmpleado
-            // 
-            this.btnAgregarEmpleado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(119)))), ((int)(((byte)(38)))));
-            this.btnAgregarEmpleado.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAgregarEmpleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarEmpleado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarEmpleado.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarEmpleado.Image")));
-            this.btnAgregarEmpleado.Location = new System.Drawing.Point(0, 176);
-            this.btnAgregarEmpleado.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAgregarEmpleado.Name = "btnAgregarEmpleado";
-            this.btnAgregarEmpleado.Size = new System.Drawing.Size(157, 45);
-            this.btnAgregarEmpleado.TabIndex = 1;
-            this.btnAgregarEmpleado.Text = "Empleado";
-            this.btnAgregarEmpleado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAgregarEmpleado.UseVisualStyleBackColor = false;
-            this.btnAgregarEmpleado.Click += new System.EventHandler(this.btnAgregarEmpleado_Click);
-            // 
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -225,6 +143,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.btnAgregarEmpleado);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.btnProducto);
@@ -314,6 +233,7 @@
             // panelVentana
             // 
             this.panelVentana.BackColor = System.Drawing.Color.Transparent;
+            this.panelVentana.Controls.Add(this.splitter2);
             this.panelVentana.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelVentana.Location = new System.Drawing.Point(567, 0);
             this.panelVentana.Name = "panelVentana";
@@ -322,12 +242,134 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.splitter1);
             this.panel5.Controls.Add(this.dataGridView2);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(567, 406);
             this.panel5.TabIndex = 1;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 406);
+            this.splitter1.TabIndex = 2;
+            this.splitter1.TabStop = false;
+            // 
+            // splitter2
+            // 
+            this.splitter2.Location = new System.Drawing.Point(0, 0);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(3, 406);
+            this.splitter2.TabIndex = 0;
+            this.splitter2.TabStop = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(119)))), ((int)(((byte)(38)))));
+            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button4.Location = new System.Drawing.Point(0, 221);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(157, 45);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Pedidos";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // btnAgregarEmpleado
+            // 
+            this.btnAgregarEmpleado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(119)))), ((int)(((byte)(38)))));
+            this.btnAgregarEmpleado.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAgregarEmpleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarEmpleado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarEmpleado.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarEmpleado.Image")));
+            this.btnAgregarEmpleado.Location = new System.Drawing.Point(0, 176);
+            this.btnAgregarEmpleado.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAgregarEmpleado.Name = "btnAgregarEmpleado";
+            this.btnAgregarEmpleado.Size = new System.Drawing.Size(157, 45);
+            this.btnAgregarEmpleado.TabIndex = 1;
+            this.btnAgregarEmpleado.Text = "Empleado";
+            this.btnAgregarEmpleado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAgregarEmpleado.UseVisualStyleBackColor = false;
+            this.btnAgregarEmpleado.Click += new System.EventHandler(this.btnAgregarEmpleado_Click);
+            // 
+            // btnProducto
+            // 
+            this.btnProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(119)))), ((int)(((byte)(38)))));
+            this.btnProducto.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProducto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProducto.Image = ((System.Drawing.Image)(resources.GetObject("btnProducto.Image")));
+            this.btnProducto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnProducto.Location = new System.Drawing.Point(0, 131);
+            this.btnProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnProducto.Name = "btnProducto";
+            this.btnProducto.Size = new System.Drawing.Size(157, 45);
+            this.btnProducto.TabIndex = 3;
+            this.btnProducto.Text = "Producto";
+            this.btnProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnProducto.UseVisualStyleBackColor = false;
+            this.btnProducto.Click += new System.EventHandler(this.btnProducto_Click);
+            // 
+            // btnVentas
+            // 
+            this.btnVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(119)))), ((int)(((byte)(38)))));
+            this.btnVentas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVentas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVentas.Image = ((System.Drawing.Image)(resources.GetObject("btnVentas.Image")));
+            this.btnVentas.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnVentas.Location = new System.Drawing.Point(0, 86);
+            this.btnVentas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnVentas.Name = "btnVentas";
+            this.btnVentas.Size = new System.Drawing.Size(157, 45);
+            this.btnVentas.TabIndex = 5;
+            this.btnVentas.Text = "Ventas";
+            this.btnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVentas.UseVisualStyleBackColor = false;
+            this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
+            // 
+            // btnCliente
+            // 
+            this.btnCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(148)))), ((int)(((byte)(3)))));
+            this.btnCliente.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCliente.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnCliente.Image")));
+            this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCliente.Location = new System.Drawing.Point(0, 45);
+            this.btnCliente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Size = new System.Drawing.Size(157, 41);
+            this.btnCliente.TabIndex = 2;
+            this.btnCliente.Text = "Cliente";
+            this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCliente.UseVisualStyleBackColor = false;
+            // 
+            // btnVehiculos
+            // 
+            this.btnVehiculos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(148)))), ((int)(((byte)(3)))));
+            this.btnVehiculos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnVehiculos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVehiculos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVehiculos.Image = ((System.Drawing.Image)(resources.GetObject("btnVehiculos.Image")));
+            this.btnVehiculos.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnVehiculos.Location = new System.Drawing.Point(0, 0);
+            this.btnVehiculos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnVehiculos.Name = "btnVehiculos";
+            this.btnVehiculos.Size = new System.Drawing.Size(157, 45);
+            this.btnVehiculos.TabIndex = 4;
+            this.btnVehiculos.Text = "Vehiculos";
+            this.btnVehiculos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVehiculos.UseVisualStyleBackColor = false;
+            this.btnVehiculos.Click += new System.EventHandler(this.btnVehiculos_Click);
             // 
             // Empleado2
             // 
@@ -349,6 +391,7 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.panelVentana.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -378,5 +421,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panelVentana;
+        private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.Splitter splitter2;
+        private System.Windows.Forms.Button button4;
     }
 }

@@ -44,3 +44,5 @@ C:\Users\Maggie\Desktop\Proyecto de admin de bases\AdminDeBases\Proyecto de admi
 C:\Users\Maggie\Desktop\Proyecto de admin de bases\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.csproj.CopyComplete
 C:\Users\Maggie\Desktop\Proyecto de admin de bases\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.exe
 C:\Users\Maggie\Desktop\Proyecto de admin de bases\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.pdb
+C:\Users\Maggie\Desktop\Proyecto de admin de bases\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.Form2.resources
+C:\Users\Maggie\Desktop\Proyecto de admin de bases\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.NuevoPedido.resources

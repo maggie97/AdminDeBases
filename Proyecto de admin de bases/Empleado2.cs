@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -21,10 +22,14 @@ namespace Proyecto_de_admin_de_bases
 
         public int opcion = 0;
         public bool cerrarSesion;
+        SqlConnection connection;
+        String connectionString;
         Form formToPanel;
 
         public Empleado2()
         {
+            
+
             InitializeComponent();
         }
 
@@ -50,8 +55,7 @@ namespace Proyecto_de_admin_de_bases
             empleado.Dock = DockStyle.Fill;
             formToPanel = empleado as NuevoEmpleado;
             ventana();
-            
-            
+            camposGrid();
         }
         private bool ventana()
         {
@@ -99,6 +103,48 @@ namespace Proyecto_de_admin_de_bases
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnProducto_Click(object sender, EventArgs e)
+        {
+            NuevoProducto nuevoProducto = new NuevoProducto();
+
+            nuevoProducto.TopLevel = false;
+            nuevoProducto.Dock = DockStyle.Fill;
+            formToPanel = nuevoProducto as NuevoProducto;
+            ventana();
+        }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            NuevoPedido nuevoPedido = new NuevoPedido();
+            nuevoPedido.TopLevel = false;
+            nuevoPedido.Dock = DockStyle.Fill;
+            formToPanel = nuevoPedido as NuevoPedido;
+            ventana();
+        }
+
+        private bool camposGrid()
+        {
+            try
+            {
+                connectionString = @"Data Source=DESKTOP-CGHOG2P;Initial Catalog=Tienda;User ID=Maggie;Password=";
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                MessageBox.Show("Connection Open  !");
+                connection.Close();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 
