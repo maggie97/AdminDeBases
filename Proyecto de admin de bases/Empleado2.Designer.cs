@@ -42,7 +42,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,16 +50,13 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textboxRedondo1 = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.panelVentana = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -73,7 +69,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(758, 32);
+            this.panel1.Size = new System.Drawing.Size(1000, 32);
             this.panel1.TabIndex = 7;
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel4_MouseMove);
             // 
@@ -83,7 +79,7 @@
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(542, 0);
+            this.button3.Location = new System.Drawing.Point(784, 0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(72, 32);
             this.button3.TabIndex = 3;
@@ -97,7 +93,7 @@
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(614, 0);
+            this.button2.Location = new System.Drawing.Point(856, 0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(72, 32);
             this.button2.TabIndex = 2;
@@ -111,7 +107,7 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(686, 0);
+            this.button1.Location = new System.Drawing.Point(928, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(72, 32);
             this.button1.TabIndex = 1;
@@ -161,6 +157,7 @@
             this.btnVehiculos.Text = "Vehiculos";
             this.btnVehiculos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVehiculos.UseVisualStyleBackColor = false;
+            this.btnVehiculos.Click += new System.EventHandler(this.btnVehiculos_Click);
             // 
             // btnProducto
             // 
@@ -242,36 +239,13 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.splitContainer1);
+            this.panel3.Controls.Add(this.panel5);
+            this.panel3.Controls.Add(this.panelVentana);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(157, 32);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(601, 406);
+            this.panel3.Size = new System.Drawing.Size(843, 406);
             this.panel3.TabIndex = 10;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.AutoScroll = true;
-            this.splitContainer1.Panel1.Controls.Add(this.textboxRedondo1);
-            this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer1.Panel1MinSize = 200;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.dataGridView2);
-            this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer1.Size = new System.Drawing.Size(601, 406);
-            this.splitContainer1.SplitterDistance = 200;
-            this.splitContainer1.SplitterWidth = 2;
-            this.splitContainer1.TabIndex = 0;
             // 
             // dataGridView2
             // 
@@ -291,8 +265,9 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView2.Size = new System.Drawing.Size(399, 406);
+            this.dataGridView2.Size = new System.Drawing.Size(567, 406);
             this.dataGridView2.TabIndex = 1;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // Column1
             // 
@@ -336,22 +311,23 @@
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 
-            // label1
+            // panelVentana
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 16);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Nombre";
+            this.panelVentana.BackColor = System.Drawing.Color.Transparent;
+            this.panelVentana.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelVentana.Location = new System.Drawing.Point(567, 0);
+            this.panelVentana.Name = "panelVentana";
+            this.panelVentana.Size = new System.Drawing.Size(276, 406);
+            this.panelVentana.TabIndex = 0;
             // 
-            // textboxRedondo1
+            // panel5
             // 
-            this.textboxRedondo1.Location = new System.Drawing.Point(8, 57);
-            this.textboxRedondo1.Name = "textboxRedondo1";
-            this.textboxRedondo1.Radio = 20;
-            this.textboxRedondo1.Size = new System.Drawing.Size(180, 21);
-            this.textboxRedondo1.TabIndex = 11;
+            this.panel5.Controls.Add(this.dataGridView2);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(567, 406);
+            this.panel5.TabIndex = 1;
             // 
             // Empleado2
             // 
@@ -359,7 +335,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(28)))), ((int)(((byte)(58)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(758, 438);
+            this.ClientSize = new System.Drawing.Size(1000, 438);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -372,12 +348,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -394,7 +366,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView2;
@@ -405,7 +376,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.Label label1;
-        private TextboxRedondo textboxRedondo1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panelVentana;
     }
 }

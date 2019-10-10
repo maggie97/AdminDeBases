@@ -21,6 +21,7 @@ namespace Proyecto_de_admin_de_bases
 
         public int opcion = 0;
         public bool cerrarSesion;
+        Form formToPanel;
 
         public Empleado2()
         {
@@ -43,14 +44,28 @@ namespace Proyecto_de_admin_de_bases
 
         private void btnAgregarEmpleado_Click(object sender, EventArgs e)
         {
-            Empleado emp = new Empleado();
-            this.Visible = false;
-            if (emp.ShowDialog()== DialogResult.OK)
-            {
-                this.Visible = true;
-            }
+            NuevoEmpleado empleado = new NuevoEmpleado();
+            
+            empleado.TopLevel = false;
+            empleado.Dock = DockStyle.Fill;
+            formToPanel = empleado as NuevoEmpleado;
+            ventana();
+            
+            
         }
-
+        private bool ventana()
+        {
+            panelVentana.Controls.Clear();
+            if (formToPanel != null)
+            {
+                panelVentana.Controls.Add(formToPanel);
+                panelVentana.Tag = formToPanel;
+                formToPanel.Show();
+                return true;
+            }
+            
+            return false;
+        }
         private void button6_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
@@ -74,6 +89,16 @@ namespace Proyecto_de_admin_de_bases
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnVehiculos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 
