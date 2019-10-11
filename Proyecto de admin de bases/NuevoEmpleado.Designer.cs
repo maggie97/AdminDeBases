@@ -28,31 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textboxRedondo2 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textboxRedondo1 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.label1 = new System.Windows.Forms.Label();
-            this.textboxRedondo3 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.label2 = new System.Windows.Forms.Label();
-            this.textboxRedondo4 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.label4 = new System.Windows.Forms.Label();
-            this.textboxRedondo5 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.label6 = new System.Windows.Forms.Label();
-            this.textboxRedondo6 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.label7 = new System.Windows.Forms.Label();
-            this.textboxRedondo7 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.textboxRedondo7 = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.textboxRedondo6 = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.textboxRedondo5 = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.textboxRedondo4 = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.textboxRedondo3 = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.textboxRedondo2 = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.textboxRedondo1 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.SuspendLayout();
-            // 
-            // textboxRedondo2
-            // 
-            this.textboxRedondo2.Location = new System.Drawing.Point(24, 130);
-            this.textboxRedondo2.Name = "textboxRedondo2";
-            this.textboxRedondo2.Radio = 20;
-            this.textboxRedondo2.Size = new System.Drawing.Size(180, 20);
-            this.textboxRedondo2.TabIndex = 33;
             // 
             // label5
             // 
@@ -77,14 +69,6 @@
             this.label3.Text = "Alta Empleado";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // textboxRedondo1
-            // 
-            this.textboxRedondo1.Location = new System.Drawing.Point(24, 76);
-            this.textboxRedondo1.Name = "textboxRedondo1";
-            this.textboxRedondo1.Radio = 20;
-            this.textboxRedondo1.Size = new System.Drawing.Size(180, 20);
-            this.textboxRedondo1.TabIndex = 26;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -95,14 +79,6 @@
             this.label1.Size = new System.Drawing.Size(50, 15);
             this.label1.TabIndex = 25;
             this.label1.Text = "Nombre";
-            // 
-            // textboxRedondo3
-            // 
-            this.textboxRedondo3.Location = new System.Drawing.Point(24, 181);
-            this.textboxRedondo3.Name = "textboxRedondo3";
-            this.textboxRedondo3.Radio = 20;
-            this.textboxRedondo3.Size = new System.Drawing.Size(180, 20);
-            this.textboxRedondo3.TabIndex = 35;
             // 
             // label2
             // 
@@ -115,14 +91,6 @@
             this.label2.TabIndex = 34;
             this.label2.Text = "Segundo Apellido";
             // 
-            // textboxRedondo4
-            // 
-            this.textboxRedondo4.Location = new System.Drawing.Point(24, 235);
-            this.textboxRedondo4.Name = "textboxRedondo4";
-            this.textboxRedondo4.Radio = 20;
-            this.textboxRedondo4.Size = new System.Drawing.Size(180, 20);
-            this.textboxRedondo4.TabIndex = 37;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -133,14 +101,6 @@
             this.label4.Size = new System.Drawing.Size(60, 15);
             this.label4.TabIndex = 36;
             this.label4.Text = "Dirección";
-            // 
-            // textboxRedondo5
-            // 
-            this.textboxRedondo5.Location = new System.Drawing.Point(24, 288);
-            this.textboxRedondo5.Name = "textboxRedondo5";
-            this.textboxRedondo5.Radio = 20;
-            this.textboxRedondo5.Size = new System.Drawing.Size(180, 20);
-            this.textboxRedondo5.TabIndex = 39;
             // 
             // label6
             // 
@@ -153,14 +113,6 @@
             this.label6.TabIndex = 38;
             this.label6.Text = "Teléfono";
             // 
-            // textboxRedondo6
-            // 
-            this.textboxRedondo6.Location = new System.Drawing.Point(23, 346);
-            this.textboxRedondo6.Name = "textboxRedondo6";
-            this.textboxRedondo6.Radio = 20;
-            this.textboxRedondo6.Size = new System.Drawing.Size(180, 20);
-            this.textboxRedondo6.TabIndex = 41;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -171,14 +123,6 @@
             this.label7.Size = new System.Drawing.Size(103, 15);
             this.label7.TabIndex = 40;
             this.label7.Text = "Puesto de Trabajo";
-            // 
-            // textboxRedondo7
-            // 
-            this.textboxRedondo7.Location = new System.Drawing.Point(24, 396);
-            this.textboxRedondo7.Name = "textboxRedondo7";
-            this.textboxRedondo7.Radio = 20;
-            this.textboxRedondo7.Size = new System.Drawing.Size(180, 20);
-            this.textboxRedondo7.TabIndex = 43;
             // 
             // label8
             // 
@@ -200,10 +144,67 @@
             this.button1.Text = "Añadir Empleado";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // textboxRedondo7
+            // 
+            this.textboxRedondo7.Location = new System.Drawing.Point(24, 396);
+            this.textboxRedondo7.Name = "textboxRedondo7";
+            this.textboxRedondo7.Radio = 20;
+            this.textboxRedondo7.Size = new System.Drawing.Size(180, 20);
+            this.textboxRedondo7.TabIndex = 43;
+            // 
+            // textboxRedondo6
+            // 
+            this.textboxRedondo6.Location = new System.Drawing.Point(23, 346);
+            this.textboxRedondo6.Name = "textboxRedondo6";
+            this.textboxRedondo6.Radio = 20;
+            this.textboxRedondo6.Size = new System.Drawing.Size(180, 20);
+            this.textboxRedondo6.TabIndex = 41;
+            // 
+            // textboxRedondo5
+            // 
+            this.textboxRedondo5.Location = new System.Drawing.Point(24, 288);
+            this.textboxRedondo5.Name = "textboxRedondo5";
+            this.textboxRedondo5.Radio = 20;
+            this.textboxRedondo5.Size = new System.Drawing.Size(180, 20);
+            this.textboxRedondo5.TabIndex = 39;
+            // 
+            // textboxRedondo4
+            // 
+            this.textboxRedondo4.Location = new System.Drawing.Point(24, 235);
+            this.textboxRedondo4.Name = "textboxRedondo4";
+            this.textboxRedondo4.Radio = 20;
+            this.textboxRedondo4.Size = new System.Drawing.Size(180, 20);
+            this.textboxRedondo4.TabIndex = 37;
+            // 
+            // textboxRedondo3
+            // 
+            this.textboxRedondo3.Location = new System.Drawing.Point(24, 181);
+            this.textboxRedondo3.Name = "textboxRedondo3";
+            this.textboxRedondo3.Radio = 20;
+            this.textboxRedondo3.Size = new System.Drawing.Size(180, 20);
+            this.textboxRedondo3.TabIndex = 35;
+            // 
+            // textboxRedondo2
+            // 
+            this.textboxRedondo2.Location = new System.Drawing.Point(24, 130);
+            this.textboxRedondo2.Name = "textboxRedondo2";
+            this.textboxRedondo2.Radio = 20;
+            this.textboxRedondo2.Size = new System.Drawing.Size(180, 20);
+            this.textboxRedondo2.TabIndex = 33;
+            // 
+            // textboxRedondo1
+            // 
+            this.textboxRedondo1.Location = new System.Drawing.Point(24, 76);
+            this.textboxRedondo1.Name = "textboxRedondo1";
+            this.textboxRedondo1.Radio = 20;
+            this.textboxRedondo1.Size = new System.Drawing.Size(180, 20);
+            this.textboxRedondo1.TabIndex = 26;
+            // 
             // NuevoEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(28)))), ((int)(((byte)(58)))));
             this.ClientSize = new System.Drawing.Size(244, 475);
             this.Controls.Add(this.button1);
