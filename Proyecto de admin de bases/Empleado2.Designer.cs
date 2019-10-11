@@ -278,7 +278,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(157, 45);
             this.button4.TabIndex = 9;
-            this.button4.Text = "Pedidos";
+            this.button4.Text = "Nomina";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -331,7 +331,7 @@
             this.btnVentas.Name = "btnVentas";
             this.btnVentas.Size = new System.Drawing.Size(157, 45);
             this.btnVentas.TabIndex = 5;
-            this.btnVentas.Text = "Ventas";
+            this.btnVentas.Text = "Pedidos";
             this.btnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVentas.UseVisualStyleBackColor = false;
             this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
@@ -352,6 +352,7 @@
             this.btnCliente.Text = "Cliente";
             this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCliente.UseVisualStyleBackColor = false;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
             // btnVehiculos
             // 

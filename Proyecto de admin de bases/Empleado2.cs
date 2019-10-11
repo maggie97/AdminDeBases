@@ -13,10 +13,14 @@ using System.Windows.Forms;
 namespace Proyecto_de_admin_de_bases
 {
     public enum Tables {
-        Empleado = 1,
-        Producto = 2,
-        Vehiculo = 3,
-        Pedido = 4
+        Empleado ,
+        Producto ,
+        Vehiculo ,
+        Pedido,
+        Cliente,
+        Conductor,
+        DetallePedido,
+        Nomina
     };
 
     public enum typeQuery{
@@ -37,8 +41,6 @@ namespace Proyecto_de_admin_de_bases
 
         public Empleado2()
         {
-            
-
             InitializeComponent();
         }
 
@@ -106,7 +108,7 @@ namespace Proyecto_de_admin_de_bases
 
         private void btnVehiculos_Click(object sender, EventArgs e)
         {
-
+            camposGrid(Tables.Vehiculo);
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -122,34 +124,37 @@ namespace Proyecto_de_admin_de_bases
             nuevoProducto.Dock = DockStyle.Fill;
             formToPanel = nuevoProducto as NuevoProducto;
             ventana();
+            camposGrid(Tables.Producto);
         }
 
         private void btnVentas_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
         {
             NuevoPedido nuevoPedido = new NuevoPedido();
             nuevoPedido.TopLevel = false;
             nuevoPedido.Dock = DockStyle.Fill;
             formToPanel = nuevoPedido as NuevoPedido;
             ventana();
+            camposGrid(Tables.Pedido);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            /*NuevoPedido nuevoPedido = new NuevoPedido();
+            nuevoPedido.TopLevel = false;
+            nuevoPedido.Dock = DockStyle.Fill;
+            formToPanel = nuevoPedido as NuevoPedido;
+            ventana();*/
+            camposGrid(Tables.Nomina);
         }
 
         private bool camposGrid(Tables table)
         {
-            SqlCommand command;
             SqlDataReader dataReader;
-            String sql, output = "";
             crearCamposATabla(table);
             try
             {
                 if (connectionOpen())
                 {
-                    // sql = "SELECT * FROM Empleado";
-                    // command = new SqlCommand(sql, connection);
                     dataReader = datos(typeQuery.select ,table);
                     dgvDatos.Rows.Clear();
                     while (dataReader.Read())
@@ -160,7 +165,6 @@ namespace Proyecto_de_admin_de_bases
                             row.Add(dataReader.GetValue(i).ToString());
                         }
                         dgvDatos.Rows.Add(row.ToArray());
-                        //output += dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "\n";
                     }
                 }
             }
@@ -169,7 +173,6 @@ namespace Proyecto_de_admin_de_bases
                 Console.WriteLine(e);
                 return false;
             }
-
             return true;
         }
         public void crearCamposATabla(Tables tabla)
@@ -182,8 +185,17 @@ namespace Proyecto_de_admin_de_bases
                 case Tables.Empleado:
                     columnas = new string[] { "Nombre", "Apellido1", "Apellido2", "Direccion", "Telefono", "Puesto de Trabajo", "NSS" };
                     break;
+                case Tables.Cliente:
+                    columnas = new string[] { "Nombre", "Apellido1", "Apellido2", "Direccion", "Telefono" };
+                    break;
+                case Tables.Conductor:
+                    columnas = new string[] { "Unidad Asignada ", "idEmpleado", "Disponibilidad" };
+                    break;
+                case Tables.Nomina:
+                    columnas = new string[] { "Mes", "Año", "Sueldo Base", "Horas Extra", "Sueldo Bruto" };
+                    break;
                 case Tables.Pedido:
-                    columnas = new string[] { };
+                    columnas = new string[] { "clienteEnvia", "clienteRecibe", "total", "unidadAsignada", "estado", "fechaPedido", "fechaEntrega", "idEmpleado" };
                     break;
                 case Tables.Producto:
                     columnas = new string[] { "Nombre", "Precio", "Exsictencias", "Marca" };
@@ -192,6 +204,7 @@ namespace Proyecto_de_admin_de_bases
                     columnas = new string[] { "NoUnidad", "NoPlaca", "Modelo", "Peso Soportado", "Disponibilidad" };
                     break;
             }
+            
             foreach (var value in columnas)
             {
                 dgvDatos.Columns.Add("Col" + value, value);
@@ -200,26 +213,7 @@ namespace Proyecto_de_admin_de_bases
 
         private SqlDataReader datos(typeQuery type, Tables table)
         {
-            String sql = "";
-            switch (type)
-            {
-                case typeQuery.select:
-                    sql = "SELECT *";
-                    break;
-                case typeQuery.insert:
-                    sql = "INSERT *";
-                    break;
-                default:
-                    return null;
-            }
-            switch (table)
-            {
-                case Tables.Empleado:
-                    sql += "FROM Empleados";
-                    break;
-                default:
-                    return null;
-            }
+            String sql = type + " * FROM " + table;
             var command = new SqlCommand(sql, connection);
             return command.ExecuteReader();
         }
@@ -239,7 +233,11 @@ namespace Proyecto_de_admin_de_bases
             }
             return true;
         }
-        
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            camposGrid(Tables.Cliente);
+        }
     }
 
     
