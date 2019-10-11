@@ -1,0 +1,101 @@
+idCliente|nombre|apellido1|apellido2|direccion|telefono
+1|Ivana|Orr|Pacheco|5635 Lorem Carretera|(344) 187-3709
+2|Howard|Griffith|Middleton|Apdo.:777-3052 Orci, C/|(595) 715-1553
+3|Yoko|Waters|Harvey|Apartado núm.: 950, 6441 Nunc C/|(863) 130-1250
+4|Timon|Ellison|Reynolds|616-8375 Curabitur C/|(519) 132-7356
+5|Tashya|Allen|Kemp|Apartado núm.: 821, 3469 Primis Avda.|(911) 611-6344
+6|Constance|Wallace|Wolfe|309-7267 Tincidunt Avenida|(522) 676-0072
+7|Addison|Becker|Reed|Apdo.:528-8569 Sed C.|(339) 785-7977
+8|Damian|Frederick|Schwartz|471-8741 Morbi Av.|(126) 547-4199
+9|Hayfa|Pierce|Preston|5423 Cursus Calle|(155) 161-6810
+10|Adara|Russo|Diaz|6424 Amet, C/|(823) 911-1169
+11|Cathleen|Drake|French|Apdo.:780-5976 In C/|(442) 126-4880
+12|Jordan|Spencer|Mendoza|Apartado núm.: 408, 2446 Cum Ctra.|(591) 962-2308
+13|Patience|Glass|Estrada|Apartado núm.: 387, 4052 Libero Avda.|(952) 864-7160
+14|Edan|Reilly|Hendricks|295-4865 Aliquet, Avenida|(327) 697-4818
+15|Miranda|Martin|Ryan|Apartado núm.: 945, 3305 Ipsum. Calle|(961) 353-4390
+16|Haviva|Whitaker|Roach|2908 Euismod Calle|(984) 707-3554
+17|Owen|Figueroa|Hart|9153 Ac Ctra.|(581) 478-5323
+18|Jamal|Ramirez|Merritt|3063 Dolor C.|(604) 809-2796
+19|Denton|Beck|Mccoy|Apartado núm.: 961, 4983 Tincidunt Carretera|(304) 104-8761
+20|Ezekiel|Faulkner|Stokes|Apartado núm.: 452, 4928 Dictum Avenida|(776) 922-3442
+21|Paula|Schmidt|Melendez|871-5296 Ornare, Calle|(914) 694-4427
+22|Olympia|Tucker|Blair|Apdo.:940-9821 Dui Av.|(534) 692-6688
+23|Caleb|Schwartz|Wilkerson|7301 Nec, Av.|(131) 410-8383
+24|Daphne|Hines|Klein|Apartado núm.: 794, 862 Nibh Carretera|(512) 948-9261
+25|Kylan|Pennington|Mayo|148-7009 A, Calle|(312) 897-0491
+26|Willow|Finch|Carr|Apdo.:189-4908 Nullam |(955) 664-4937
+27|Lev|Reed|Sandoval|9574 Etiam Avda.|(745) 335-7438
+28|Nomlanga|Meadows|Whitehead|2296 Tempor, Avda.|(137) 908-0088
+29|Hilda|Owen|Parrish|Apartado núm.: 310, 765 Massa. Carretera|(737) 387-8790
+30|Demetrius|Barr|Harding|473-7792 Dolor. |(230) 696-6954
+31|Graiden|Blackburn|Kline|740-2995 Scelerisque Avenida|(175) 887-5502
+32|Karina|Mccray|Cash|4297 Id |(998) 428-7597
+33|Adrian|Cash|Dunlap|Apdo.:850-3517 In Carretera|(776) 652-0542
+34|Melanie|Hudson|Webster|Apartado núm.: 307, 1959 Donec C/|(968) 210-7901
+35|Shelly|Rice|Mcdaniel|490-3892 Sit Calle|(171) 847-3301
+36|Claudia|Castaneda|Barber|923-6014 Fringilla Calle|(507) 835-4255
+37|Renee|Fleming|Koch|Apdo.:453-5070 In Avda.|(429) 264-9838
+38|George|Hoffman|Christian|Apartado núm.: 278, 2853 Nunc Carretera|(159) 773-5198
+39|Abbot|Fisher|Myers|112-3102 Penatibus Av.|(827) 892-0074
+40|Mari|Grant|Barnett|Apdo.:971-7665 Ante. Carretera|(824) 179-9416
+41|Carol|Dominguez|Rosales|Apartado núm.: 213, 6107 Lorem C/|(322) 609-3275
+42|Edan|Price|Hensley|443-784 Eu Calle|(796) 635-1095
+43|Isabelle|Holder|Baker|Apdo.:736-4001 Feugiat C/|(135) 876-0831
+44|Samuel|Rocha|Carey|919-1824 Ut, Carretera|(683) 338-9892
+45|Candace|Black|Conway|Apartado núm.: 237, 4329 Non, Avenida|(741) 306-1344
+46|Adena|Fuentes|Brady|Apdo.:334-2667 Eleifend Avda.|(777) 211-1366
+47|Aileen|Hester|Nguyen|7888 In Avda.|(764) 548-2382
+48|Oscar|Craig|Morse|Apdo.:272-2132 Tellus Av.|(139) 496-7075
+49|Slade|Dyer|Villarreal|Apartado núm.: 526, 7150 Et Avda.|(545) 891-4726
+50|Cecilia|Harrison|Mcguire|Apdo.:593-3023 Nunc |(513) 637-0329
+51|Judah|Pratt|Ball|3113 Libero C.|(625) 204-0738
+52|Stephen|Rosario|Acosta|8050 Nec, Carretera|(719) 843-2993
+53|Ulysses|Burton|Vasquez|862-1769 Mattis C.|(450) 455-8723
+54|Barclay|Bullock|Landry|6282 Fusce Av.|(518) 418-9195
+55|Trevor|Sosa|Small|Apartado núm.: 851, 9949 Ullamcorper. Av.|(844) 739-6999
+56|Norman|Rocha|Ortega|Apartado núm.: 269, 1331 Feugiat Avenida|(196) 386-2975
+57|Aiko|Mckay|Lamb|330-1209 Ante Carretera|(419) 915-5851
+58|Cooper|Osborn|Ortega|Apartado núm.: 783, 8675 Eu Carretera|(995) 868-5246
+59|Tamekah|Myers|Wolf|Apdo.:525-6213 Et, Avenida|(172) 382-2559
+60|Alisa|Moran|Cruz|Apdo.:184-8630 Praesent Avenida|(973) 728-9588
+61|Nadine|Hunt|Lambert|Apdo.:649-7233 Quis Carretera|(619) 258-1613
+62|Veda|Johnson|Dominguez|Apdo.:541-6581 Consequat, |(589) 634-4975
+63|Kaseem|Cabrera|Stevenson|429-3284 Iaculis C/|(101) 969-8135
+64|Debra|Underwood|Knox|Apdo.:308-5323 Imperdiet Av.|(566) 479-9242
+65|Linus|Whitley|Sherman|Apdo.:796-7540 Ipsum Avenida|(672) 578-8966
+66|TaShya|Riley|Dudley|8690 Arcu Ctra.|(873) 834-8952
+67|Marsden|Giles|Everett|Apdo.:706-2721 Ullamcorper, |(457) 744-0961
+68|Kitra|Barnett|Terry|Apartado núm.: 530, 8311 Sed Av.|(225) 565-3998
+69|Daria|Burgess|Bradford|7415 Neque. Carretera|(608) 312-4895
+70|Cade|Gallegos|Warner|Apartado núm.: 185, 6627 Vitae, |(572) 814-8367
+71|Patricia|Blackburn|Figueroa|9106 Mi, Carretera|(120) 370-3517
+72|Megan|Knox|Blackwell|776-5932 Turpis. C.|(783) 893-4382
+73|Erasmus|Jackson|Mendoza|Apartado núm.: 952, 2707 Cum Avenida|(147) 708-4422
+74|Virginia|Valencia|Fields|Apartado núm.: 359, 1154 Libero Avda.|(707) 772-8212
+75|Theodore|Mckinney|Cotton|Apdo.:648-8628 Mauris. Calle|(754) 807-9537
+76|Bradley|Yates|Drake|Apartado núm.: 178, 7772 Consequat Avenida|(741) 512-3946
+77|Calista|Riddle|Dickerson|207-5503 Consectetuer, Calle|(401) 328-4342
+78|Ima|Shannon|Flynn|6683 At Calle|(963) 138-8291
+79|Glenna|Hurst|Mcknight|376-5557 Risus Av.|(343) 877-9368
+80|Ferris|Shaw|Macias|113-5949 Donec Avda.|(296) 268-8125
+81|Zahir|Rosa|Poole|Apartado núm.: 509, 6082 Sollicitudin C.|(647) 716-6844
+82|Dustin|Gonzalez|Booker|Apdo.:818-6294 Bibendum Avda.|(863) 376-6290
+83|Alexis|Sykes|Bowen|5196 Ligula. Avda.|(701) 849-6524
+84|Adena|Dotson|Thornton|359-5912 Fringilla. C.|(251) 759-8680
+85|Maggie|Miller|Patel|Apdo.:251-3816 Tempor Ctra.|(136) 196-8515
+86|Rowan|Cote|Alvarez|8992 Est, Av.|(225) 441-3220
+87|Brenden|Bridges|Valdez|477-8114 Et, Ctra.|(115) 320-9576
+88|Allen|Avery|Deleon|8204 Dui. |(538) 155-1093
+89|Hermione|Austin|Roach|3845 Pellentesque Av.|(125) 180-1285
+90|Alma|Silva|Frost|974-4978 Lorem, Avenida|(146) 984-1053
+91|Florence|Padilla|Marsh|801-1289 Blandit C.|(450) 605-8938
+92|Miriam|Stephens|Byrd|8355 Sapien. C.|(654) 609-8989
+93|Wyoming|Hernandez|Robinson|9145 Ultricies C/|(762) 506-0931
+94|Xena|Barrera|Hampton|9354 Ut Ctra.|(797) 818-3691
+95|Odysseus|Holloway|Oliver|Apartado núm.: 422, 1395 Auctor Av.|(578) 843-7968
+96|Kessie|Gibbs|Cannon|2968 Rutrum, Ctra.|(232) 963-1748
+97|Tatiana|Montoya|Doyle|Apartado núm.: 404, 7659 Adipiscing Ctra.|(950) 242-4726
+98|Harrison|Rutledge|Baird|Apartado núm.: 410, 1531 Orci Ctra.|(200) 454-3219
+99|Cassidy|Decker|Henson|Apartado núm.: 241, 1715 Sed Ctra.|(452) 694-3675
+100|Clinton|Sykes|Kelley|Apartado núm.: 441, 289 Orci |(256) 984-9299

@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente.cs" />
+    <Compile Include="Conection.cs" />
     <Compile Include="Empleado2.cs">
       <SubType>Form</SubType>
     </Compile>

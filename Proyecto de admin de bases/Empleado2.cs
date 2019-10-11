@@ -149,22 +149,23 @@ namespace Proyecto_de_admin_de_bases
 
         private bool camposGrid(Tables table)
         {
-            SqlDataReader dataReader;
             crearCamposATabla(table);
             try
             {
-                if (connectionOpen())
+                if (Conection.instance.connectionOpen())
                 {
-                    dataReader = datos(typeQuery.select ,table);
-                    dgvDatos.Rows.Clear();
-                    while (dataReader.Read())
+                    using (SqlDataReader dataReader = Conection.instance.datos(typeQuery.select, table))
                     {
-                        List<string> row = new List<string>();
-                        for (int i = 1; i < dataReader.FieldCount; i++)
+                        dgvDatos.Rows.Clear();
+                        while (dataReader.Read())
                         {
-                            row.Add(dataReader.GetValue(i).ToString());
+                            List<string> row = new List<string>();
+                            for (int i = 1; i < dataReader.FieldCount; i++)
+                            {
+                                row.Add(dataReader.GetValue(i).ToString());
+                            }
+                            dgvDatos.Rows.Add(row.ToArray());
                         }
-                        dgvDatos.Rows.Add(row.ToArray());
                     }
                 }
             }
@@ -209,29 +210,6 @@ namespace Proyecto_de_admin_de_bases
             {
                 dgvDatos.Columns.Add("Col" + value, value);
             }
-        }
-
-        private SqlDataReader datos(typeQuery type, Tables table)
-        {
-            String sql = type + " * FROM " + table;
-            var command = new SqlCommand(sql, connection);
-            return command.ExecuteReader();
-        }
-
-        private bool connectionOpen()
-        {
-            try
-            {
-                connectionString = "Server=DESKTOP-CGHOG2P; Database=Tienda; Trusted_Connection=true";
-                connection = new SqlConnection(connectionString);
-                connection.Open();
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e.ToString());
-                return false;
-            }
-            return true;
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
