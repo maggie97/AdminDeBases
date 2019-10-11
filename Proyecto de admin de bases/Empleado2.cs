@@ -13,11 +13,15 @@ using System.Windows.Forms;
 namespace Proyecto_de_admin_de_bases
 {
     public enum Tables {
-        Empleado = 1 ,
+        Empleado = 1,
         Producto = 2,
         Vehiculo = 3,
         Pedido = 4
     };
+
+    public enum typeQuery{
+        select, insert, update, delete
+    }
     public partial class Empleado2 : Form
     {
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -60,7 +64,7 @@ namespace Proyecto_de_admin_de_bases
             empleado.Dock = DockStyle.Fill;
             formToPanel = empleado as NuevoEmpleado;
             ventana();
-            camposGrid();
+            camposGrid(Tables.Empleado);
         }
         private bool ventana()
         {
@@ -139,24 +143,25 @@ namespace Proyecto_de_admin_de_bases
             SqlCommand command;
             SqlDataReader dataReader;
             String sql, output = "";
+            crearCamposATabla(table);
             try
             {
                 if (connectionOpen())
                 {
-                    sql = "SELECT * FROM Empleado";
-                    command = new SqlCommand(sql, connection);
-                    dataReader = command.ExecuteReader();
+                    // sql = "SELECT * FROM Empleado";
+                    // command = new SqlCommand(sql, connection);
+                    dataReader = datos(typeQuery.select ,table);
+                    dgvDatos.Rows.Clear();
                     while (dataReader.Read())
                     {
                         List<string> row = new List<string>();
-                        for (int i = 0; i < dataReader.FieldCount; i++)
+                        for (int i = 1; i < dataReader.FieldCount; i++)
                         {
                             row.Add(dataReader.GetValue(i).ToString());
                         }
-                        dgvDatos.Rows.Add(row);
+                        dgvDatos.Rows.Add(row.ToArray());
                         //output += dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "\n";
                     }
-                    MessageBox.Show(output);
                 }
             }
             catch (Exception e)
@@ -167,33 +172,56 @@ namespace Proyecto_de_admin_de_bases
 
             return true;
         }
-        public void VerTabla(Tables tabla, String[] datos)
+        public void crearCamposATabla(Tables tabla)
         {
             Tables t = tabla;
-
+            string[] columnas = new string[] { };
             dgvDatos.Columns.Clear();
             switch (tabla)
             {
                 case Tables.Empleado:
-
+                    columnas = new string[] { "Nombre", "Apellido1", "Apellido2", "Direccion", "Telefono", "Puesto de Trabajo", "NSS" };
                     break;
                 case Tables.Pedido:
+                    columnas = new string[] { };
                     break;
                 case Tables.Producto:
+                    columnas = new string[] { "Nombre", "Precio", "Exsictencias", "Marca" };
                     break;
                 case Tables.Vehiculo:
+                    columnas = new string[] { "NoUnidad", "NoPlaca", "Modelo", "Peso Soportado", "Disponibilidad" };
                     break;
             }
-
-            dgvDatos.Rows.Clear();
-            // if (e.Dir_Datos == -1) return;
-            foreach (var reg in datos)
+            foreach (var value in columnas)
             {
-                //string[] except = { reg.First(), reg.Last() };
-                //string[] r = reg.Except(except).ToArray();
-                //reg.RemoveAt(0);
-                reg.Remove(reg.Last());
+                dgvDatos.Columns.Add("Col" + value, value);
             }
+        }
+
+        private SqlDataReader datos(typeQuery type, Tables table)
+        {
+            String sql = "";
+            switch (type)
+            {
+                case typeQuery.select:
+                    sql = "SELECT *";
+                    break;
+                case typeQuery.insert:
+                    sql = "INSERT *";
+                    break;
+                default:
+                    return null;
+            }
+            switch (table)
+            {
+                case Tables.Empleado:
+                    sql += "FROM Empleados";
+                    break;
+                default:
+                    return null;
+            }
+            var command = new SqlCommand(sql, connection);
+            return command.ExecuteReader();
         }
 
         private bool connectionOpen()
