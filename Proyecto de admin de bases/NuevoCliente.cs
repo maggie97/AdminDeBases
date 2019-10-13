@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Proyecto_de_admin_de_bases
 {
-    public partial class NuevoEmpleado : Form
+    public partial class NuevoCliente : Form
     {
-        public NuevoEmpleado()
+        public NuevoCliente()
         {
             InitializeComponent();
         }
@@ -26,20 +26,20 @@ namespace Proyecto_de_admin_de_bases
         {
             if(!numeroTelefonoValido())
                 MessageBox.Show("Error", "Formato del número de telefono incorrecto" + Tables.Producto, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            if (validateFields())
+            else if (validateFields())
             {
-                object[] values = new object[] { txtNombre.Text, txtApellido1.Text, txtApellido2.Text, txtDireccion.Text,
-                    txtTelefono.Text, txtPuestoTrabajo.Text, txtNSS.Text};
-                if (Conection.instance.insert(Tables.Empleado, values.ToList()))
+                object[] values = new object[] { txtNombre.Text, txtApellido1.Text, txtApellido2.Text,
+                    txtDireccion.Text, txtTelefono.Text};
+                if (Conection.instance.insert(Tables.Cliente, values.ToList()))
                 {
-                    MessageBox.Show("Insercion", "Insercion Exsitosa en la tabla " + Tables.Empleado, MessageBoxButtons.OK);
+                    MessageBox.Show("Insercion", "Insercion Exsitosa en la tabla " + Tables.Producto, MessageBoxButtons.OK);
                 }
             }
         }
         private bool validateFields()
         {
             return (txtNombre.Text != "" && txtApellido1.Text != "" && txtApellido2.Text != ""
-                && txtDireccion.Text != ""  && txtPuestoTrabajo.Text != "" && txtNSS.Text != "" && numeroTelefonoValido());
+                && txtDireccion.Text != ""  && numeroTelefonoValido());
         }
         private bool numeroTelefonoValido()
         {

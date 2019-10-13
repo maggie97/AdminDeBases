@@ -30,17 +30,17 @@
         {
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textboxRedondo1 = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.txtNombre = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numPrecio = new System.Windows.Forms.NumericUpDown();
+            this.numExcistencias = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.textboxRedondo2 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.txtMarca = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numExcistencias)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -53,7 +53,6 @@
             this.label4.Size = new System.Drawing.Size(42, 15);
             this.label4.TabIndex = 18;
             this.label4.Text = "Precio";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -65,16 +64,14 @@
             this.label3.Size = new System.Drawing.Size(147, 23);
             this.label3.TabIndex = 17;
             this.label3.Text = "Alta Producto";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // textboxRedondo1
+            // txtNombre
             // 
-            this.textboxRedondo1.Location = new System.Drawing.Point(35, 73);
-            this.textboxRedondo1.Name = "textboxRedondo1";
-            this.textboxRedondo1.Radio = 20;
-            this.textboxRedondo1.Size = new System.Drawing.Size(180, 20);
-            this.textboxRedondo1.TabIndex = 16;
-            this.textboxRedondo1.TextChanged += new System.EventHandler(this.textboxRedondo1_TextChanged);
+            this.txtNombre.Location = new System.Drawing.Point(35, 73);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Radio = 20;
+            this.txtNombre.Size = new System.Drawing.Size(180, 20);
+            this.txtNombre.TabIndex = 16;
             // 
             // label1
             // 
@@ -86,23 +83,29 @@
             this.label1.Size = new System.Drawing.Size(50, 15);
             this.label1.TabIndex = 15;
             this.label1.Text = "Nombre";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // numericUpDown1
+            // numPrecio
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(108, 171);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(107, 20);
-            this.numericUpDown1.TabIndex = 20;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numPrecio.DecimalPlaces = 2;
+            this.numPrecio.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numPrecio.Location = new System.Drawing.Point(108, 171);
+            this.numPrecio.Name = "numPrecio";
+            this.numPrecio.Size = new System.Drawing.Size(107, 20);
+            this.numPrecio.TabIndex = 20;
+            this.numPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // numericUpDown2
+            // numExcistencias
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(108, 214);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(107, 20);
-            this.numericUpDown2.TabIndex = 22;
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            this.numExcistencias.DecimalPlaces = 2;
+            this.numExcistencias.Location = new System.Drawing.Point(108, 214);
+            this.numExcistencias.Name = "numExcistencias";
+            this.numExcistencias.Size = new System.Drawing.Size(107, 20);
+            this.numExcistencias.TabIndex = 22;
+            this.numExcistencias.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label2
             // 
@@ -114,16 +117,6 @@
             this.label2.Size = new System.Drawing.Size(66, 15);
             this.label2.TabIndex = 21;
             this.label2.Text = "Existencias";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // textboxRedondo2
-            // 
-            this.textboxRedondo2.Location = new System.Drawing.Point(35, 127);
-            this.textboxRedondo2.Name = "textboxRedondo2";
-            this.textboxRedondo2.Radio = 20;
-            this.textboxRedondo2.Size = new System.Drawing.Size(180, 20);
-            this.textboxRedondo2.TabIndex = 24;
-            this.textboxRedondo2.TextChanged += new System.EventHandler(this.textboxRedondo2_TextChanged_1);
             // 
             // label5
             // 
@@ -135,7 +128,6 @@
             this.label5.Size = new System.Drawing.Size(42, 15);
             this.label5.TabIndex = 23;
             this.label5.Text = "Marca";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // button1
             // 
@@ -156,6 +148,14 @@
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // txtMarca
+            // 
+            this.txtMarca.Location = new System.Drawing.Point(35, 127);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Radio = 20;
+            this.txtMarca.Size = new System.Drawing.Size(180, 20);
+            this.txtMarca.TabIndex = 47;
+            // 
             // NuevoProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -163,16 +163,16 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(28)))), ((int)(((byte)(58)))));
             this.ClientSize = new System.Drawing.Size(259, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textboxRedondo2);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.numExcistencias);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numPrecio);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textboxRedondo1);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -180,9 +180,8 @@
             this.Name = "NuevoProducto";
             this.ShowIcon = false;
             this.Text = "N";
-            this.Load += new System.EventHandler(this.NuevoProducto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numExcistencias)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,14 +190,14 @@
         #endregion
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private TextboxRedondo textboxRedondo1;
+        private TextboxRedondo txtNombre;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numPrecio;
+        private System.Windows.Forms.NumericUpDown numExcistencias;
         private System.Windows.Forms.Label label2;
-        private TextboxRedondo textboxRedondo2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private TextboxRedondo txtMarca;
     }
 }

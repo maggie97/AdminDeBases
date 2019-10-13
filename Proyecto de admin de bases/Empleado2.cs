@@ -35,8 +35,6 @@ namespace Proyecto_de_admin_de_bases
 
         public int opcion = 0;
         public bool cerrarSesion;
-        SqlConnection connection;
-        String connectionString;
         Form formToPanel;
 
         public Empleado2()
@@ -214,6 +212,12 @@ namespace Proyecto_de_admin_de_bases
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
+            NuevoCliente cliente = new NuevoCliente();
+
+            cliente.TopLevel = false;
+            cliente.Dock = DockStyle.Fill;
+            formToPanel = cliente as NuevoCliente;
+            ventana();
             camposGrid(Tables.Cliente);
         }
     }

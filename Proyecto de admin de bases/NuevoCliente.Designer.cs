@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_de_admin_de_bases
 {
-    partial class NuevoEmpleado
+    partial class NuevoCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -34,11 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.txtNSS = new Proyecto_de_admin_de_bases.TextboxRedondo();
-            this.txtPuestoTrabajo = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.txtTelefono = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.txtDireccion = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.txtApellido2 = new Proyecto_de_admin_de_bases.TextboxRedondo();
@@ -64,9 +60,9 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(39, 25);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(160, 23);
+            this.label3.Size = new System.Drawing.Size(57, 23);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Alta Empleado";
+            this.label3.Text = "Alta ";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label1
@@ -113,53 +109,15 @@
             this.label6.TabIndex = 38;
             this.label6.Text = "Teléfono";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(24, 328);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 15);
-            this.label7.TabIndex = 40;
-            this.label7.Text = "Puesto de Trabajo";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label8.Location = new System.Drawing.Point(25, 378);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(28, 15);
-            this.label8.TabIndex = 42;
-            this.label8.Text = "NSS";
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(52, 440);
+            this.button1.Location = new System.Drawing.Point(43, 343);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 23);
             this.button1.TabIndex = 44;
             this.button1.Text = "Añadir Empleado";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // txtNSS
-            // 
-            this.txtNSS.Location = new System.Drawing.Point(24, 396);
-            this.txtNSS.Name = "txtNSS";
-            this.txtNSS.Radio = 20;
-            this.txtNSS.Size = new System.Drawing.Size(180, 20);
-            this.txtNSS.TabIndex = 43;
-            // 
-            // txtPuestoTrabajo
-            // 
-            this.txtPuestoTrabajo.Location = new System.Drawing.Point(23, 346);
-            this.txtPuestoTrabajo.Name = "txtPuestoTrabajo";
-            this.txtPuestoTrabajo.Radio = 20;
-            this.txtPuestoTrabajo.Size = new System.Drawing.Size(180, 20);
-            this.txtPuestoTrabajo.TabIndex = 41;
             // 
             // txtTelefono
             // 
@@ -201,7 +159,7 @@
             this.txtNombre.Size = new System.Drawing.Size(180, 20);
             this.txtNombre.TabIndex = 26;
             // 
-            // NuevoEmpleado
+            // NuevoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -209,10 +167,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(28)))), ((int)(((byte)(58)))));
             this.ClientSize = new System.Drawing.Size(244, 475);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.txtNSS);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtPuestoTrabajo);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtDireccion);
@@ -225,7 +179,7 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "NuevoEmpleado";
+            this.Name = "NuevoCliente";
             this.Text = "NuevoEmpleado";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -245,10 +199,6 @@
         private System.Windows.Forms.Label label4;
         private TextboxRedondo txtTelefono;
         private System.Windows.Forms.Label label6;
-        private TextboxRedondo txtPuestoTrabajo;
-        private System.Windows.Forms.Label label7;
-        private TextboxRedondo txtNSS;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
     }
 }

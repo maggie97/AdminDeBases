@@ -17,64 +17,16 @@ namespace Proyecto_de_admin_de_bases
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textboxRedondo1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textboxRedondo2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textboxRedondo2_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NuevoProducto_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-
+            if (txtNombre.Text != "")
+            {
+                object[] values = new object[] {txtNombre.Text, numPrecio.Value , txtNombre.Text, numExcistencias.Value };
+                if( Conection.instance.insert(Tables.Producto, values.ToList()))
+                {
+                    MessageBox.Show("Insercion", "Insercion Exsitosa en la tabla " + Tables.Producto, MessageBoxButtons.OK);
+                }
+            }
         }
     }
 }
