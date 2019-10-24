@@ -44,6 +44,9 @@
             this.txtApellido2 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.txtApellido1 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.txtNombre = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.button2 = new System.Windows.Forms.Button();
+            this.idEmpleado = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.idEmpleado)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -201,13 +204,32 @@
             this.txtNombre.Size = new System.Drawing.Size(180, 20);
             this.txtNombre.TabIndex = 26;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(52, 475);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(130, 23);
+            this.button2.TabIndex = 45;
+            this.button2.Text = "Actualizar Empleado";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // idEmpleado
+            // 
+            this.idEmpleado.Location = new System.Drawing.Point(52, 504);
+            this.idEmpleado.Name = "idEmpleado";
+            this.idEmpleado.Size = new System.Drawing.Size(120, 20);
+            this.idEmpleado.TabIndex = 46;
+            this.idEmpleado.Visible = false;
+            // 
             // NuevoEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(28)))), ((int)(((byte)(58)))));
-            this.ClientSize = new System.Drawing.Size(244, 475);
+            this.ClientSize = new System.Drawing.Size(244, 510);
+            this.Controls.Add(this.idEmpleado);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtNSS);
             this.Controls.Add(this.label8);
@@ -227,6 +249,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NuevoEmpleado";
             this.Text = "NuevoEmpleado";
+            ((System.ComponentModel.ISupportInitialize)(this.idEmpleado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,5 +273,7 @@
         private TextboxRedondo txtNSS;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.NumericUpDown idEmpleado;
     }
 }

@@ -40,6 +40,11 @@
             this.txtApellido2 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.txtApellido1 = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.txtNombre = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.txtEmail = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnActualizarCliente = new System.Windows.Forms.Button();
+            this.idCliente = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.idCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -111,7 +116,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(43, 343);
+            this.button1.Location = new System.Drawing.Point(43, 371);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 23);
             this.button1.TabIndex = 44;
@@ -159,6 +164,43 @@
             this.txtNombre.Size = new System.Drawing.Size(180, 20);
             this.txtNombre.TabIndex = 26;
             // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(24, 332);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Radio = 20;
+            this.txtEmail.Size = new System.Drawing.Size(180, 20);
+            this.txtEmail.TabIndex = 46;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Location = new System.Drawing.Point(25, 314);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 15);
+            this.label7.TabIndex = 45;
+            this.label7.Text = "Email";
+            // 
+            // btnActualizarCliente
+            // 
+            this.btnActualizarCliente.Location = new System.Drawing.Point(43, 400);
+            this.btnActualizarCliente.Name = "btnActualizarCliente";
+            this.btnActualizarCliente.Size = new System.Drawing.Size(130, 23);
+            this.btnActualizarCliente.TabIndex = 47;
+            this.btnActualizarCliente.Text = "Actualizar Empleado";
+            this.btnActualizarCliente.UseVisualStyleBackColor = true;
+            this.btnActualizarCliente.Click += new System.EventHandler(this.btnActualizarCliente_Click);
+            // 
+            // idCliente
+            // 
+            this.idCliente.Location = new System.Drawing.Point(43, 429);
+            this.idCliente.Name = "idCliente";
+            this.idCliente.Size = new System.Drawing.Size(120, 20);
+            this.idCliente.TabIndex = 48;
+            this.idCliente.Visible = false;
+            // 
             // NuevoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -166,6 +208,10 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(28)))), ((int)(((byte)(58)))));
             this.ClientSize = new System.Drawing.Size(244, 475);
+            this.Controls.Add(this.idCliente);
+            this.Controls.Add(this.btnActualizarCliente);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.label6);
@@ -181,6 +227,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NuevoCliente";
             this.Text = "NuevoEmpleado";
+            ((System.ComponentModel.ISupportInitialize)(this.idCliente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,5 +247,9 @@
         private TextboxRedondo txtTelefono;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button1;
+        private TextboxRedondo txtEmail;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnActualizarCliente;
+        private System.Windows.Forms.NumericUpDown idCliente;
     }
 }

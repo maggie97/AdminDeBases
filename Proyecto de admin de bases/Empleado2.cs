@@ -36,6 +36,10 @@ namespace Proyecto_de_admin_de_bases
         public int opcion = 0;
         public bool cerrarSesion;
         Form formToPanel;
+        private Producto selectproducto = new Producto();
+        string tablaActivada = "";
+        NuevoProducto nuevoProducto;
+        NuevoCliente cliente;
 
         public Empleado2()
         {
@@ -109,20 +113,16 @@ namespace Proyecto_de_admin_de_bases
             camposGrid(Tables.Vehiculo);
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnProducto_Click(object sender, EventArgs e)
         {
-            NuevoProducto nuevoProducto = new NuevoProducto();
-
+            nuevoProducto = new NuevoProducto(dgvDatos);
+            tablaActivada = "Producto";
             nuevoProducto.TopLevel = false;
             nuevoProducto.Dock = DockStyle.Fill;
             formToPanel = nuevoProducto as NuevoProducto;
             ventana();
             camposGrid(Tables.Producto);
+           
         }
 
         private void btnVentas_Click(object sender, EventArgs e)
@@ -143,6 +143,36 @@ namespace Proyecto_de_admin_de_bases
             formToPanel = nuevoPedido as NuevoPedido;
             ventana();*/
             camposGrid(Tables.Nomina);
+        }
+
+        private bool camposGrid2(Tables table)
+        {
+            crearCamposATabla(table);
+            try
+            {
+                if (Conection.instance.connectionOpen())
+                {
+                    using (SqlDataReader dataReader = Conection.instance.datos(typeQuery.select, table))
+                    {
+                        dgvDatos.Rows.Clear();
+                        while (dataReader.Read())
+                        {
+                            List<string> row = new List<string>();
+                            for (int i = 0; i < dataReader.FieldCount; i++)
+                            {
+                                row.Add(dataReader.GetValue(i).ToString());
+                            }
+                            dgvDatos.Rows.Add(row.ToArray());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            return true;
         }
 
         private bool camposGrid(Tables table)
@@ -185,7 +215,7 @@ namespace Proyecto_de_admin_de_bases
                     columnas = new string[] { "Nombre", "Apellido1", "Apellido2", "Direccion", "Telefono", "Puesto de Trabajo", "NSS" };
                     break;
                 case Tables.Cliente:
-                    columnas = new string[] { "Nombre", "Apellido1", "Apellido2", "Direccion", "Telefono" };
+                    columnas = new string[] {"No. Cliente", "Nombre", "Apellido1", "Apellido2", "Direccion", "Telefono" , "Email"};
                     break;
                 case Tables.Conductor:
                     columnas = new string[] { "Unidad Asignada ", "idEmpleado", "Disponibilidad" };
@@ -212,13 +242,52 @@ namespace Proyecto_de_admin_de_bases
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
-            NuevoCliente cliente = new NuevoCliente();
-
+            cliente = new NuevoCliente(dgvDatos);
+            tablaActivada = "Cliente";
             cliente.TopLevel = false;
             cliente.Dock = DockStyle.Fill;
             formToPanel = cliente as NuevoCliente;
             ventana();
-            camposGrid(Tables.Cliente);
+            camposGrid2(Tables.Cliente);
+        }
+
+        private void dgvDatos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowindex = e.RowIndex;
+            switch(tablaActivada)
+            {
+                case "Producto":
+                    TextBox tex1 = nuevoProducto.Controls.Find("txtNombre", true)[0] as TextBox;
+                    TextBox tex2 = nuevoProducto.Controls.Find("txtMarca", true)[0] as TextBox;
+                    NumericUpDown num1 = nuevoProducto.Controls.Find("numPrecio", true)[0] as NumericUpDown;
+                    NumericUpDown num2 = nuevoProducto.Controls.Find("numExcistencias", true)[0] as NumericUpDown;
+                    NumericUpDown num3 = nuevoProducto.Controls.Find("idProducto", true)[0] as NumericUpDown;
+
+                    tex1.Text = dgvDatos[0, rowindex].Value.ToString();
+                    num1.Value = Convert.ToDecimal(dgvDatos[1, rowindex].Value);
+                    tex2.Text = dgvDatos[2, rowindex].Value.ToString();
+                    num2.Value = Convert.ToInt32( dgvDatos[3, rowindex].Value);
+                    num3.Value = rowindex+1;
+                    break;
+                case "Cliente":
+                    TextBox tex3 = cliente.Controls.Find("txtNombre", true)[0] as TextBox;
+                    TextBox tex4 = cliente.Controls.Find("txtApellido1", true)[0] as TextBox;
+                    TextBox tex5 = cliente.Controls.Find("txtApellido2", true)[0] as TextBox;
+                    TextBox tex6 = cliente.Controls.Find("txtDireccion", true)[0] as TextBox;
+                    TextBox tex7 = cliente.Controls.Find("txtTelefono", true)[0] as TextBox;
+                    TextBox tex8 = cliente.Controls.Find("txtEmail", true)[0] as TextBox;
+                    NumericUpDown numeric = cliente.Controls.Find("idCliente", true)[0] as NumericUpDown;
+
+                    tex3.Text = dgvDatos[1, rowindex].Value.ToString();
+                    tex4.Text = dgvDatos[2, rowindex].Value.ToString();
+                    tex5.Text = dgvDatos[3, rowindex].Value.ToString();
+                    tex6.Text = dgvDatos[4, rowindex].Value.ToString();
+                    tex7.Text = dgvDatos[5, rowindex].Value.ToString();
+                    tex8.Text = dgvDatos[6, rowindex].Value.ToString();
+                    numeric.Value = Convert.ToInt32(dgvDatos[0, rowindex].Value);
+
+                    break;
+            }
         }
     }
 

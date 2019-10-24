@@ -7,19 +7,30 @@ using System.Threading.Tasks;
 
 namespace Proyecto_de_admin_de_bases
 {
+    /// <summary>
+    /// Esta clase sirve para realizar la conexion a la base de datos y realizar las consultas de la misma base
+    /// de datos
+    /// </summary>
     class Conection
     {
         public static  Conection instance = new Conection();
         SqlConnection connection;
+        /// <summary>
+        /// Constructor de la clase Conection
+        /// </summary>
         private Conection(){
         }
 
+        /// <summary>
+        /// Abre la conexion a la
+        /// </summary>
+        /// <returns></returns>
         public bool connectionOpen()
         {
             string connectionString;
             try
             {
-                connectionString = "Server=DESKTOP-CGHOG2P; Database=Tienda; Trusted_Connection=true";
+                connectionString = "Server=DESKTOP-22PJVHV; Database=Tienda; Trusted_Connection=true";
                 connection = new SqlConnection(connectionString);
                 connection.Open();
             }
@@ -107,8 +118,8 @@ namespace Proyecto_de_admin_de_bases
 
         private SqlCommand insertaCliente(List<object> values)
         {
-            String sql = "INSERT INTO " + Tables.Cliente + " (nombre, apellido1, apellido2, direccion, telefono)"
-                + " VALUES (@nombre, @apellido1, @apellido2, @direccion, @telefono)";
+            String sql = "INSERT INTO " + Tables.Cliente + " (nombre, apellido1, apellido2, direccion, telefono, Email)"
+                + " VALUES (@nombre, @apellido1, @apellido2, @direccion, @telefono,@email)";
 
             var command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@nombre", values[0]);
@@ -116,6 +127,67 @@ namespace Proyecto_de_admin_de_bases
             command.Parameters.AddWithValue("@apellido2", values[2]);
             command.Parameters.AddWithValue("@direccion", values[3]);
             command.Parameters.AddWithValue("@telefono", values[4]);
+            command.Parameters.AddWithValue("@email", values[5]);
+            return command;
+        }
+
+        public bool Actualiza(List<object>values, Tables tables)
+        {
+            int rows = 0;
+            switch (tables)
+            {
+                case Tables.Pedido:
+                    //rows = a(values).ExecuteNonQuery();
+                    break;
+                case Tables.Producto:
+                    rows = Actualiza_Producto(values).ExecuteNonQuery();
+                    break;
+                case Tables.Cliente:
+                    rows = Actualiza_Cliente(values).ExecuteNonQuery();
+                    break;
+                case Tables.Empleado:
+                    //rows = insertaEmpleado(values).ExecuteNonQuery();
+                    break;
+                default:
+                    Console.WriteLine("En esta tabla no esta implementado el insert");
+                    break;
+            }
+
+            return (rows > 0);
+        }
+
+        private SqlCommand Actualiza_Producto(List<object> values)
+        {
+            string query = 
+                "UPDATE Producto " +
+                "SET nombre=@nombre, precio=@precio, marca=@marca, Existencias=@existencias" +
+                " where idProducto=@idProducto";
+            var command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@idProducto", values[0]);
+            command.Parameters.AddWithValue("@nombre", values[1]);
+            command.Parameters.AddWithValue("@precio", values[2]);
+            command.Parameters.AddWithValue("@marca", values[3]);
+            command.Parameters.AddWithValue("@existencias", values[4]);
+
+
+            return command;
+        }
+
+        private SqlCommand Actualiza_Cliente(List<object> values)
+        {
+            string query =
+                "UPDATE Cliente " +
+                "SET nombre=@nombre, apellido1=@Apellido1, apellido2=@Apellido2, direccion=@direccion, telefono=@telefono, Email=@email" +
+                " where idCliente=@idCliente";
+            var command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@idCliente", values[0]);
+            command.Parameters.AddWithValue("@nombre", values[1]);
+            command.Parameters.AddWithValue("@Apellido1", values[2]);
+            command.Parameters.AddWithValue("@Apellido2", values[3]);
+            command.Parameters.AddWithValue("@direccion", values[4]);
+            command.Parameters.AddWithValue("@telefono", values[5]);
+            command.Parameters.AddWithValue("@email", values[6]);
+
 
             return command;
         }

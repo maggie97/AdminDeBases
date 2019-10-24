@@ -47,3 +47,23 @@ C:\Users\Maggie\Desktop\Proyecto de admin de bases\AdminDeBases\Proyecto de admi
 C:\Users\Maggie\Desktop\Proyecto de admin de bases\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.Form2.resources
 C:\Users\Maggie\Desktop\Proyecto de admin de bases\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.NuevoPedido.resources
 C:\Users\Maggie\Desktop\Proyecto de admin de bases\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.NuevoCliente.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\bin\Debug\Proyecto de admin de bases.exe.config
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\bin\Debug\Proyecto de admin de bases.exe
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\bin\Debug\Proyecto de admin de bases.pdb
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.csprojAssemblyReference.cache
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.Empleado2.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.Administrador.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.Empleado.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.Form1.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.Form2.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.NuevoCliente.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.NuevoPedido.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.NuevoEmpleado.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.NuevoProducto.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.Productos.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.Properties.Resources.resources
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.csproj.GenerateResource.cache
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.csproj.CoreCompileInputs.cache
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.csproj.CopyComplete
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.exe
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.pdb

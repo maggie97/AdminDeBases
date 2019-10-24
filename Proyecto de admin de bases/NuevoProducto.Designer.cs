@@ -30,7 +30,6 @@
         {
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtNombre = new Proyecto_de_admin_de_bases.TextboxRedondo();
             this.label1 = new System.Windows.Forms.Label();
             this.numPrecio = new System.Windows.Forms.NumericUpDown();
             this.numExcistencias = new System.Windows.Forms.NumericUpDown();
@@ -38,9 +37,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.Button();
             this.txtMarca = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.txtNombre = new Proyecto_de_admin_de_bases.TextboxRedondo();
+            this.idProducto = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numExcistencias)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.idProducto)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -65,14 +68,6 @@
             this.label3.TabIndex = 17;
             this.label3.Text = "Alta Producto";
             // 
-            // txtNombre
-            // 
-            this.txtNombre.Location = new System.Drawing.Point(35, 73);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Radio = 20;
-            this.txtNombre.Size = new System.Drawing.Size(180, 20);
-            this.txtNombre.TabIndex = 16;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -93,6 +88,11 @@
             0,
             65536});
             this.numPrecio.Location = new System.Drawing.Point(108, 171);
+            this.numPrecio.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
             this.numPrecio.Name = "numPrecio";
             this.numPrecio.Size = new System.Drawing.Size(107, 20);
             this.numPrecio.TabIndex = 20;
@@ -100,8 +100,12 @@
             // 
             // numExcistencias
             // 
-            this.numExcistencias.DecimalPlaces = 2;
             this.numExcistencias.Location = new System.Drawing.Point(108, 214);
+            this.numExcistencias.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
             this.numExcistencias.Name = "numExcistencias";
             this.numExcistencias.Size = new System.Drawing.Size(107, 20);
             this.numExcistencias.TabIndex = 22;
@@ -148,6 +152,16 @@
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // btnActualizar
+            // 
+            this.btnActualizar.Location = new System.Drawing.Point(87, 316);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizar.TabIndex = 48;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
             // txtMarca
             // 
             this.txtMarca.Location = new System.Drawing.Point(35, 127);
@@ -156,6 +170,22 @@
             this.txtMarca.Size = new System.Drawing.Size(180, 20);
             this.txtMarca.TabIndex = 47;
             // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(35, 73);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Radio = 20;
+            this.txtNombre.Size = new System.Drawing.Size(180, 20);
+            this.txtNombre.TabIndex = 16;
+            // 
+            // idProducto
+            // 
+            this.idProducto.Location = new System.Drawing.Point(66, 358);
+            this.idProducto.Name = "idProducto";
+            this.idProducto.Size = new System.Drawing.Size(120, 20);
+            this.idProducto.TabIndex = 49;
+            this.idProducto.Visible = false;
+            // 
             // NuevoProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -163,6 +193,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(28)))), ((int)(((byte)(58)))));
             this.ClientSize = new System.Drawing.Size(259, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.idProducto);
+            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -182,6 +214,7 @@
             this.Text = "N";
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numExcistencias)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.idProducto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,5 +232,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private TextboxRedondo txtMarca;
+        private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.NumericUpDown idProducto;
     }
 }
