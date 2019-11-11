@@ -14,6 +14,7 @@ namespace Proyecto_de_admin_de_bases
     class Conection
     {
         public static  Conection instance = new Conection();
+        private String maggieServer = "DESKTOP-CGHOG2P";
         SqlConnection connection;
         /// <summary>
         /// Constructor de la clase Conection
@@ -30,7 +31,7 @@ namespace Proyecto_de_admin_de_bases
             string connectionString;
             try
             {
-                connectionString = "Server=DESKTOP-22PJVHV; Database=Tienda; Trusted_Connection=true";
+                connectionString = "Server="+maggieServer+"; Database=Tienda; Trusted_Connection=true";
                 connection = new SqlConnection(connectionString);
                 connection.Open();
             }
@@ -44,34 +45,79 @@ namespace Proyecto_de_admin_de_bases
 
         public SqlDataReader datos(typeQuery type, Tables table)
         {
-            String sql = type + " * FROM " + table;
-            var command = new SqlCommand(sql, connection);
-            return command.ExecuteReader();
+            if (connectionOpen())
+            {
+                String sql = type + " * FROM " + table;
+                var command = new SqlCommand(sql, connection);
+                return command.ExecuteReader();
+            }
+            return null;
         }
-
+        public List<List<string>> datosList(typeQuery type, Tables table)
+        {
+            var data = datos(type, table);
+            List<List<string>> list = new List<List<string>>();
+            if(data != null)
+            {
+                while (data.Read())
+                {
+                    List<string> row = new List<string>();
+                    for (int i = 0; i < data.FieldCount; i++)
+                    {
+                        row.Add(data.GetValue(i).ToString());
+                    }
+                    list.Add(row);
+                }
+                return list;
+            }
+            return null;
+        }
         public bool insert(Tables table, List<object> values)
         {
-            int rows = 0;
-            switch (table)
+            try
             {
-                case Tables.Pedido:
-                    rows = insertPedido(values).ExecuteNonQuery();
-                    break;
-                case Tables.Producto:
-                    rows = insertProducto(values).ExecuteNonQuery();
-                    break;
-                case Tables.Cliente:
-                    rows = insertaCliente(values).ExecuteNonQuery();
-                    break;
-                case Tables.Empleado:
-                    rows = insertaEmpleado(values).ExecuteNonQuery();
-                    break;
-                default:
-                    Console.WriteLine("En esta tabla no esta implementado el insert");
-                    break;
+                int rows = 0;
+                switch (table)
+                {
+                    case Tables.Pedido:
+                        rows = insertPedido(values).ExecuteNonQuery();
+                        break;
+                    case Tables.Producto:
+                        rows = insertProducto(values).ExecuteNonQuery();
+                        break;
+                    case Tables.Cliente:
+                        rows = insertaCliente(values).ExecuteNonQuery();
+                        break;
+                    case Tables.Empleado:
+                        rows = insertaEmpleado(values).ExecuteNonQuery();
+                        break;
+                    case Tables.DetallePedido:
+                        rows = insertaDetallesPedido(values).ExecuteNonQuery();
+                        break;
+                    default:
+                        Console.WriteLine("En esta tabla no esta implementado el insert");
+                        break;
+                }
+                Console.WriteLine("Row afectadas" + rows);
+                return (rows > 0);
             }
-            Console.WriteLine("Row afectadas" + rows);
-            return (rows > 0);
+            catch
+            {
+                return false;
+            }
+        }
+        private SqlCommand insertaDetallesPedido(List<object> values)
+        {
+            String sql = "INSERT INTO " + Tables.DetallePedido + "(idPedido, idMaterial, cantidad, descuento, iva, subtotal)"
+                + " VALUES (@idPedido, @idMaterial, @cantidad, @descuento, @iva, @subtotal)";
+            var command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@idPedido", values[0]);
+            command.Parameters.AddWithValue("@idMaterial", values[1]);
+            command.Parameters.AddWithValue("@cantidad", values[2]);
+            command.Parameters.AddWithValue("@descuento", values[3]);
+            command.Parameters.AddWithValue("@iva", values[4]);
+            command.Parameters.AddWithValue("@subtotal", values[5]);
+            return command;
         }
         private SqlCommand insertPedido(List<object> values)
         {
@@ -88,6 +134,7 @@ namespace Proyecto_de_admin_de_bases
             command.Parameters.AddWithValue("@idEmpleado", values[7]);
             return command;
         }
+
 
         private SqlCommand insertProducto(List<object> values)
         {
@@ -190,6 +237,25 @@ namespace Proyecto_de_admin_de_bases
 
 
             return command;
+        }
+
+        public bool Elimina(Tables table, int id)
+        {
+            String query =  "DELETE from " + table + " Where id" + table + " = " + id;
+            if (table == Tables.Vehiculo)
+                query = query.Replace("id" + table, "noUnidad");
+            var command = new SqlCommand(query, connection);
+            int row = 0;
+            try
+            {
+                row = command.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ErrorCode);
+            }
+            
+            return (row > 0);
         }
     }
 }

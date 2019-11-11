@@ -42,6 +42,7 @@ namespace Proyecto_de_admin_de_bases
             clientes = new List<Cliente>();
             using (var datos = Conection.instance.datos(typeQuery.select, Tables.Cliente))
             {
+                if (datos == null) return;
                 while (datos.Read())
                 {
                     Cliente cliente = new Cliente(Convert.ToInt32(datos.GetValue(0)), datos.GetValue(1).ToString(),
@@ -90,12 +91,12 @@ namespace Proyecto_de_admin_de_bases
             var today = DateTime.Now;
             object[] val1 = new object[] { clienteEnvia.idCliente.ToString(), clienteRecibe.idCliente.ToString(), "0", "1", "N",today,today, "2"};
             Conection.instance.insert(Tables.Pedido, val1.ToList());
+            var id = Conection.instance.datosList(typeQuery.select, Tables.Pedido).Last().First();
 
             foreach (var valor in productos)
             {
-                var id = Conection.instance.datos(typeQuery.select, Tables.Pedido).GetValue(0);
-                object[] val = new object[] { valor.Key.idProducto.ToString(), valor.Value.ToString(), "0", "1.6", "0" };
-                Conection.instance.insert(Tables.DetallePedido, val1.ToList());
+                object[] val = new object[] {id, valor.Key.idProducto.ToString(), valor.Value.ToString(), "0", "16", "0" };
+                Conection.instance.insert(Tables.DetallePedido, val.ToList());
             }
             
             dataGridView1.Rows.Clear();

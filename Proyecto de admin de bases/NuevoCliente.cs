@@ -11,8 +11,10 @@ using System.Windows.Forms;
 
 namespace Proyecto_de_admin_de_bases
 {
+    public delegate void Actualiza();
     public partial class NuevoCliente : Form
     {
+        public event Actualiza actualizado;
         DataGridView tabladt;
         public NuevoCliente(DataGridView tabla)
         {
@@ -35,7 +37,7 @@ namespace Proyecto_de_admin_de_bases
                     txtDireccion.Text, txtTelefono.Text, txtEmail.Text};
                 if (Conection.instance.insert(Tables.Cliente, values.ToList()))
                 {
-                    RefreshTable(Tables.Cliente);
+                    actualizado();
                     MessageBox.Show("Insercion", "Insercion Exsitosa en la tabla " + Tables.Producto, MessageBoxButtons.OK);
                 }
             }
@@ -71,36 +73,9 @@ namespace Proyecto_de_admin_de_bases
                     txtDireccion.Text, txtTelefono.Text, txtEmail.Text};
                 if (Conection.instance.Actualiza(values.ToList(),Tables.Cliente))
                 {
-                    RefreshTable(Tables.Cliente);
+                    actualizado();
                     MessageBox.Show("Se ha modificado correctamente!!!", "Modificacion Exsitosa en la tabla " + Tables.Producto, MessageBoxButtons.OK);
                 }
-            }
-        }
-
-        private void RefreshTable(Tables table)
-        {
-            try
-            {
-                if (Conection.instance.connectionOpen())
-                {
-                    using (SqlDataReader dataReader = Conection.instance.datos(typeQuery.select, table))
-                    {
-                        tabladt.Rows.Clear();
-                        while (dataReader.Read())
-                        {
-                            List<string> row = new List<string>();
-                            for (int i = 0; i < dataReader.FieldCount; i++)
-                            {
-                                row.Add(dataReader.GetValue(i).ToString());
-                            }
-                            tabladt.Rows.Add(row.ToArray());
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
             }
         }
     }
