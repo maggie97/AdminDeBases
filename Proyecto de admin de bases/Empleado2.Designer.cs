@@ -47,10 +47,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.panelVentana = new System.Windows.Forms.Panel();
-            this.splitter2 = new System.Windows.Forms.Splitter();
-            this.menuDatos = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,13 +55,17 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuDatos = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelVentana = new System.Windows.Forms.Panel();
+            this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
-            this.panelVentana.SuspendLayout();
             this.menuDatos.SuspendLayout();
+            this.panelVentana.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -233,7 +233,7 @@
             // 
             // btnCliente
             // 
-            this.btnCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(148)))), ((int)(((byte)(3)))));
+            this.btnCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(119)))), ((int)(((byte)(38)))));
             this.btnCliente.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCliente.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -251,7 +251,8 @@
             // 
             // btnVehiculos
             // 
-            this.btnVehiculos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(148)))), ((int)(((byte)(3)))));
+            this.btnVehiculos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(119)))), ((int)(((byte)(38)))));
+            this.btnVehiculos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnVehiculos.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnVehiculos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehiculos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -320,38 +321,6 @@
             this.dgvDatos.TabIndex = 1;
             this.dgvDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellClick);
             // 
-            // panelVentana
-            // 
-            this.panelVentana.BackColor = System.Drawing.Color.Transparent;
-            this.panelVentana.Controls.Add(this.splitter2);
-            this.panelVentana.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelVentana.Location = new System.Drawing.Point(567, 0);
-            this.panelVentana.Name = "panelVentana";
-            this.panelVentana.Size = new System.Drawing.Size(276, 568);
-            this.panelVentana.TabIndex = 0;
-            // 
-            // splitter2
-            // 
-            this.splitter2.Location = new System.Drawing.Point(0, 0);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 568);
-            this.splitter2.TabIndex = 0;
-            this.splitter2.TabStop = false;
-            // 
-            // menuDatos
-            // 
-            this.menuDatos.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eliminarToolStripMenuItem});
-            this.menuDatos.Name = "menuDatos";
-            this.menuDatos.Size = new System.Drawing.Size(118, 26);
-            // 
-            // eliminarToolStripMenuItem
-            // 
-            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.eliminarToolStripMenuItem.Text = "Eliminar";
-            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "Nombre";
@@ -401,6 +370,38 @@
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 
+            // menuDatos
+            // 
+            this.menuDatos.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarToolStripMenuItem});
+            this.menuDatos.Name = "menuDatos";
+            this.menuDatos.Size = new System.Drawing.Size(181, 48);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            // 
+            // panelVentana
+            // 
+            this.panelVentana.BackColor = System.Drawing.Color.Transparent;
+            this.panelVentana.Controls.Add(this.splitter2);
+            this.panelVentana.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelVentana.Location = new System.Drawing.Point(567, 0);
+            this.panelVentana.Name = "panelVentana";
+            this.panelVentana.Size = new System.Drawing.Size(276, 568);
+            this.panelVentana.TabIndex = 0;
+            // 
+            // splitter2
+            // 
+            this.splitter2.Location = new System.Drawing.Point(0, 0);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(3, 568);
+            this.splitter2.TabIndex = 0;
+            this.splitter2.TabStop = false;
+            // 
             // Empleado2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -422,8 +423,8 @@
             this.panel3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
-            this.panelVentana.ResumeLayout(false);
             this.menuDatos.ResumeLayout(false);
+            this.panelVentana.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

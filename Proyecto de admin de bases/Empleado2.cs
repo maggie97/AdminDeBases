@@ -199,7 +199,7 @@ namespace Proyecto_de_admin_de_bases
                     columnas = new string[] { "clienteEnvia", "clienteRecibe", "total", "unidadAsignada", "estado", "fechaPedido", "fechaEntrega", "idEmpleado" };
                     break;
                 case Tables.Producto:
-                    columnas = new string[] { "Nombre", "Precio", "Exsictencias", "Marca" };
+                    columnas = new string[] { "Nombre", "Precio",  "Marca", "Exsictencias" };
                     break;
                 case Tables.Vehiculo:
                     columnas = new string[] { "NoUnidad", "NoPlaca", "Modelo", "Peso Soportado", "Disponibilidad" };
@@ -221,8 +221,9 @@ namespace Proyecto_de_admin_de_bases
             cliente.Dock = DockStyle.Fill;
             formToPanel = cliente as NuevoCliente;
             ventana();
-            camposGrid();
             currentTable = Tables.Cliente;
+            camposGrid();
+            
         }
 
         private void dgvDatos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -232,35 +233,24 @@ namespace Proyecto_de_admin_de_bases
             switch(currentTable)
             {
                 case Tables.Producto :
-
-                    //TextBox txtNombre = nuevoProducto.Controls.Find("txtNombre", true)[0] as TextBox;
-                    //TextBox tex2 = nuevoProducto.Controls.Find("txtMarca", true)[0] as TextBox;
-                    //NumericUpDown num1 = nuevoProducto.Controls.Find("numPrecio", true)[0] as NumericUpDown;
-                    //NumericUpDown num2 = nuevoProducto.Controls.Find("numExcistencias", true)[0] as NumericUpDown;
-                    //NumericUpDown num3 = nuevoProducto.Controls.Find("idProducto", true)[0] as NumericUpDown;
-
-                    //txtNombre.Text = dgvDatos[0, rowindex].Value.ToString();
-                    //num1.Value = Convert.ToDecimal(dgvDatos[1, rowindex].Value);
-                    //tex2.Text = dgvDatos[2, rowindex].Value.ToString();
-                    //num2.Value = Convert.ToInt32( dgvDatos[3, rowindex].Value);
-                    //num3.Value = rowindex+1;
-                    break;
+                    editarProducto(row);
+                     break;
                 case Tables.Cliente:
-                    //TextBox _txtNombre = cliente.Controls.Find("txtNombre", true)[0] as TextBox;
-                    //TextBox _txtApellido = cliente.Controls.Find("txtApellido1", true)[0] as TextBox;
-                    //TextBox _txtApellido2 = cliente.Controls.Find("txtApellido2", true)[0] as TextBox;
-                    //TextBox _txtDireaccion = cliente.Controls.Find("txtDireccion", true)[0] as TextBox;
-                    //TextBox _txtTelefono = cliente.Controls.Find("txtTelefono", true)[0] as TextBox;
-                    //TextBox _txtEmail = cliente.Controls.Find("txtEmail", true)[0] as TextBox;
-                    //NumericUpDown _id = cliente.Controls.Find("idCliente", true)[0] as NumericUpDown;
+                    TextBox _txtNombre = cliente.Controls.Find("txtNombre", true)[0] as TextBox;
+                    TextBox _txtApellido = cliente.Controls.Find("txtApellido1", true)[0] as TextBox;
+                    TextBox _txtApellido2 = cliente.Controls.Find("txtApellido2", true)[0] as TextBox;
+                    TextBox _txtDireaccion = cliente.Controls.Find("txtDireccion", true)[0] as TextBox;
+                    TextBox _txtTelefono = cliente.Controls.Find("txtTelefono", true)[0] as TextBox;
+                    TextBox _txtEmail = cliente.Controls.Find("txtEmail", true)[0] as TextBox;
+                    NumericUpDown _id = cliente.Controls.Find("idCliente", true)[0] as NumericUpDown;
 
-                    //_txtNombre.Text = row.Cells["ColNombre"].Value.ToString();
-                    //_txtApellido.Text = row.Cells["ColApellido1"].Value.ToString();
-                    //_txtApellido2.Text = row.Cells["ColApellido2"].Value.ToString();
-                    //_txtDireaccion.Text = row.Cells["ColDireccion"].Value.ToString();
-                    //_txtTelefono.Text = row.Cells["ColTelefono"].Value.ToString();
-                    //_txtEmail.Text = row.Cells["ColEmail"].Value.ToString();
-                    //_id.Value = Convert.ToInt32(row.Cells["id"].Value);
+                    _txtNombre.Text = row.Cells["ColNombre"].Value.ToString();
+                    _txtApellido.Text = row.Cells["ColApellido1"].Value.ToString();
+                    _txtApellido2.Text = row.Cells["ColApellido2"].Value.ToString();
+                    _txtDireaccion.Text = row.Cells["ColDireccion"].Value.ToString();
+                    _txtTelefono.Text = row.Cells["ColTelefono"].Value.ToString();
+                    _txtEmail.Text = row.Cells["ColEmail"].Value.ToString();
+                    _id.Value = Convert.ToInt32(row.Cells["id"].Value);
 
                     break;
             }
@@ -288,6 +278,22 @@ namespace Proyecto_de_admin_de_bases
                 }
             }
         }
+
+        private void editarProducto(DataGridViewRow row)
+        {
+            TextBox _txtNombre = nuevoProducto.Controls.Find("txtNombre", true)[0] as TextBox;
+            TextBox _txtMarca = nuevoProducto.Controls.Find("txtMarca", true)[0] as TextBox;
+            NumericUpDown _numPrecio = nuevoProducto.Controls.Find("numPrecio", true)[0] as NumericUpDown;
+            NumericUpDown _numExistencias = nuevoProducto.Controls.Find("numExcistencias", true)[0] as NumericUpDown;
+            NumericUpDown _numIdProducto = nuevoProducto.Controls.Find("idProducto", true)[0] as NumericUpDown;
+
+            _txtNombre.Text = row.Cells["ColNombre"].Value.ToString();
+            _numPrecio.Value = Convert.ToDecimal(row.Cells["ColPrecio"].Value);
+            _txtMarca.Text = row.Cells["ColMarca"].Value.ToString();
+            _numExistencias.Value = Convert.ToInt32(row.Cells["ColExsictencias"].Value);
+            _numIdProducto.Value = Convert.ToInt32(row.Cells["id"].Value);
+        }
+
     }
 
     
