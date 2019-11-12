@@ -236,21 +236,7 @@ namespace Proyecto_de_admin_de_bases
                     editarProducto(row);
                      break;
                 case Tables.Cliente:
-                    TextBox _txtNombre = cliente.Controls.Find("txtNombre", true)[0] as TextBox;
-                    TextBox _txtApellido = cliente.Controls.Find("txtApellido1", true)[0] as TextBox;
-                    TextBox _txtApellido2 = cliente.Controls.Find("txtApellido2", true)[0] as TextBox;
-                    TextBox _txtDireaccion = cliente.Controls.Find("txtDireccion", true)[0] as TextBox;
-                    TextBox _txtTelefono = cliente.Controls.Find("txtTelefono", true)[0] as TextBox;
-                    TextBox _txtEmail = cliente.Controls.Find("txtEmail", true)[0] as TextBox;
-                    NumericUpDown _id = cliente.Controls.Find("idCliente", true)[0] as NumericUpDown;
-
-                    _txtNombre.Text = row.Cells["ColNombre"].Value.ToString();
-                    _txtApellido.Text = row.Cells["ColApellido1"].Value.ToString();
-                    _txtApellido2.Text = row.Cells["ColApellido2"].Value.ToString();
-                    _txtDireaccion.Text = row.Cells["ColDireccion"].Value.ToString();
-                    _txtTelefono.Text = row.Cells["ColTelefono"].Value.ToString();
-                    _txtEmail.Text = row.Cells["ColEmail"].Value.ToString();
-                    _id.Value = Convert.ToInt32(row.Cells["id"].Value);
+                    editarCliente(row);
 
                     break;
             }
@@ -293,7 +279,24 @@ namespace Proyecto_de_admin_de_bases
             _numExistencias.Value = Convert.ToInt32(row.Cells["ColExsictencias"].Value);
             _numIdProducto.Value = Convert.ToInt32(row.Cells["id"].Value);
         }
+        private void editarCliente(DataGridViewRow row)
+        {
+            TextBox _txtNombre = cliente.Controls.Find("txtNombre", true)[0] as TextBox;
+            TextBox _txtApellido = cliente.Controls.Find("txtApellido1", true)[0] as TextBox;
+            TextBox _txtApellido2 = cliente.Controls.Find("txtApellido2", true)[0] as TextBox;
+            TextBox _txtDireaccion = cliente.Controls.Find("txtDireccion", true)[0] as TextBox;
+            TextBox _txtTelefono = cliente.Controls.Find("txtTelefono", true)[0] as TextBox;
+            TextBox _txtEmail = cliente.Controls.Find("txtEmail", true)[0] as TextBox;
+            NumericUpDown _id = cliente.Controls.Find("idCliente", true)[0] as NumericUpDown;
 
+            _txtNombre.Text = row.Cells["ColNombre"].Value.ToString();
+            _txtApellido.Text = row.Cells["ColApellido1"].Value.ToString();
+            _txtApellido2.Text = row.Cells["ColApellido2"].Value.ToString();
+            _txtDireaccion.Text = row.Cells["ColDireccion"].Value.ToString();
+            _txtTelefono.Text = row.Cells["ColTelefono"].Value.ToString();
+            _txtEmail.Text = row.Cells["ColEmail"].Value.ToString();
+            _id.Value = Convert.ToInt32(row.Cells["id"].Value);
+        }
     }
 
     
