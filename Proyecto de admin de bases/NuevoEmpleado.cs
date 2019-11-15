@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace Proyecto_de_admin_de_bases
 {
     public partial class NuevoEmpleado : Form
     {
-        public NuevoEmpleado()
+        DataGridView tabladt;
+        public NuevoEmpleado(DataGridView data )
         {
             InitializeComponent();
+            tabladt = data;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -32,6 +35,7 @@ namespace Proyecto_de_admin_de_bases
                     txtTelefono.Text, txtPuestoTrabajo.Text, txtNSS.Text};
                 if (Conection.instance.insert(Tables.Empleado, values.ToList()))
                 {
+                    Refresh();
                     MessageBox.Show("Insercion", "Insercion Exsitosa en la tabla " + Tables.Empleado, MessageBoxButtons.OK);
                 }
             }
@@ -40,6 +44,32 @@ namespace Proyecto_de_admin_de_bases
         {
             return (txtNombre.Text != "" && txtApellido1.Text != "" && txtApellido2.Text != ""
                 && txtDireccion.Text != ""  && txtPuestoTrabajo.Text != "" && txtNSS.Text != "" && numeroTelefonoValido());
+        }
+        private void RefreshTable(Tables table)
+        {
+            try
+            {
+                if (Conection.instance.connectionOpen())
+                {
+                    using (SqlDataReader dataReader = Conection.instance.datos(typeQuery.select, table))
+                    {
+                        tabladt.Rows.Clear();
+                        while (dataReader.Read())
+                        {
+                            List<string> row = new List<string>();
+                            for (int i = 0; i < dataReader.FieldCount; i++)
+                            {
+                                row.Add(dataReader.GetValue(i).ToString());
+                            }
+                            tabladt.Rows.Add(row.ToArray());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
         private bool numeroTelefonoValido()
         {

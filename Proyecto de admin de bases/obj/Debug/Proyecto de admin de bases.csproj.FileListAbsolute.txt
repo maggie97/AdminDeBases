@@ -88,3 +88,4 @@ C:\Users\Maggie\Desktop\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyec
 C:\Users\Maggie\Desktop\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.csproj.CopyComplete
 C:\Users\Maggie\Desktop\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.exe
 C:\Users\Maggie\Desktop\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto de admin de bases.pdb
+C:\Users\CROSVER\Documents\GitHub\AdminDeBases\Proyecto de admin de bases\obj\Debug\Proyecto_de_admin_de_bases.NuevoVehiculo.resources

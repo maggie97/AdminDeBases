@@ -12,6 +12,7 @@ using System.Windows.Forms;
 namespace Proyecto_de_admin_de_bases
 {
     public delegate void Actualiza();
+
     public partial class NuevoCliente : Form
     {
         public event Actualiza actualizado;
@@ -61,6 +62,33 @@ namespace Proyecto_de_admin_de_bases
                 }
             }
             return true;
+        }
+
+        private void RefreshTable(Tables table)
+        {
+            try
+            {
+                if (Conection.instance.connectionOpen())
+                {
+                    using (SqlDataReader dataReader = Conection.instance.datos(typeQuery.select, table))
+                    {
+                        tabladt.Rows.Clear();
+                        while (dataReader.Read())
+                        {
+                            List<string> row = new List<string>();
+                            for (int i = 0; i < dataReader.FieldCount; i++)
+                            {
+                                row.Add(dataReader.GetValue(i).ToString());
+                            }
+                            tabladt.Rows.Add(row.ToArray());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         private void btnActualizarCliente_Click(object sender, EventArgs e)

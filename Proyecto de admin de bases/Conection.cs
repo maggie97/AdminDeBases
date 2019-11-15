@@ -14,7 +14,7 @@ namespace Proyecto_de_admin_de_bases
     class Conection
     {
         public static  Conection instance = new Conection();
-        private String maggieServer = "DESKTOP-CGHOG2P";
+        private String maggieServer = "DESKTOP-22PJVHV";//;"DESKTOP-CGHOG2P";
         SqlConnection connection;
         /// <summary>
         /// Constructor de la clase Conection
@@ -93,6 +93,9 @@ namespace Proyecto_de_admin_de_bases
                         break;
                     case Tables.DetallePedido:
                         rows = insertaDetallesPedido(values).ExecuteNonQuery();
+                        break;
+                    case Tables.Vehiculo:
+                        rows = insertaVehiculo(values).ExecuteNonQuery();
                         break;
                     default:
                         Console.WriteLine("En esta tabla no esta implementado el insert");
@@ -178,6 +181,19 @@ namespace Proyecto_de_admin_de_bases
             return command;
         }
 
+
+        private SqlCommand insertaVehiculo(List<object> values)
+        {
+            String sql = "INSERT INTO " + Tables.Vehiculo + " (placa, modelo, pesoSoportado)"
+                + " VALUES (@placa, @modelo, @pesoSoportado)";
+
+            var command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@placa", values[0]);
+            command.Parameters.AddWithValue("@modelo", values[1]);
+            command.Parameters.AddWithValue("@pesoSoportado", values[2]);
+            return command;
+        }
+
         public bool Actualiza(List<object>values, Tables tables)
         {
             int rows = 0;
@@ -195,6 +211,7 @@ namespace Proyecto_de_admin_de_bases
                 case Tables.Empleado:
                     //rows = insertaEmpleado(values).ExecuteNonQuery();
                     break;
+                
                 default:
                     Console.WriteLine("En esta tabla no esta implementado el insert");
                     break;

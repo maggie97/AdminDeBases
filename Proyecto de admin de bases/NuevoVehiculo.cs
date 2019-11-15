@@ -11,26 +11,38 @@ using System.Windows.Forms;
 
 namespace Proyecto_de_admin_de_bases
 {
-    public partial class NuevoProducto : Form
+    public partial class NuevoVehiculo : Form
     {
-        DataGridView tablaDt;
-        public NuevoProducto(DataGridView dataGrid)
+        DataGridView tabledt;
+        public NuevoVehiculo(DataGridView tabla)
         {
             InitializeComponent();
-            tablaDt = dataGrid;
+            tabledt = tabla;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void txtApellido1_TextChanged(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "")
+
+        }
+
+        private void Agregar_Click(object sender, EventArgs e)
+        {
+            object[] values = new object[] { txtPlaca.Text, txtModelo.Text, numPeso.Value};
+            if (Conection.instance.insert(Tables.Vehiculo, values.ToList()))
             {
-                object[] values = new object[] {txtNombre.Text, numPrecio.Value , txtMarca.Text, numExcistencias.Value };
-                if( Conection.instance.insert(Tables.Producto, values.ToList()))
-                {
-                    RefreshTable(Tables.Producto);
-                    MessageBox.Show("Se ha registrado el producto correctamente", "Insercion Exsitosa en la tabla " + Tables.Producto, MessageBoxButtons.OK);
-                }
+                RefreshTable(Tables.Vehiculo);
+                LimpiarCampos();
+                MessageBox.Show("Insercion", "Insercion Exsitosa en la tabla " + Tables.Vehiculo, MessageBoxButtons.OK);
             }
+        }
+
+        private void LimpiarCampos()
+        {
+            idVehiculo.Value = 0;
+            txtModelo.Text = "";
+            txtPlaca.Text = "";
+            ckDisponible.Checked = false;
+            numPeso.Value = 0;
         }
 
         private void RefreshTable(Tables table)
@@ -41,7 +53,7 @@ namespace Proyecto_de_admin_de_bases
                 {
                     using (SqlDataReader dataReader = Conection.instance.datos(typeQuery.select, table))
                     {
-                        tablaDt.Rows.Clear();
+                        tabledt.Rows.Clear();
                         while (dataReader.Read())
                         {
                             List<string> row = new List<string>();
@@ -49,7 +61,7 @@ namespace Proyecto_de_admin_de_bases
                             {
                                 row.Add(dataReader.GetValue(i).ToString());
                             }
-                            tablaDt.Rows.Add(row.ToArray());
+                            tabledt.Rows.Add(row.ToArray());
                         }
                     }
                 }
@@ -60,14 +72,14 @@ namespace Proyecto_de_admin_de_bases
             }
         }
 
+        private void NuevoVehiculo_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            object[] values = new object[] {idProducto.Value, txtNombre.Text, numPrecio.Value, txtMarca.Text, numExcistencias.Value };
-            if (Conection.instance.Actualiza(values.ToList(),Tables.Producto))
-            {
-                RefreshTable(Tables.Producto);
-                MessageBox.Show("Se ha modificado el producto correctamente", "Insercion Exsitosa en la tabla " + Tables.Producto, MessageBoxButtons.OK);
-            }
+
         }
     }
 }
