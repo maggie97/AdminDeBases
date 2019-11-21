@@ -258,7 +258,7 @@ public class ScreenOne extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-         int i = ProductosTab.getSelectedIndex();
+        int i = ProductosTab.getSelectedIndex();
         switch(i){
             case 0:
                 int numrowC=clientTable.getSelectedRow();
@@ -266,8 +266,6 @@ public class ScreenOne extends javax.swing.JFrame {
                 try{
                    long pk = serviceClient.regresaClavePrimaria(numrowC);
                    serviceClient.EliminaCliente(pk);
-                   
-                   
                 }
                 catch(Exception e){
                    clientTable.setVisible(false);
@@ -323,8 +321,6 @@ public class ScreenOne extends javax.swing.JFrame {
                 try{
                    long pk = serviceOrder.regresaClavePrimaria(numrowPedido);
                    serviceOrder.EliminaOrder(pk);
-                   
-                   
                 }
                 catch(Exception e){
                    jTable2.setVisible(false);

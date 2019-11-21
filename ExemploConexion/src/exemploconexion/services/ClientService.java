@@ -63,7 +63,7 @@ public class ClientService {
    public void EliminaCliente(long idCliente) throws Exception{
         ConnectionDatabase.shared.Connecting();
         Statement st = ConnectionDatabase.shared.getConnection().createStatement();
-        String stringQuery = String.format("Delete from cliente where idCliente=%s", idCliente);
+        String stringQuery = String.format("Delete from Cliente where idCliente=%s", idCliente);
         //String stringQuery = "SELECT *  FROM empleado"; 
         st.executeQuery(stringQuery);
        
