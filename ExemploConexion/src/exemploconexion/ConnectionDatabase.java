@@ -18,13 +18,14 @@ public class ConnectionDatabase {
     private String dataBase = "tienda";
     private String user = "maggiemendez";
     private String password = "M";
-    private String connectionString = server + dominio + dataBase;
+    private String connectionString;
     private Connection connection;
 
     public static ConnectionDatabase shared = new ConnectionDatabase();
 
     private ConnectionDatabase()
     {
+        connectionString =  server + dominio + dataBase;
     }
     
     public Connection getConnection()
@@ -32,6 +33,15 @@ public class ConnectionDatabase {
         return(this.connection);
     }
     
+    public void Connecting(String _user, String _password) throws Exception
+    {
+        user = _user;
+        password = _password;
+        Class.forName("org.postgresql.Driver");
+        this.connection = DriverManager.getConnection(connectionString,
+                _user, _password);
+        //System.out.println("Conectado");
+    }
     public void Connecting() throws Exception
     {
         
@@ -39,8 +49,6 @@ public class ConnectionDatabase {
         this.connection = DriverManager.getConnection(connectionString,
                 user, password);
         //System.out.println("Conectado");
-        
-        
     }
     public void Disconnect() throws SQLException
     {
