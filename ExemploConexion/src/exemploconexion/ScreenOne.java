@@ -7,6 +7,7 @@ package exemploconexion;
 
 import exemploconexion.services.ClientService;
 import exemploconexion.services.EmployeeService;
+import exemploconexion.services.NominaService;
 import exemploconexion.services.OrderService;
 import exemploconexion.services.ProductService;
 import exemploconexion.services.VehicleService;
@@ -16,6 +17,7 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,6 +30,7 @@ public class ScreenOne extends javax.swing.JFrame {
     private final ProductService serviceProduct = new ProductService();
     private final VehicleService serviceVehicle = new VehicleService();
     private final OrderService serviceOrder = new OrderService();
+    private final NominaService serviceNomina = new NominaService();
     /**
      * Creates new form ScreenOne
      */
@@ -60,8 +63,10 @@ public class ScreenOne extends javax.swing.JFrame {
         jTable4 = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jToolBar1 = new javax.swing.JToolBar();
-        jButton2 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -76,6 +81,9 @@ public class ScreenOne extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+
+        ProductosTab.setBackground(new java.awt.Color(204, 204, 204));
         ProductosTab.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         ProductosTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -102,7 +110,7 @@ public class ScreenOne extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -121,7 +129,8 @@ public class ScreenOne extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        employeeTable.setColumnSelectionAllowed(true);
+        employeeTable.setCellSelectionEnabled(false);
+        employeeTable.setRowSelectionAllowed(true);
         employeeTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 employeeTableMouseClicked(evt);
@@ -152,74 +161,75 @@ public class ScreenOne extends javax.swing.JFrame {
 
         ProductosTab.addTab("Pedidos", jScrollPane5);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+        jTable4.setModel(new DefaultTableModel(
+            getNomina(),
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane6.setViewportView(jTable4);
+                "idEmpleado", "mes", "Año", "Sueldo Base", "Horas Extra", "Suledo Bruto"
+            }));
+            jScrollPane6.setViewportView(jTable4);
 
-        ProductosTab.addTab("Nomina", jScrollPane6);
+            ProductosTab.addTab("Nomina", jScrollPane6);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            getVehicles(),
-            new String [] {
-                "noUnidad", "Placas", "Peso Soportado", "Marca"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable1);
+            jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                getVehicles(),
+                new String [] {
+                    "noUnidad", "Placas", "Peso Soportado", "Marca"
+                }
+            ));
+            jScrollPane4.setViewportView(jTable1);
 
-        ProductosTab.addTab("Vehiculos", jScrollPane4);
+            ProductosTab.addTab("Vehiculos", jScrollPane4);
 
-        jToolBar1.setBackground(java.awt.SystemColor.controlShadow);
-        jToolBar1.setRollover(true);
+            jDesktopPane1.setLayer(ProductosTab, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton2.setText("jButton2");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton2);
+            javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+            jDesktopPane1.setLayout(jDesktopPane1Layout);
+            jDesktopPane1Layout.setHorizontalGroup(
+                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(ProductosTab)
+            );
+            jDesktopPane1Layout.setVerticalGroup(
+                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(ProductosTab, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            );
 
-        jDesktopPane1.setLayer(ProductosTab, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jToolBar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+            jMenu1.setText("File");
+            jMenuBar1.add(jMenu1);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(ProductosTab)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(ProductosTab, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+            jMenu2.setText("Edit");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jDesktopPane1))
-        );
+            jMenuItem1.setText("Eliminar");
+            jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    jMenuItem1MouseClicked(evt);
+                }
+            });
+            jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem1ActionPerformed(evt);
+                }
+            });
+            jMenu2.add(jMenuItem1);
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+            jMenuBar1.add(jMenu2);
+
+            setJMenuBar(jMenuBar1);
+
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jDesktopPane1)
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 0, 0)
+                    .addComponent(jDesktopPane1))
+            );
+
+            pack();
+        }// </editor-fold>//GEN-END:initComponents
 
     private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
         if(evt.getButton() == MouseEvent.BUTTON3){
@@ -228,6 +238,9 @@ public class ScreenOne extends javax.swing.JFrame {
     }//GEN-LAST:event_employeeTableMouseClicked
 
     private void ProductosTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosTabMouseClicked
+        
+        
+        
         clientTable.setModel(new javax.swing.table.DefaultTableModel(
             getClients(),
             new String [] {
@@ -235,6 +248,131 @@ public class ScreenOne extends javax.swing.JFrame {
             }
         ));
     }//GEN-LAST:event_ProductosTabMouseClicked
+
+    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jMenuItem1MouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+         int i = ProductosTab.getSelectedIndex();
+        switch(i){
+            case 0:
+                int numrowC=clientTable.getSelectedRow();
+                
+                try{
+                   long pk = serviceClient.regresaClavePrimaria(numrowC);
+                   serviceClient.EliminaCliente(pk);
+                   
+                   
+                }
+                catch(Exception e){
+                   clientTable.setVisible(false);
+                   DefaultTableModel modelCliente = new DefaultTableModel(  getClients(),
+                        new String [] {
+                            "Name", "Lastname", "Address", "Phone"
+                        });
+                   clientTable.setModel(modelCliente);
+                   modelCliente.fireTableDataChanged();
+                   clientTable.setVisible(true);
+                }
+                break;
+            case 1:
+                int numrowEm=employeeTable.getSelectedRow();
+                
+                try{
+                   long pk = serviceEmployee.regresaClavePrimaria(numrowEm);
+                   serviceEmployee.EliminaEmpleado(pk);
+                }
+                catch(Exception e){
+                   employeeTable.setVisible(false);
+                   DefaultTableModel modelEmpleado = new DefaultTableModel( getEmployees(),new String [] {
+                    "Name", "Lastname", "Address", "Phone", "Workstation", "NSS"
+                     });
+                   employeeTable.setModel(modelEmpleado);
+                   modelEmpleado.fireTableDataChanged();
+                   employeeTable.setVisible(true);
+                }
+                break;
+            case 2:
+                int numrowP=jTable3.getSelectedRow();
+                
+                try{
+                   long pk = serviceProduct.regresaClavePrimaria(numrowP);
+                   serviceProduct.EliminaProducto(pk);
+                   
+                   
+                }
+                catch(Exception e){
+                   jTable3.setVisible(false);
+                   DefaultTableModel modelProducto = new DefaultTableModel( getProducts(),
+                        new String [] {
+                            "Name", "Price", "Brand", "Excistences"
+                        });
+                   jTable3.setModel(modelProducto);
+                   modelProducto.fireTableDataChanged();
+                   jTable3.setVisible(true);
+                }
+                break;
+            case 3:
+                int numrowPedido=jTable2.getSelectedRow();
+                
+                try{
+                   long pk = serviceOrder.regresaClavePrimaria(numrowPedido);
+                   serviceOrder.EliminaOrder(pk);
+                   
+                   
+                }
+                catch(Exception e){
+                   jTable2.setVisible(false);
+                   DefaultTableModel modelProducto = new DefaultTableModel( getOrders(),
+                    new String [] {
+                        "Client Send", "Client Receives", "State", "Date Order",  "Date Received", "Driver","Vehicle", "Brand","License plates","Total"
+                    });
+                   jTable2.setModel(modelProducto);
+                   modelProducto.fireTableDataChanged();
+                   jTable2.setVisible(true);
+                }
+                break;
+            case 4:
+                int numrowNomina=jTable4.getSelectedRow();
+                
+                try{
+                   long pk = serviceNomina.regresaClavePrimaria(numrowNomina);
+                   serviceNomina.EliminaNomina(pk);
+                }
+                catch(Exception e){
+                   jTable4.setVisible(false);
+                   DefaultTableModel modelNomina = new DefaultTableModel(  getNomina(),
+                    new String [] {
+                        "idEmpleado", "mes", "Año", "Sueldo Base", "Horas Extra", "Suledo Bruto"
+                    });
+                   jTable4.setModel(modelNomina);
+                   modelNomina.fireTableDataChanged();
+                   jTable4.setVisible(true);
+                }
+                break;
+            case 5:
+                int numrowVehiculo=jTable1.getSelectedRow();
+                
+                try{
+                   long pk = serviceVehicle.regresaClavePrimaria(numrowVehiculo);
+                   serviceVehicle.EliminaVehiculo(pk);
+                }
+                catch(Exception e){
+                   jTable1.setVisible(false);
+                   DefaultTableModel modelVehiculos = new DefaultTableModel(getVehicles(),
+                    new String [] {
+                        "noUnidad", "Placas", "Peso Soportado", "Marca"
+                    });
+                   jTable1.setModel(modelVehiculos);
+                   modelVehiculos.fireTableDataChanged();
+                   jTable1.setVisible(true);
+                }
+                break;
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,9 +413,12 @@ public class ScreenOne extends javax.swing.JFrame {
     private javax.swing.JTabbedPane ProductosTab;
     private javax.swing.JTable clientTable;
     private javax.swing.JTable employeeTable;
-    private javax.swing.JButton jButton2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -289,12 +430,20 @@ public class ScreenOne extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
     private Object[][] getEmployees() {
         try{
             return serviceEmployee.getObjects();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
+    }
+    
+    private Object[][] getNomina() {
+        try{
+            return serviceNomina.getObjects();
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

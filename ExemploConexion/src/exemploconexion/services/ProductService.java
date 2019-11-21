@@ -19,7 +19,7 @@ public class ProductService {
    public ArrayList<Product> getProduct() throws Exception{
         ConnectionDatabase.shared.Connecting();
         Statement st = ConnectionDatabase.shared.getConnection().createStatement();
-        String stringQuery = "SELECT * FROM Producto";
+        String stringQuery = "select * from producto";
         //String stringQuery = "SELECT *  FROM empleado"; 
         ResultSet result = st.executeQuery(stringQuery);
         ArrayList<Product> products = new ArrayList<>();
@@ -29,7 +29,7 @@ public class ProductService {
             
             product.setId(result.getInt("idproducto"));
             product.setName(result.getString("nombre"));
-            product.setPrice(result.getDouble("precio"));
+            product.setPrice(result.getString("precio"));
             product.setBrand(result.getString("marca"));
             product.setExcistences(result.getInt("existencias"));
             products.add(product);
@@ -54,5 +54,25 @@ public class ProductService {
            objects[i][3] = p.getExcistences();
        }
        return objects;
+   }
+   public void EliminaProducto(long idProducto) throws Exception{
+        ConnectionDatabase.shared.Connecting();
+        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+        String stringQuery = String.format("Delete from producto where idProducto=%s", idProducto);
+        //String stringQuery = "SELECT *  FROM empleado"; 
+       ResultSet result = st.executeQuery(stringQuery);
+       result.close();
+       st.close();
+        ConnectionDatabase.shared.Disconnect();
+   }
+   
+   public long regresaClavePrimaria(int numRow)throws Exception
+   {
+       long ClavePrimaria=0;
+        ArrayList<Product> products = getProduct();
+        
+        ClavePrimaria= products.get(numRow).getId();
+        
+        return ClavePrimaria;
    }
 }

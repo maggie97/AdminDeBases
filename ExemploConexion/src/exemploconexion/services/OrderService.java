@@ -6,6 +6,7 @@
 package exemploconexion.services;
 
 import exemploconexion.ConnectionDatabase;
+import exemploconexion.models.Client;
 import exemploconexion.models.Order;
 import exemploconexion.models.Vehicle;
 import java.sql.ResultSet;
@@ -81,5 +82,26 @@ public class OrderService {
            objects[i][9] = order.getTotal();
        }
        return objects;
+   }
+   
+   public void EliminaOrder(long idOrder) throws Exception{
+        ConnectionDatabase.shared.Connecting();
+        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+        String stringQuery = String.format("Delete from detallepedido where idpedido=%s", idOrder);
+        //String stringQuery = "SELECT *  FROM empleado"; 
+        st.executeQuery(stringQuery);
+       
+        st.close();
+        ConnectionDatabase.shared.Disconnect();
+   }
+   
+   public long regresaClavePrimaria(int numRow)throws Exception
+   {
+       long ClavePrimaria=0;
+        ArrayList<Order> orders = this.getOrders();
+        
+        ClavePrimaria= orders.get(numRow).getId();
+        
+        return ClavePrimaria;
    }
 }

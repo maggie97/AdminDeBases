@@ -14,7 +14,7 @@ public class Client {
     private String name;
     private String lastname;
     private String address;
-    private int phone;
+    private String phone;
 
     /**
      * @return the id
@@ -47,7 +47,7 @@ public class Client {
     /**
      * @return the phone
      */
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -82,7 +82,7 @@ public class Client {
     /**
      * @param phone the phone to set
      */
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

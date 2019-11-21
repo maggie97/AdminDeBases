@@ -7,6 +7,7 @@ package exemploconexion.services;
 
 import exemploconexion.ConnectionDatabase;
 import exemploconexion.models.Client;
+import exemploconexion.models.Product;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class ClientService {
             client.setId(result.getInt("idCliente"));
             client.setName(result.getString("nombre"));
             client.setLastname(result.getString("lastname"));
-            client.setPhone(result.getInt("telefono"));
+            client.setPhone(result.getString("telefono"));
             client.setAddress(result.getString("direccion"));
             
             clients.add(client);
@@ -57,6 +58,27 @@ public class ClientService {
            objects[i][3] = c.getPhone();
        }
        return objects;
+   }
+   
+   public void EliminaCliente(long idCliente) throws Exception{
+        ConnectionDatabase.shared.Connecting();
+        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+        String stringQuery = String.format("Delete from cliente where idCliente=%s", idCliente);
+        //String stringQuery = "SELECT *  FROM empleado"; 
+        st.executeQuery(stringQuery);
+       
+        st.close();
+        ConnectionDatabase.shared.Disconnect();
+   }
+   
+   public long regresaClavePrimaria(int numRow)throws Exception
+   {
+       long ClavePrimaria=0;
+        ArrayList<Client> clientes = this.getClient();
+        
+        ClavePrimaria= clientes.get(numRow).getId();
+        
+        return ClavePrimaria;
    }
 }
 

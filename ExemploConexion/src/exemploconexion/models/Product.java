@@ -12,7 +12,7 @@ package exemploconexion.models;
 public class Product {
     private long id;
     private String name;
-    private double price;
+    private String price;
     private String brand;
     private int excistences;
 
@@ -47,14 +47,14 @@ public class Product {
     /**
      * @return the price
      */
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

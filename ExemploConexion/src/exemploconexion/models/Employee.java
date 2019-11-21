@@ -14,7 +14,7 @@ public class Employee {
     private String name;
     private String lastname;
     private String address;
-    private int phone;
+    private String phone;
     private String workstation;
     private String NSS;
 
@@ -63,14 +63,14 @@ public class Employee {
     /**
      * @return the phone
      */
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
     /**
      * @param phone the phone to set
      */
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
