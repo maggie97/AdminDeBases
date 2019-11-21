@@ -9,6 +9,7 @@ import exemploconexion.services.ClientService;
 import exemploconexion.services.EmployeeService;
 import exemploconexion.services.NominaService;
 import exemploconexion.services.OrderService;
+import exemploconexion.services.PayrollService;
 import exemploconexion.services.ProductService;
 import exemploconexion.services.VehicleService;
 import java.awt.event.MouseEvent;
@@ -165,71 +166,72 @@ public class ScreenOne extends javax.swing.JFrame {
             getNomina(),
             new String [] {
                 "idEmpleado", "mes", "Año", "Sueldo Base", "Horas Extra", "Suledo Bruto"
-            }));
-            jScrollPane6.setViewportView(jTable4);
+            }
+        ));
+        jScrollPane6.setViewportView(jTable4);
 
-            ProductosTab.addTab("Nomina", jScrollPane6);
+        ProductosTab.addTab("Nomina", jScrollPane6);
 
-            jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                getVehicles(),
-                new String [] {
-                    "noUnidad", "Placas", "Peso Soportado", "Marca"
-                }
-            ));
-            jScrollPane4.setViewportView(jTable1);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            getVehicles(),
+            new String [] {
+                "noUnidad", "Placas", "Peso Soportado", "Marca"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable1);
 
-            ProductosTab.addTab("Vehiculos", jScrollPane4);
+        ProductosTab.addTab("Vehiculos", jScrollPane4);
 
-            jDesktopPane1.setLayer(ProductosTab, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(ProductosTab, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-            javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-            jDesktopPane1.setLayout(jDesktopPane1Layout);
-            jDesktopPane1Layout.setHorizontalGroup(
-                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(ProductosTab)
-            );
-            jDesktopPane1Layout.setVerticalGroup(
-                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(ProductosTab, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-            );
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ProductosTab)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ProductosTab, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+        );
 
-            jMenu1.setText("File");
-            jMenuBar1.add(jMenu1);
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
 
-            jMenu2.setText("Edit");
+        jMenu2.setText("Edit");
 
-            jMenuItem1.setText("Eliminar");
-            jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    jMenuItem1MouseClicked(evt);
-                }
-            });
-            jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jMenuItem1ActionPerformed(evt);
-                }
-            });
-            jMenu2.add(jMenuItem1);
+        jMenuItem1.setText("Eliminar");
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem1MouseClicked(evt);
+            }
+        });
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
 
-            jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenu2);
 
-            setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar1);
 
-            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-            getContentPane().setLayout(layout);
-            layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jDesktopPane1)
-            );
-            layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 0, 0)
-                    .addComponent(jDesktopPane1))
-            );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jDesktopPane1))
+        );
 
-            pack();
-        }// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
     private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
         if(evt.getButton() == MouseEvent.BUTTON3){
@@ -477,6 +479,15 @@ public class ScreenOne extends javax.swing.JFrame {
         try{
             return serviceOrder.getObjects();
         } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
+    }
+    private Object[][] getPayroll(){
+        try {
+            PayrollService servicePayroll = new PayrollService();
+            return servicePayroll.getObjects();
+        }catch (Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         return null;
