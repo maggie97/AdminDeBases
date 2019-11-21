@@ -12,7 +12,6 @@ import java.util.Date;
  * @author maggiemendez
  */
 public class Order {
-
     
     private long id;
     
