@@ -33,7 +33,7 @@ public class NominaService {
             row.setIdEmpleado(result.getInt("idEmpleado"));
             row.setMes(result.getInt("mes"));
             row.setAño(result.getInt("año"));
-            row.setSueldoBase(result.getString("sueldobase"));
+            //row.setSueldoBase(result.getString("sueldobase"));
             row.setHorasExtra(result.getInt("horasextra"));
             row.setSueldoBruto(result.getString("sueldoBruto"));
             
@@ -56,9 +56,8 @@ public class NominaService {
            objects[i][0] = c.getIdEmpleado();
            objects[i][1] = c.getMes();
            objects[i][2] = c.getAño();
-           objects[i][3] = c.getSueldoBase();
-           objects[i][4] = c.getHorasExtra();
-           objects[i][5] = c.getSueldoBruto();
+           objects[i][3] = c.getHorasExtra();
+           objects[i][4] = c.getSueldoBruto();
        }
        return objects;
    }

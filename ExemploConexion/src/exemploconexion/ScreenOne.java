@@ -168,7 +168,7 @@ public class ScreenOne extends javax.swing.JFrame {
         jTable4.setModel(new DefaultTableModel(
             getNomina(),
             new String [] {
-                "idEmpleado", "mes", "Año", "Sueldo Base", "Horas Extra", "Suledo Bruto"
+                "idEmpleado", "mes", "Año",  "Horas Extra", "Suledo Bruto"
             }));
             jScrollPane6.setViewportView(jTable4);
 
