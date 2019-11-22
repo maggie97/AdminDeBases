@@ -233,6 +233,9 @@
                       <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    getOrders(),&#xa;    new String [] {&#xa;        &quot;Client Send&quot;, &quot;Client Receives&quot;, &quot;State&quot;, &quot;Date Order&quot;,  &quot;Date Received&quot;, &quot;Driver&quot;,&quot;Vehicle&quot;, &quot;Brand&quot;,&quot;License plates&quot;,&quot;Total&quot;&#xa;    }&#xa;)" type="code"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable2MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

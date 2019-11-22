@@ -130,8 +130,6 @@ public class ScreenOne extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        employeeTable.setCellSelectionEnabled(false);
-        employeeTable.setRowSelectionAllowed(true);
         employeeTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 employeeTableMouseClicked(evt);
@@ -158,6 +156,11 @@ public class ScreenOne extends javax.swing.JFrame {
                 "Client Send", "Client Receives", "State", "Date Order",  "Date Received", "Driver","Vehicle", "Brand","License plates","Total"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(jTable2);
 
         ProductosTab.addTab("Pedidos", jScrollPane5);
@@ -166,72 +169,71 @@ public class ScreenOne extends javax.swing.JFrame {
             getNomina(),
             new String [] {
                 "idEmpleado", "mes", "Año", "Sueldo Base", "Horas Extra", "Suledo Bruto"
-            }
-        ));
-        jScrollPane6.setViewportView(jTable4);
+            }));
+            jScrollPane6.setViewportView(jTable4);
 
-        ProductosTab.addTab("Nomina", jScrollPane6);
+            ProductosTab.addTab("Nomina", jScrollPane6);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            getVehicles(),
-            new String [] {
-                "noUnidad", "Placas", "Peso Soportado", "Marca"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable1);
+            jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                getVehicles(),
+                new String [] {
+                    "noUnidad", "Placas", "Peso Soportado", "Marca"
+                }
+            ));
+            jScrollPane4.setViewportView(jTable1);
 
-        ProductosTab.addTab("Vehiculos", jScrollPane4);
+            ProductosTab.addTab("Vehiculos", jScrollPane4);
 
-        jDesktopPane1.setLayer(ProductosTab, javax.swing.JLayeredPane.DEFAULT_LAYER);
+            jDesktopPane1.setLayer(ProductosTab, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ProductosTab)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ProductosTab, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-        );
+            javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+            jDesktopPane1.setLayout(jDesktopPane1Layout);
+            jDesktopPane1Layout.setHorizontalGroup(
+                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(ProductosTab)
+            );
+            jDesktopPane1Layout.setVerticalGroup(
+                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(ProductosTab, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+            jMenu1.setText("File");
+            jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+            jMenu2.setText("Edit");
 
-        jMenuItem1.setText("Eliminar");
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem1MouseClicked(evt);
-            }
-        });
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem1);
+            jMenuItem1.setText("Eliminar");
+            jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    jMenuItem1MouseClicked(evt);
+                }
+            });
+            jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem1ActionPerformed(evt);
+                }
+            });
+            jMenu2.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu2);
+            jMenuBar1.add(jMenu2);
 
-        setJMenuBar(jMenuBar1);
+            setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jDesktopPane1))
-        );
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jDesktopPane1)
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 0, 0)
+                    .addComponent(jDesktopPane1))
+            );
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+            pack();
+        }// </editor-fold>//GEN-END:initComponents
 
     private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
         if(evt.getButton() == MouseEvent.BUTTON3){
@@ -371,6 +373,11 @@ public class ScreenOne extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, jTable2.rowAtPoint(evt.getPoint()), "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
