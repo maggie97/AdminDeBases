@@ -55,10 +55,10 @@ public class ProductService {
        }
        return objects;
    }
-   public void InsertProduct(String name, String brand, float price) throws Exception{
+   public void InsertProduct(String name, String brand, float price, int existencias) throws Exception{
        ConnectionDatabase.shared.Connecting();
        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
-       String stringQuery = String.format("insert into producto (nombre, marca,  precio ) values ('%s', '%s', %f)", name, brand, price);
+       String stringQuery = String.format("insert into producto (nombre, marca,  precio, existencias ) values ('%s', '%s', %f, %d)", name, brand, price, existencias);
        st.executeUpdate(stringQuery);
        st.close();
    }

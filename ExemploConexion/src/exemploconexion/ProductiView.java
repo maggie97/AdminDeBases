@@ -41,6 +41,8 @@ public class ProductiView extends javax.swing.JFrame {
         txtPrice = new java.awt.TextField();
         button1 = new java.awt.Button();
         button2 = new java.awt.Button();
+        label5 = new java.awt.Label();
+        txtExistencias = new java.awt.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +84,16 @@ public class ProductiView extends javax.swing.JFrame {
             }
         });
 
+        label5.setText("Existencias:");
+
+        txtExistencias.setBackground(new java.awt.Color(255, 255, 255));
+        txtExistencias.setForeground(new java.awt.Color(0, 0, 0));
+        txtExistencias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtExistenciasKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,7 +112,9 @@ public class ProductiView extends javax.swing.JFrame {
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                         .addComponent(txtBrand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtExistencias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -120,11 +134,15 @@ public class ProductiView extends javax.swing.JFrame {
                 .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtExistencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -140,7 +158,7 @@ public class ProductiView extends javax.swing.JFrame {
         if (!txtName.getText().isEmpty() && !txtBrand.getText().isEmpty() && !txtPrice.getText().isEmpty() ){
             ProductService service = new ProductService();
             try {
-                service.InsertProduct(txtName.getText(), txtBrand.getText(),  Integer.parseInt(txtPrice.getText()));
+                service.InsertProduct(txtName.getText(), txtBrand.getText(),  Integer.parseInt(txtPrice.getText()), Integer.parseInt(txtExistencias.getText()));
                 JOptionPane.showMessageDialog(null, "Producto Agregado", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
             } catch (Exception ex) {
@@ -156,6 +174,10 @@ public class ProductiView extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtPriceKeyTyped
+
+    private void txtExistenciasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExistenciasKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtExistenciasKeyTyped
 
     /**
      * @param args the command line arguments
@@ -199,7 +221,9 @@ public class ProductiView extends javax.swing.JFrame {
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label4;
+    private java.awt.Label label5;
     private java.awt.TextField txtBrand;
+    private java.awt.TextField txtExistencias;
     private java.awt.TextField txtName;
     private java.awt.TextField txtPrice;
     // End of variables declaration//GEN-END:variables
