@@ -25,6 +25,9 @@ public class Employee {
         return name;
     }
 
+    public String getFullName(){
+        return name + ' ' + lastname;
+    }
     /**
      * @param name the name to set
      */

@@ -12,14 +12,14 @@ import exemploconexion.models.Vehicle;
  * @author maggiemendez
  */
 public class Driver {
-    private Vehicle unidadAsignada;
+    private int unidadAsignada;
     private int idEmpleado;
     private boolean disponibilidad;
 
     /**
      * @return the unidadAsignada
      */
-    public Vehicle getUnidadAsignada() {
+    public int getUnidadAsignada() {
         return unidadAsignada;
     }
 
@@ -27,7 +27,7 @@ public class Driver {
      * @param unidadAsignada the unidadAsignada to set
      * @return 
      */
-    public void setUnidadAsignada(Vehicle unidadAsignada) {
+    public void setUnidadAsignada(int unidadAsignada) {
         this.unidadAsignada = unidadAsignada;
     }
 
