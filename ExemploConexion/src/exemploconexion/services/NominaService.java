@@ -7,6 +7,7 @@ package exemploconexion.services;
 
 import exemploconexion.ConnectionDatabase;
 import exemploconexion.models.Client;
+import exemploconexion.models.Employee;
 import exemploconexion.models.Nomina;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -61,7 +62,8 @@ public class NominaService {
        }
        return objects;
    }
-   
+   //TODO: Esta metodo elimina todas las tuplas de la nomina de un empleado 
+   // cambiar nombre o arreglar este metodo 
    public void EliminaNomina(long idEmpleado) throws Exception{
         ConnectionDatabase.shared.Connecting();
         Statement st = ConnectionDatabase.shared.getConnection().createStatement();
@@ -71,6 +73,19 @@ public class NominaService {
        
         st.close();
         ConnectionDatabase.shared.Disconnect();
+   }
+   public void generateNomina(int month, int year) throws Exception{
+       EmployeeService service = new EmployeeService();
+       ArrayList<Employee> employees = service.getEmployee();
+       ConnectionDatabase.shared.Connecting();
+       Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+       for (int i = 0 ; i < employees.size(); i++){
+            String stringQuery = String.format("insert into nomina (idEmpleado, mes, año,  horasextra, sueldobruto ) "
+                    + "values (%d, %d, %d, %d, %f)", employees.get(i).getId(), month, year, 0, employees.get(i).getSalary());
+            st.executeUpdate(stringQuery);
+       }
+       st.close();
+       ConnectionDatabase.shared.Disconnect();
    }
    
    public long regresaClavePrimaria(int numRow)throws Exception
