@@ -79,6 +79,14 @@ public class EmployeeService {
         st.close();
         ConnectionDatabase.shared.Disconnect();
    }
+   public void InsertEmployee(String name, String lastname1, String lastname2, String address, int phone, String work, String nss) throws Exception{
+       ConnectionDatabase.shared.Connecting();
+       Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+       String stringQuery = String.format("insert into empleado (nombre, apellido1, apellido2, direccion, telefono,  puestotrabajo , nss ) "
+               + "values ('%s', '%s', '%s', '%s', %d, '%s', '%s')", name, lastname1, lastname2, address, phone, work, nss);
+       st.executeUpdate(stringQuery);
+       st.close();
+   }
    
    public long regresaClavePrimaria(int numRow)throws Exception
    {
