@@ -95,6 +95,15 @@ public class OrderService {
         ConnectionDatabase.shared.Disconnect();
    }
    
+    public void InsertOrder(long sendClient, long recibeClient, long vehicle, String dateOrder, String dateRecibeOrder, long idEmpleado) throws Exception{
+       ConnectionDatabase.shared.Connecting();
+       Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+       String stringQuery = String.format("insert into pedido ( clienteenvia , clienterecibe , unidadasignada , estado , fechapedido , fechaentrega , idempleado ) "
+               + "values (%d, %d, %d, '%s', '%s','%s', %d ); ", sendClient, recibeClient, vehicle,'N', dateOrder, dateRecibeOrder, idEmpleado);
+       st.executeUpdate(stringQuery);
+       st.close();
+   }
+   
    public long regresaClavePrimaria(int numRow)throws Exception
    {
        long ClavePrimaria=0;

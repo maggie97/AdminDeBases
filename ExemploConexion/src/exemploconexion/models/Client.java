@@ -23,6 +23,9 @@ public class Client {
         return id;
     }
 
+    public String getFullname(){
+        return name + " " + lastname;
+    }
     /**
      * @return the name
      */

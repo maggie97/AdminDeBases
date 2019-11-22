@@ -33,7 +33,6 @@ public class NominaService {
             row.setIdEmpleado(result.getInt("idEmpleado"));
             row.setMes(result.getInt("mes"));
             row.setAño(result.getInt("año"));
-            //row.setSueldoBase(result.getString("sueldobase"));
             row.setHorasExtra(result.getInt("horasextra"));
             row.setSueldoBruto(result.getString("sueldoBruto"));
             

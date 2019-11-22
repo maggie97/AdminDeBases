@@ -85,4 +85,8 @@ public class Product {
     public void setExcistences(int excistences) {
         this.excistences = excistences;
     }
+    
+    public String toString(){
+        return brand + "-" + name ; 
+    }
 }
