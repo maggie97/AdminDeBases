@@ -69,7 +69,14 @@ public class VehicleService {
         st.close();
         ConnectionDatabase.shared.Disconnect();
    }
-   
+   public void InsertVehicle(String placa, String brand, float weight, boolean disponibility) throws Exception{
+       ConnectionDatabase.shared.Connecting();
+       Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+       String stringQuery = String.format("insert into vehiculo (placa, modelo,  pesosoportado, disponibilidad ) "
+               + "values ('%s', '%s', %f, %b)", placa, brand, weight, disponibility);
+       st.executeUpdate(stringQuery);
+       st.close();
+   }
    public long regresaClavePrimaria(int numRow)throws Exception
    {
        long ClavePrimaria=0;
