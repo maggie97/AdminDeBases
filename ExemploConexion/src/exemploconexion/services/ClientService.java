@@ -71,6 +71,15 @@ public class ClientService {
         ConnectionDatabase.shared.Disconnect();
    }
    
+   public void InsertClient(String name, String lastname1, String lastname2, String address, String phone) throws Exception{
+       ConnectionDatabase.shared.Connecting();
+       Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+       String stringQuery = String.format("insert into cliente (nombre, apellido1, apellido2, direccion, telefono ) "
+               + "values ('%s', '%s', '%s', '%s', '%s')", name, lastname1, lastname2, address, phone);
+       st.executeUpdate(stringQuery);
+       st.close();
+   }
+   
    public long regresaClavePrimaria(int numRow)throws Exception
    {
        long ClavePrimaria=0;

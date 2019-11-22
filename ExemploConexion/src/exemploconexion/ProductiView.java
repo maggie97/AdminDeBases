@@ -141,7 +141,7 @@ public class ProductiView extends javax.swing.JFrame {
             ProductService service = new ProductService();
             try {
                 service.InsertProduct(txtName.getText(), txtBrand.getText(),  Integer.parseInt(txtPrice.getText()));
-                JOptionPane.showMessageDialog(null, "Producto Agregado", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Producto Agregado", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
             } catch (Exception ex) {
                 Logger.getLogger(ProductiView.class.getName()).log(Level.SEVERE, null, ex);
