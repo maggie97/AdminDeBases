@@ -85,4 +85,8 @@ public class Vehicle {
     public void setDisponibility(boolean disponibility) {
         this.disponibility = disponibility;
     }
+    
+    public String getString(){
+        return this.id + "-" + this.placa + "-" + this.brand;
+    }
 }
