@@ -144,17 +144,15 @@ public class DriverView extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        if (cmbEmployee.getSelectedIndex() != 0 && cmbVehicle.getSelectedIndex() != 0 ){
-            DriverService service = new DriverService();
-            try {
-                Employee employee = employees.get(cmbEmployee.getSelectedIndex());
-                Vehicle vehicle = this.vehicle.get(cmbVehicle.getSelectedIndex());
-                service.InsertDriver(employee.getId(), vehicle.getId(), Disponible.getState());
-                JOptionPane.showMessageDialog(null, "Vehiculo Asignado", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
-            } catch (Exception ex) {
-                Logger.getLogger(DriverView.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        DriverService service = new DriverService();
+        try {
+            Employee employee = employees.get(cmbEmployee.getSelectedIndex());
+            Vehicle vehicle = this.vehicle.get(cmbVehicle.getSelectedIndex());
+            service.InsertDriver(employee.getId(), vehicle.getId(), Disponible.getState());
+            JOptionPane.showMessageDialog(null, "Vehiculo Asignado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(DriverView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_button1ActionPerformed
 
