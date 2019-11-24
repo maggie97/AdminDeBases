@@ -21,7 +21,7 @@ public class Order {
     private long clientReceives; 
     private String nameClientReceives;
     
-    private double total;
+    private String total;
     
     private long idVehicle;
     private String brandVehicle;
@@ -122,14 +122,14 @@ public class Order {
     /**
      * @return the total
      */
-    public double getTotal() {
+    public String getTotal() {
         return total;
     }
 
     /**
      * @param total the total to set
      */
-    public void setTotal(double total) {
+    public void setTotal(String total) {
         this.total = total;
     }
 
