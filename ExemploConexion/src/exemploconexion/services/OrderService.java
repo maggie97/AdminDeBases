@@ -44,7 +44,7 @@ public class OrderService {
             order.setId(result.getInt(1));
             order.setClientSend(result.getInt("clienteenvia"));
             order.setClientReceives(result.getInt("clienterecibe"));
-            order.setTotal(result.getDouble("total"));
+            order.setTotal(result.getString("total"));
             order.setIdVehicle(result.getInt("unidadasignada"));
             String send = (result.getString("estado") == "S")? "Enviado": "En espera";
             order.setState(send);
