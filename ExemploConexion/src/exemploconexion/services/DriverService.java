@@ -84,5 +84,19 @@ public class DriverService {
         
         return ClavePrimaria;
    }
+   /*
+   */
+   public void ActualizaConductor(int numRow,long vehicle, long employee, boolean disponibility) throws Exception{
+       ConnectionDatabase.shared.Connecting();
+       long pk = regresaClavePrimaria(numRow);
+       Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+       String stringQuery = String.format("uptade conductor"
+               + "set unidadasignada = %d,"
+               + "idempleado=%d,"
+               + "disponibilidad=%b,"
+               + "where idConductor=%d", vehicle, employee, disponibility,pk);
+       st.executeUpdate(stringQuery);
+       st.close();
+   }
 }
 

@@ -44,7 +44,7 @@ public class ProductiView extends javax.swing.JFrame {
         label5 = new java.awt.Label();
         txtExistencias = new java.awt.TextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         label1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         label1.setForeground(new java.awt.Color(0, 0, 0));

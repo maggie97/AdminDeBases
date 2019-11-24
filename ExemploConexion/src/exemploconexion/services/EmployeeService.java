@@ -97,4 +97,21 @@ public class EmployeeService {
         
         return ClavePrimaria;
    }
+   
+    public void ActualizaEmpleado(int numRow,String name, String lastname1, String lastname2, String address, int phone, String work, String nss) throws Exception{
+       ConnectionDatabase.shared.Connecting();
+       long pk = regresaClavePrimaria(numRow);
+       Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+       String stringQuery = String.format("update empleado "
+               + "set nombre='%s', "
+               + "apellido1='%s', "
+               + "apellido2='%s', "
+               + "direccion='%s', "
+               + "telefono='%s',  "
+               + "puestotrabajo='%s' , "
+               + "nss ='%s'"
+               + "where idEmpleado=%d", name, lastname1, lastname2, address, phone, work, nss,pk);
+       st.executeUpdate(stringQuery);
+       st.close();
+   }
 }
