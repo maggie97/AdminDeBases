@@ -243,8 +243,6 @@ public class ScreenOne extends javax.swing.JFrame {
 
     private void ProductosTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosTabMouseClicked
         
-        
-        
         clientTable.setModel(new javax.swing.table.DefaultTableModel(
             getClients(),
             new String [] {

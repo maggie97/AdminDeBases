@@ -29,7 +29,7 @@ public class ProductService {
             
             product.setId(result.getInt("idproducto"));
             product.setName(result.getString("nombre"));
-            product.setPrice(result.getString("precio"));
+            product.setPrice(result.getDouble("precio"));
             product.setBrand(result.getString("marca"));
             product.setExcistences(result.getInt("existencias"));
             products.add(product);
