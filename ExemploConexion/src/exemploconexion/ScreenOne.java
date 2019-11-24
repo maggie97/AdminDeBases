@@ -49,6 +49,9 @@ public class ScreenOne extends javax.swing.JFrame {
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         ProductosTab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -67,7 +70,10 @@ public class ScreenOne extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -79,6 +85,12 @@ public class ScreenOne extends javax.swing.JFrame {
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
+
+        jMenuItem2.setText("jMenuItem2");
+
+        jMenu3.setText("jMenu3");
+
+        jMenuItem4.setText("jMenuItem4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -202,6 +214,23 @@ public class ScreenOne extends javax.swing.JFrame {
 
             jMenu2.setText("Edit");
 
+            jMenuItem3.setText("Agregar Registro");
+            jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem3ActionPerformed(evt);
+                }
+            });
+            jMenu2.add(jMenuItem3);
+
+            jMenuItem5.setText("Actualizar Reg...");
+            jMenuItem5.setToolTipText("");
+            jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem5ActionPerformed(evt);
+                }
+            });
+            jMenu2.add(jMenuItem5);
+
             jMenuItem1.setText("Eliminar");
             jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -216,6 +245,14 @@ public class ScreenOne extends javax.swing.JFrame {
             jMenu2.add(jMenuItem1);
 
             jMenuBar1.add(jMenu2);
+
+            jMenu4.setText("Refrescar");
+            jMenu4.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenu4ActionPerformed(evt);
+                }
+            });
+            jMenuBar1.add(jMenu4);
 
             setJMenuBar(jMenuBar1);
 
@@ -371,11 +408,127 @@ public class ScreenOne extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+    
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, jTable2.rowAtPoint(evt.getPoint()), "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+         
+        int i = ProductosTab.getSelectedIndex();
+        switch(i)
+        {
+            case 0:
+                int numrowC=clientTable.getSelectedRow();
+                Clientview_ ventanaCliente = new Clientview_();
+                ventanaCliente.setVisible(true);
+                break;
+            case 1:
+                int numrowEm=employeeTable.getSelectedRow();
+                EmployeeView ventanaEmpleado = new EmployeeView();
+                ventanaEmpleado.setVisible(true);
+                break;
+            case 2:
+                int numrowP=jTable3.getSelectedRow();
+                ProductiView ventanaProducto = new ProductiView();
+                ventanaProducto.show();
+                break;
+            case 3:
+                int numrowPedido=jTable2.getSelectedRow();
+                OrderView wOrden = new OrderView();
+                wOrden.setVisible(true);
+                break;
+            case 4:
+                int numrowNomina=jTable4.getSelectedRow();
+                NominaView wNomina = new NominaView();
+                wNomina.setVisible(true);
+                break;
+            case 5:
+                int numrowVehiculo=jTable1.getSelectedRow();
+                VehicleView wVehiculo = new VehicleView();
+                wVehiculo.setVisible(true);
+                break;
+            
+        }
+           
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+       clientTable.setVisible(false);
+                   DefaultTableModel modelCliente = new DefaultTableModel(  getClients(),
+                        new String [] {
+                            "Name", "Lastname", "Address", "Phone"
+                        });
+                   clientTable.setModel(modelCliente);
+                   modelCliente.fireTableDataChanged();
+                   clientTable.setVisible(true);
+         jTable3.setVisible(false);
+                   DefaultTableModel modelProducto = new DefaultTableModel( getProducts(),
+                        new String [] {
+                            "Name", "Price", "Brand", "Excistences"
+                        });
+                   jTable3.setModel(modelProducto);
+                   modelProducto.fireTableDataChanged();
+                   jTable3.setVisible(true);
+        jTable2.setVisible(false);
+                   DefaultTableModel modelPedido = new DefaultTableModel( getOrders(),
+                    new String [] {
+                        "Client Send", "Client Receives", "State", "Date Order",  "Date Received", "Driver","Vehicle", "Brand","License plates","Total"
+                    });
+                   jTable2.setModel(modelPedido);
+                   modelPedido.fireTableDataChanged();
+                   jTable2.setVisible(true);
+        jTable4.setVisible(false);
+                   DefaultTableModel modelNomina = new DefaultTableModel(  getNomina(),
+                    new String [] {
+                        "idEmpleado", "mes", "Año", "Sueldo Base", "Horas Extra", "Suledo Bruto"
+                    });
+                   jTable4.setModel(modelNomina);
+                   modelNomina.fireTableDataChanged();
+                   jTable4.setVisible(true);
+        jTable1.setVisible(false);
+                   DefaultTableModel modelVehiculos = new DefaultTableModel(getVehicles(),
+                    new String [] {
+                        "noUnidad", "Placas", "Peso Soportado", "Marca"
+                    });
+                   jTable1.setModel(modelVehiculos);
+                   modelVehiculos.fireTableDataChanged();
+                   jTable1.setVisible(true);
+       
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        int i = ProductosTab.getSelectedIndex();
+        switch(i)
+        {
+            case 0:
+                Clientview_ ventanaCliente = new Clientview_();
+                ventanaCliente.setVisible(true);
+                break;
+            case 1:
+                EmployeeView ventanaEmpleado = new EmployeeView();
+                ventanaEmpleado.setVisible(true);
+                break;
+            case 2:
+                ProductiView ventanaProducto = new ProductiView();
+                ventanaProducto.setVisible(true);
+                break;
+            case 3:
+                OrderView wOrden = new OrderView();
+                wOrden.setVisible(true);
+                break;
+            case 4:
+                NominaView wNomina = new NominaView();
+                wNomina.setVisible(true);
+                break;
+            case 5:
+                VehicleView wVehiculo = new VehicleView();
+                wVehiculo.setVisible(true);
+                break;
+            
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,8 +573,14 @@ public class ScreenOne extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -63,7 +63,7 @@ public class DriverView extends javax.swing.JFrame {
         cmbVehicle = new java.awt.Choice();
         Disponible = new java.awt.Checkbox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         label1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         label1.setForeground(new java.awt.Color(0, 0, 0));
