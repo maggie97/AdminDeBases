@@ -201,7 +201,9 @@ public class OrderDetailView extends javax.swing.JFrame {
             }
         });
     }
-
+    public Product getProduct(){
+        return products.get(chProduct.getSelectedIndex());
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
     private java.awt.Button button2;

@@ -8,8 +8,10 @@ package exemploconexion.services;
 import exemploconexion.ConnectionDatabase;
 import exemploconexion.models.Client;
 import exemploconexion.models.Order;
+import exemploconexion.models.OrderDetail;
 import exemploconexion.models.Vehicle;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -103,6 +105,15 @@ public class OrderService {
        st.executeUpdate(stringQuery);
        st.close();
    }
+    
+   public void InsertDetailOrder(OrderDetail detail) throws SQLException, Exception{
+       ConnectionDatabase.shared.Connecting();
+       Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+       String stringQuery = String.format("insert into detallepedido ( idpedido, idmaterial, cantidad, descuento, iva, subtotal  ) "
+               + "values (%d, %d, %d, %d,  %d, 0 ); ", lastOrderID(), detail.getProduct().getId(), detail.getQuantity(),detail.getDiscount(), detail.getTaxes() );
+       st.executeUpdate(stringQuery);
+       st.close();
+   }
    
    public long regresaClavePrimaria(int numRow)throws Exception
    {
@@ -112,5 +123,11 @@ public class OrderService {
         ClavePrimaria= orders.get(numRow).getId();
         
         return ClavePrimaria;
+   }
+   
+   public long lastOrderID() throws Exception{
+       ArrayList list = getOrders();
+       Order last  = (Order) list.get(list.size() - 1 );
+       return last.getId();
    }
 }
