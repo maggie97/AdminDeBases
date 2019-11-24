@@ -432,7 +432,7 @@ public class ScreenOne extends javax.swing.JFrame {
             case 2:
                 int numrowP=jTable3.getSelectedRow();
                 ProductiView ventanaProducto = new ProductiView();
-                ventanaProducto.show();
+                ventanaProducto.setVisible(true);
                 break;
             case 3:
                 int numrowPedido=jTable2.getSelectedRow();
