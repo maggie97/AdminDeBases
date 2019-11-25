@@ -5,6 +5,7 @@
  */
 package exemploconexion;
 
+import exemploconexion.models.Employee;
 import exemploconexion.services.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,11 +17,36 @@ import javax.swing.JOptionPane;
  */
 public class EmployeeView extends javax.swing.JFrame {
 
+    long id;
+    boolean update = false;
     /**
      * Creates new form ProductiView
      */
     public EmployeeView() {
         initComponents();
+    }
+    
+    public EmployeeView(Employee e) {
+        initComponents();
+        
+        //txtName.getText().isEmpty() && !txtLastName1.getText().isEmpty() && !txtLAstName2.getText().isEmpty() 
+        //        && !txtAddress.getText().isEmpty() && !txtPhone.getText().isEmpty() && !txtWork.getText().isEmpty() && !txtNSS.getText().isEmpty() 
+        
+        update = true;
+        label1.setText("Actualiza Empleado");
+        buttonAdd.setLabel("Actualiza");
+        
+        id = e.getId();
+        txtName.setText(e.getName());
+        String[] lastname = e.getLastname().split(" ");
+        txtLastName1.setText(lastname[0]);
+        txtLAstName2.setText(lastname[1]);
+        
+        txtAddress.setText(e.getAddress());
+        txtPhone.setText(e.getPhone());
+        txtSalary.setText(e.getSalary());
+        txtWork.setText(e.getWorkstation());
+        txtNSS.setText(e.getNSS());
     }
 
     /**
@@ -39,7 +65,7 @@ public class EmployeeView extends javax.swing.JFrame {
         txtName = new java.awt.TextField();
         txtLastName1 = new java.awt.TextField();
         txtLAstName2 = new java.awt.TextField();
-        button1 = new java.awt.Button();
+        buttonAdd = new java.awt.Button();
         button2 = new java.awt.Button();
         label5 = new java.awt.Label();
         label6 = new java.awt.Label();
@@ -78,10 +104,10 @@ public class EmployeeView extends javax.swing.JFrame {
             }
         });
 
-        button1.setLabel("Agregar");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        buttonAdd.setLabel("Agregar");
+        buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                buttonAddActionPerformed(evt);
             }
         });
 
@@ -171,7 +197,7 @@ public class EmployeeView extends javax.swing.JFrame {
                         .addGap(213, 213, 213)
                         .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -224,7 +250,7 @@ public class EmployeeView extends javax.swing.JFrame {
                         .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
@@ -237,21 +263,32 @@ public class EmployeeView extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_button2ActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    void update(EmployeeService service) throws Exception{
+        float salary  = Float.parseFloat(txtSalary.getText().replace('$', '0'));
+        service.ActualizaEmpleado(id, txtName.getText(), txtLastName1.getText(), 
+                txtLAstName2.getText(), txtAddress.getText(), Integer.parseInt(txtPhone.getText()), 
+                txtWork.getText(), txtNSS.getText(), salary);
+        JOptionPane.showMessageDialog(null, "Empleado Actualizado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
         if (!txtName.getText().isEmpty() && !txtLastName1.getText().isEmpty() && !txtLAstName2.getText().isEmpty() 
                 && !txtAddress.getText().isEmpty() && !txtPhone.getText().isEmpty() && !txtWork.getText().isEmpty() && !txtNSS.getText().isEmpty() ){
             EmployeeService service = new EmployeeService();
             try {
-                service.InsertEmployee(txtName.getText(), txtLastName1.getText(),  txtLAstName2.getText(), 
-                        txtAddress.getText(), Integer.parseInt(txtPhone.getText()), txtWork.getText(), txtNSS.getText());
-                JOptionPane.showMessageDialog(null, "Empleado Agregado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                if (update)
+                    update(service);
+                else {
+                    service.InsertEmployee(txtName.getText(), txtLastName1.getText(),  txtLAstName2.getText(), 
+                        txtAddress.getText(), Integer.parseInt(txtPhone.getText()), txtWork.getText(), txtNSS.getText(), Float.parseFloat(txtSalary.getText()));
+                    JOptionPane.showMessageDialog(null, "Empleado Agregado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                }
                 dispose();
             } catch (Exception ex) {
                 Logger.getLogger(ProductiView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_buttonAddActionPerformed
 
     private void txtLAstName2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLAstName2KeyTyped
         // TODO add your handling code here:
@@ -313,8 +350,8 @@ public class EmployeeView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
     private java.awt.Button button2;
+    private java.awt.Button buttonAdd;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;

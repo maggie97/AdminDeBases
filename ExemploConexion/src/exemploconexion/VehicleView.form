@@ -29,14 +29,14 @@
                   <Group type="102" attributes="0">
                       <Component id="button2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="button1" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonAdd" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="label4" min="-2" max="-2" attributes="0"/>
                       <Component id="label3" min="-2" max="-2" attributes="0"/>
                       <Component id="label2" min="-2" max="-2" attributes="0"/>
                       <Component id="label1" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtName" alignment="0" pref="326" max="32767" attributes="0"/>
+                      <Component id="txtPlaca" alignment="0" pref="326" max="32767" attributes="0"/>
                       <Component id="txtBrand" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtPrice" alignment="0" max="32767" attributes="0"/>
                       <Component id="Disponibility" alignment="1" max="32767" attributes="0"/>
@@ -54,7 +54,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="label2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-              <Component id="txtName" min="-2" max="-2" attributes="0"/>
+              <Component id="txtPlaca" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="label3" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
@@ -68,7 +68,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="button1" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonAdd" min="-2" max="-2" attributes="0"/>
                           <Component id="button2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -106,7 +106,7 @@
         <Property name="text" type="java.lang.String" value="Peso Soportado:"/>
       </Properties>
     </Component>
-    <Component class="java.awt.TextField" name="txtName">
+    <Component class="java.awt.TextField" name="txtPlaca">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -142,12 +142,12 @@
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPriceKeyTyped"/>
       </Events>
     </Component>
-    <Component class="java.awt.Button" name="button1">
+    <Component class="java.awt.Button" name="buttonAdd">
       <Properties>
         <Property name="label" type="java.lang.String" value="Agregar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddActionPerformed"/>
       </Events>
     </Component>
     <Component class="java.awt.Button" name="button2">

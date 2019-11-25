@@ -16,8 +16,8 @@ public class ConnectionDatabase {
     private String dominio = "localhost:5432/";
 
     private String dataBase = "tienda";
-    private String user = "postgres";
-    private String password = "palkia27";
+    private String user = "maggiemendez";
+    private String password = "M";
     private String connectionString;
     private Connection connection;
 

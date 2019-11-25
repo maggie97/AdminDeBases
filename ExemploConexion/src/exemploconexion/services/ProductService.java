@@ -83,16 +83,15 @@ public class ProductService {
         return ClavePrimaria;
    }
    
-   public void ActualizaProducto(int numRow,String name, String brand, float price, int existencias) throws Exception{
+   public void ActualizaProducto(long pk,String name, String brand, float price, int existencias) throws Exception{
        ConnectionDatabase.shared.Connecting();
-       long pk = regresaClavePrimaria(numRow);
        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
        String stringQuery = String.format("update producto"
-               + "set nombre='%s', "
-               + "marca= '%s',  "
-               + "precio=%f, "
-               + "existencias=%d,"
-               + "where idProducto=%d", name, brand, price, existencias,pk);
+               + " set nombre = '%s', "
+               + "marca = '%s',  "
+               + "precio = %f, "
+               + "existencias = %d"
+               + "where idProducto = %d", name, brand, price, existencias, pk);
        st.executeUpdate(stringQuery);
        st.close();
    }

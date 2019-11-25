@@ -6,6 +6,7 @@
 package exemploconexion;
 
 import exemploconexion.services.ClientService;
+import exemploconexion.services.DriverService;
 import exemploconexion.services.EmployeeService;
 import exemploconexion.services.NominaService;
 import exemploconexion.services.OrderService;
@@ -32,11 +33,28 @@ public class ScreenOne extends javax.swing.JFrame {
     private final VehicleService serviceVehicle = new VehicleService();
     private final OrderService serviceOrder = new OrderService();
     private final NominaService serviceNomina = new NominaService();
+    private final DriverService driverNomina = new DriverService();
+    
+    JPopupMenu popup = new JPopupMenu();
+    JMenuItem jMItem = new JMenuItem("Eliminar registro"); 
+    
+    JPopupMenu popupEmployee= new JPopupMenu();
+    JMenuItem jmItem1Employee = new JMenuItem("Añadir conductor"); 
     /**
      * Creates new form ScreenOne
      */
     public ScreenOne() {
         initComponents();
+        
+        popupEmployee.add(jmItem1Employee);
+        jmItem1Employee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                int numrowC = tableNomina.getSelectedRow();
+                DriverView ventanaDriver = new DriverView();
+                ventanaDriver.setVisible(true);
+            }
+        });
+        employeeTable.setComponentPopupMenu(popupEmployee);
     }
 
     /**
@@ -60,13 +78,15 @@ public class ScreenOne extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         employeeTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tableProduct = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableOrder = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tableNomina = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableVehicle = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tableDriver = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -93,6 +113,11 @@ public class ScreenOne extends javax.swing.JFrame {
         jMenuItem4.setText("jMenuItem4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -117,7 +142,7 @@ public class ScreenOne extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -131,7 +156,7 @@ public class ScreenOne extends javax.swing.JFrame {
 
         employeeTable.setModel(new javax.swing.table.DefaultTableModel(
             getEmployees(),new String [] {
-                "Name", "Lastname", "Address", "Phone", "Workstation", "NSS"
+                "Name", "Lastname", "Address", "Phone", "Workstation", "NSS", "Salary"
             }
         ) {
             Class[] types = new Class [] {
@@ -152,49 +177,59 @@ public class ScreenOne extends javax.swing.JFrame {
 
         ProductosTab.addTab("Empleados", jScrollPane1);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tableProduct.setModel(new javax.swing.table.DefaultTableModel(
             getProducts(),
             new String [] {
                 "Name", "Price", "Brand", "Excistences"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(tableProduct);
 
         ProductosTab.addTab("Productos", jScrollPane3);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableOrder.setModel(new javax.swing.table.DefaultTableModel(
             getOrders(),
             new String [] {
                 "Client Send", "Client Receives", "State", "Date Order",  "Date Received", "Driver","Vehicle", "Brand","License plates","Total"
             }
         ));
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableOrder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                tableOrderMouseClicked(evt);
             }
         });
-        jScrollPane5.setViewportView(jTable2);
+        jScrollPane5.setViewportView(tableOrder);
 
         ProductosTab.addTab("Pedidos", jScrollPane5);
 
-        jTable4.setModel(new DefaultTableModel(
+        tableNomina.setModel(new DefaultTableModel(
             getNomina(),
             new String [] {
                 "idEmpleado", "mes", "Año",  "Horas Extra", "Suledo Bruto"
             }));
-            jScrollPane6.setViewportView(jTable4);
+            jScrollPane6.setViewportView(tableNomina);
 
             ProductosTab.addTab("Nomina", jScrollPane6);
 
-            jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            tableVehicle.setModel(new javax.swing.table.DefaultTableModel(
                 getVehicles(),
                 new String [] {
                     "noUnidad", "Placas", "Peso Soportado", "Marca"
                 }
             ));
-            jScrollPane4.setViewportView(jTable1);
+            jScrollPane4.setViewportView(tableVehicle);
 
             ProductosTab.addTab("Vehiculos", jScrollPane4);
+
+            tableDriver.setModel(new javax.swing.table.DefaultTableModel(
+                getDrivers(),
+                new String [] {
+                    "noUnidad", "idEmpleado"
+                }
+            ));
+            jScrollPane7.setViewportView(tableDriver);
+
+            ProductosTab.addTab("Conductores", jScrollPane7);
 
             jDesktopPane1.setLayer(ProductosTab, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -279,20 +314,91 @@ public class ScreenOne extends javax.swing.JFrame {
     }//GEN-LAST:event_employeeTableMouseClicked
 
     private void ProductosTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosTabMouseClicked
+        int i = ProductosTab.getSelectedIndex();
+        DefaultTableModel model = new DefaultTableModel() ;
+        switch(i)
+        {
+            case 0:
+                model =  (DefaultTableModel) clientTable.getModel();
+                refreshClientTable();
+                break;
+            case 1:
+                model = (DefaultTableModel) employeeTable.getModel();
+                refreshEmployeeTable();
+                break;
+            case 2:
+                model = (DefaultTableModel) tableProduct.getModel();
+                refreshProductsTable();
+                break;
+            case 3:
+                model = (DefaultTableModel) tableOrder.getModel();
+                refreshPedidoTable();
+                break;
+            case 4:
+                model = (DefaultTableModel) tableNomina.getModel();
+                refreshNominaTable();
+                break;
+            case 5:
+                model = (DefaultTableModel) tableVehicle.getModel();
+                refreshVehiculosTable();
+                break;
+            case 6:
+                model = (DefaultTableModel) tableDriver.getModel();
+                refreshConductorTable();
+                break;
+        }
+        model.fireTableDataChanged();
         
+    }//GEN-LAST:event_ProductosTabMouseClicked
+
+    private void refreshClientTable(){
         clientTable.setModel(new javax.swing.table.DefaultTableModel(
             getClients(),
             new String [] {
                 "Name", "Lastname", "Address", "Phone"
             }
         ));
-    }//GEN-LAST:event_ProductosTabMouseClicked
-
+    }
+    private void refreshEmployeeTable(){
+        employeeTable.setModel(new javax.swing.table.DefaultTableModel(
+            getEmployees(),new String [] {
+                "Name", "Lastname", "Address", "Phone", "Workstation", "NSS", "SueldoBase"
+            }
+        ));
+    }
+    private void refreshProductsTable(){
+        tableProduct.setModel(new DefaultTableModel(  getProducts(),new String [] {
+            "Name", "Price", "Brand", "Excistences"
+        }));
+    }
+    private void refreshPedidoTable(){
+        tableOrder.setModel(new DefaultTableModel( getOrders(), new String [] {
+            "Client Send", "Client Receives", "State", "Date Order",  "Date Received", 
+            "Driver","Vehicle", "Brand","License plates","Total"
+        }));
+    }
+    private void refreshNominaTable(){
+        tableNomina.setModel( new DefaultTableModel(  getNomina(), new String [] {
+            "idEmpleado", "mes", "Año", "Horas Extra", "Suledo Bruto"
+        }));
+    }
+    private void refreshVehiculosTable(){
+        tableVehicle.setModel( new DefaultTableModel(getVehicles(), new String [] {
+            "noUnidad", "Placas", "Peso Soportado", "Marca"
+        }));
+    }
+    private void refreshConductorTable(){
+        tableDriver.setModel(new DefaultTableModel( getDrivers(),new String [] {
+                "noUnidad", "idEmpleado"
+            }
+        ));
+    }
     private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
         // TODO add your handling code here:
        
     }//GEN-LAST:event_jMenuItem1MouseClicked
 
+//Elimina Action 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         int i = ProductosTab.getSelectedIndex();
@@ -333,86 +439,84 @@ public class ScreenOne extends javax.swing.JFrame {
                 }
                 break;
             case 2:
-                int numrowP=jTable3.getSelectedRow();
+                int numrowP=tableProduct.getSelectedRow();
                 
                 try{
                    long pk = serviceProduct.regresaClavePrimaria(numrowP);
                    serviceProduct.EliminaProducto(pk);
-                   
-                   
                 }
                 catch(Exception e){
-                   jTable3.setVisible(false);
+                   tableProduct.setVisible(false);
                    DefaultTableModel modelProducto = new DefaultTableModel( getProducts(),
                         new String [] {
                             "Name", "Price", "Brand", "Excistences"
                         });
-                   jTable3.setModel(modelProducto);
+                   tableProduct.setModel(modelProducto);
                    modelProducto.fireTableDataChanged();
-                   jTable3.setVisible(true);
+                   tableProduct.setVisible(true);
                 }
                 break;
             case 3:
-                int numrowPedido=jTable2.getSelectedRow();
+                int numrowPedido=tableOrder.getSelectedRow();
                 
                 try{
                    long pk = serviceOrder.regresaClavePrimaria(numrowPedido);
                    serviceOrder.EliminaOrder(pk);
                 }
                 catch(Exception e){
-                   jTable2.setVisible(false);
+                   tableOrder.setVisible(false);
                    DefaultTableModel modelProducto = new DefaultTableModel( getOrders(),
                     new String [] {
                         "Client Send", "Client Receives", "State", "Date Order",  "Date Received", "Driver","Vehicle", "Brand","License plates","Total"
                     });
-                   jTable2.setModel(modelProducto);
+                   tableOrder.setModel(modelProducto);
                    modelProducto.fireTableDataChanged();
-                   jTable2.setVisible(true);
+                   tableOrder.setVisible(true);
                 }
                 break;
             case 4:
-                int numrowNomina=jTable4.getSelectedRow();
+                int numrowNomina=tableNomina.getSelectedRow();
                 
                 try{
                    long pk = serviceNomina.regresaClavePrimaria(numrowNomina);
                    serviceNomina.EliminaNomina(pk);
                 }
                 catch(Exception e){
-                   jTable4.setVisible(false);
+                   tableNomina.setVisible(false);
                    DefaultTableModel modelNomina = new DefaultTableModel(  getNomina(),
                     new String [] {
                         "idEmpleado", "mes", "Año", "Sueldo Base", "Horas Extra", "Suledo Bruto"
                     });
-                   jTable4.setModel(modelNomina);
+                   tableNomina.setModel(modelNomina);
                    modelNomina.fireTableDataChanged();
-                   jTable4.setVisible(true);
+                   tableNomina.setVisible(true);
                 }
                 break;
             case 5:
-                int numrowVehiculo=jTable1.getSelectedRow();
+                int numrowVehiculo=tableVehicle.getSelectedRow();
                 
                 try{
                    long pk = serviceVehicle.regresaClavePrimaria(numrowVehiculo);
                    serviceVehicle.EliminaVehiculo(pk);
                 }
                 catch(Exception e){
-                   jTable1.setVisible(false);
+                   tableVehicle.setVisible(false);
                    DefaultTableModel modelVehiculos = new DefaultTableModel(getVehicles(),
                     new String [] {
                         "noUnidad", "Placas", "Peso Soportado", "Marca"
                     });
-                   jTable1.setModel(modelVehiculos);
+                   tableVehicle.setModel(modelVehiculos);
                    modelVehiculos.fireTableDataChanged();
-                   jTable1.setVisible(true);
+                   tableVehicle.setVisible(true);
                 }
                 break;
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+    private void tableOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableOrderMouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, jTable2.rowAtPoint(evt.getPoint()), "Error", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_jTable2MouseClicked
+        JOptionPane.showMessageDialog(null, tableOrder.rowAtPoint(evt.getPoint()), "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_tableOrderMouseClicked
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
          
@@ -420,34 +524,32 @@ public class ScreenOne extends javax.swing.JFrame {
         switch(i)
         {
             case 0:
-                int numrowC=clientTable.getSelectedRow();
                 Clientview_ ventanaCliente = new Clientview_();
                 ventanaCliente.setVisible(true);
                 break;
             case 1:
-                int numrowEm=employeeTable.getSelectedRow();
                 EmployeeView ventanaEmpleado = new EmployeeView();
                 ventanaEmpleado.setVisible(true);
                 break;
             case 2:
-                int numrowP=jTable3.getSelectedRow();
                 ProductiView ventanaProducto = new ProductiView();
                 ventanaProducto.setVisible(true);
                 break;
             case 3:
-                int numrowPedido=jTable2.getSelectedRow();
                 OrderView wOrden = new OrderView();
                 wOrden.setVisible(true);
                 break;
             case 4:
-                int numrowNomina=jTable4.getSelectedRow();
                 NominaView wNomina = new NominaView();
                 wNomina.setVisible(true);
                 break;
             case 5:
-                int numrowVehiculo=jTable1.getSelectedRow();
                 VehicleView wVehiculo = new VehicleView();
                 wVehiculo.setVisible(true);
+                break;
+            case 6:
+                DriverView wDriver = new DriverView();
+                wDriver.setVisible(true);
                 break;
             
         }
@@ -463,72 +565,107 @@ public class ScreenOne extends javax.swing.JFrame {
                    clientTable.setModel(modelCliente);
                    modelCliente.fireTableDataChanged();
                    clientTable.setVisible(true);
-         jTable3.setVisible(false);
+         tableProduct.setVisible(false);
                    DefaultTableModel modelProducto = new DefaultTableModel( getProducts(),
                         new String [] {
                             "Name", "Price", "Brand", "Excistences"
                         });
-                   jTable3.setModel(modelProducto);
+                   tableProduct.setModel(modelProducto);
                    modelProducto.fireTableDataChanged();
-                   jTable3.setVisible(true);
-        jTable2.setVisible(false);
+                   tableProduct.setVisible(true);
+        tableOrder.setVisible(false);
                    DefaultTableModel modelPedido = new DefaultTableModel( getOrders(),
                     new String [] {
                         "Client Send", "Client Receives", "State", "Date Order",  "Date Received", "Driver","Vehicle", "Brand","License plates","Total"
                     });
-                   jTable2.setModel(modelPedido);
+                   tableOrder.setModel(modelPedido);
                    modelPedido.fireTableDataChanged();
-                   jTable2.setVisible(true);
-        jTable4.setVisible(false);
+                   tableOrder.setVisible(true);
+        tableNomina.setVisible(false);
                    DefaultTableModel modelNomina = new DefaultTableModel(  getNomina(),
                     new String [] {
                         "idEmpleado", "mes", "Año", "Sueldo Base", "Horas Extra", "Suledo Bruto"
                     });
-                   jTable4.setModel(modelNomina);
+                   tableNomina.setModel(modelNomina);
                    modelNomina.fireTableDataChanged();
-                   jTable4.setVisible(true);
-        jTable1.setVisible(false);
+                   tableNomina.setVisible(true);
+        tableVehicle.setVisible(false);
                    DefaultTableModel modelVehiculos = new DefaultTableModel(getVehicles(),
                     new String [] {
                         "noUnidad", "Placas", "Peso Soportado", "Marca"
                     });
-                   jTable1.setModel(modelVehiculos);
+                   tableVehicle.setModel(modelVehiculos);
                    modelVehiculos.fireTableDataChanged();
-                   jTable1.setVisible(true);
+                   tableVehicle.setVisible(true);
        
     }//GEN-LAST:event_jMenu4ActionPerformed
 
+    private void updateCliente(){
+        try {
+            int i  = clientTable.getSelectedRow();
+            Clientview_ ventanaCliente = new Clientview_(serviceClient.getClient().get(i));
+            ventanaCliente.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void updateEmployee(){
+        try {
+            int i  = employeeTable.getSelectedRow();
+            EmployeeView ventanaCliente = new EmployeeView(serviceEmployee.getEmployee().get(i));
+            ventanaCliente.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void updateProduct(){
+        try {
+            int i  = tableProduct.getSelectedRow();
+            ProductiView ventanaCliente = new ProductiView(serviceProduct.getProduct().get(i));
+            ventanaCliente.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void updateVehicle(){
+        try {
+            int i  = tableVehicle.getSelectedRow();
+            VehicleView ventanaCliente = new VehicleView(serviceVehicle.getVehicles().get(i));
+            ventanaCliente.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         int i = ProductosTab.getSelectedIndex();
         switch(i)
         {
             case 0:
-                Clientview_ ventanaCliente = new Clientview_();
-                ventanaCliente.setVisible(true);
+                updateCliente();
                 break;
             case 1:
-                EmployeeView ventanaEmpleado = new EmployeeView();
-                ventanaEmpleado.setVisible(true);
+                updateEmployee();
                 break;
             case 2:
-                ProductiView ventanaProducto = new ProductiView();
-                ventanaProducto.setVisible(true);
+                updateProduct();
                 break;
             case 3:
                 OrderView wOrden = new OrderView();
                 wOrden.setVisible(true);
                 break;
             case 4:
-                NominaView wNomina = new NominaView();
-                wNomina.setVisible(true);
+                JOptionPane.showMessageDialog(null, "La nomina no se debe de editar", "Error", JOptionPane.ERROR_MESSAGE);
                 break;
             case 5:
-                VehicleView wVehiculo = new VehicleView();
-                wVehiculo.setVisible(true);
+                updateVehicle();
                 break;
             
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments
@@ -588,10 +725,12 @@ public class ScreenOne extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JTable tableDriver;
+    private javax.swing.JTable tableNomina;
+    private javax.swing.JTable tableOrder;
+    private javax.swing.JTable tableProduct;
+    private javax.swing.JTable tableVehicle;
     // End of variables declaration//GEN-END:variables
 
     private Object[][] getEmployees() {
@@ -643,10 +782,10 @@ public class ScreenOne extends javax.swing.JFrame {
         }
         return null;
     }
-    private Object[][] getPayroll(){
+    private Object[][] getDrivers(){
         try {
-            PayrollService servicePayroll = new PayrollService();
-            return servicePayroll.getObjects();
+            DriverService service = new DriverService();
+            return service.getObjects();
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

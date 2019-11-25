@@ -89,17 +89,17 @@ public class ClientService {
         
         return ClavePrimaria;
    }
-   public void ActualizaCliente(int numRow,String name, String lastname1, String lastname2, String address, String phone) throws Exception{
+   public void ActualizaCliente(long pk,String name, String lastname1, String lastname2, String address, String phone) throws Exception{
        ConnectionDatabase.shared.Connecting();
-       long pk = regresaClavePrimaria(numRow);
+       //long pk = regresaClavePrimaria(numRow);
        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
        String stringQuery = String.format("update cliente "
-               + "set nombre=%s,"
-               + "apellido1=%s,"
-               + "apellido2=%s,"
-               + "direccion=%s,"
-               + "telefono=%s,"
-               + "where idCliente=%d", name, lastname1, lastname2, address, phone,pk);
+               + "set nombre = '%s',"
+               + "apellido1 = '%s',"
+               + "apellido2 = '%s',"
+               + "direccion = '%s',"
+               + "telefono = '%s'"
+               + "where idCliente = %d", name, lastname1, lastname2, address, phone,pk);
        st.executeUpdate(stringQuery);
        st.close();
    }

@@ -86,16 +86,15 @@ public class VehicleService {
         
         return ClavePrimaria;
    }
-   public void ActualizaVehiculo(int numRow,String placa, String brand, float weight, boolean disponibility) throws Exception{
+   public void ActualizaVehiculo(long pk,String placa, int brand, int weight, boolean disponibility) throws Exception{
        ConnectionDatabase.shared.Connecting();
-       long pk = regresaClavePrimaria(numRow);
        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
        String stringQuery = String.format("update vehiculo "
-               + "set placa='%s', "
-               + "modelo='%s',  "
-               + "pesosoportado=%f, "
-               + "disponibilidad=%b, "
-               + "where nounidad=%d", placa, brand, weight, disponibility);
+               + "set placa = '%s', "
+               + "modelo = %d,  "
+               + "pesosoportado = %d, "
+               + "disponibilidad = %b "
+               + "where nounidad = %d", placa, brand, weight, disponibility, pk);
        st.executeUpdate(stringQuery);
        st.close();
    }

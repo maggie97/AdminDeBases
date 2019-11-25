@@ -78,8 +78,9 @@ public class NominaService {
        ConnectionDatabase.shared.Connecting();
        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
        for (int i = 0 ; i < employees.size(); i++){
+           float salary = Float.parseFloat(employees.get(i).getSalary().replace('$', '0'));
             String stringQuery = String.format("insert into nomina (idEmpleado, mes, año,  horasextra, sueldobruto ) "
-                    + "values (%d, %d, %d, %d, %f)", employees.get(i).getId(), month, year, 0, employees.get(i).getSalary());
+                    + "values (%d, %d, %d, %d, %f)", employees.get(i).getId(), month, year, 0, salary);
             st.executeUpdate(stringQuery);
        }
        st.close();

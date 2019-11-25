@@ -5,6 +5,7 @@
  */
 package exemploconexion;
 
+import exemploconexion.models.Client;
 import exemploconexion.services.ClientService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class Clientview_ extends javax.swing.JFrame {
 
+    boolean update = false;
+    long id;
     /**
      * Creates new form ProductiView
      */
@@ -23,9 +26,20 @@ public class Clientview_ extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Clientview_(int numrow) {
+    public Clientview_(Client cliente) {
         initComponents();
-        /**/
+        update = true;
+        label1.setText("Actualiza Cliente");
+        buttonAdd.setLabel("Actualiza");
+        
+        id = cliente.getId();
+        txtName.setText(cliente.getName());
+        String[] lastname = cliente.getLastname().split(" ");
+        txtLastName1.setText(lastname[0]);
+        txtLAstName2.setText(lastname[1]);
+        
+        txtAddress.setText(cliente.getAddress());
+        txtPhone.setText(cliente.getPhone());
     }
 
     /**
@@ -44,7 +58,7 @@ public class Clientview_ extends javax.swing.JFrame {
         txtName = new java.awt.TextField();
         txtLastName1 = new java.awt.TextField();
         txtLAstName2 = new java.awt.TextField();
-        button1 = new java.awt.Button();
+        buttonAdd = new java.awt.Button();
         button2 = new java.awt.Button();
         label5 = new java.awt.Label();
         label6 = new java.awt.Label();
@@ -77,10 +91,10 @@ public class Clientview_ extends javax.swing.JFrame {
             }
         });
 
-        button1.setLabel("Agregar");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        buttonAdd.setLabel("Agregar");
+        buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                buttonAddActionPerformed(evt);
             }
         });
 
@@ -129,7 +143,7 @@ public class Clientview_ extends javax.swing.JFrame {
                         .addGap(213, 213, 213)
                         .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -166,7 +180,7 @@ public class Clientview_ extends javax.swing.JFrame {
                 .addComponent(txtLAstName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
@@ -179,21 +193,31 @@ public class Clientview_ extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_button2ActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    void update(ClientService service) throws Exception{
+        service.ActualizaCliente(id, txtName.getText(), txtLastName1.getText(), txtLAstName2.getText(),
+                txtAddress.getText(), txtPhone.getText());
+        JOptionPane.showMessageDialog(null, "Cliente Actualizado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
+        
         if (!txtName.getText().isEmpty() && !txtLastName1.getText().isEmpty() && !txtLAstName2.getText().isEmpty() 
                 && !txtAddress.getText().isEmpty() && !txtPhone.getText().isEmpty() ){
             ClientService service = new ClientService();
             try {
-                service.InsertClient(txtName.getText(), txtLastName1.getText(),  txtLAstName2.getText(), 
+                if (update )
+                    update(service);
+                else {
+                    service.InsertClient(txtName.getText(), txtLastName1.getText(),  txtLAstName2.getText(), 
                         txtAddress.getText(), txtPhone.getText());
-                JOptionPane.showMessageDialog(null, "Cliente Agregado", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
+                    JOptionPane.showMessageDialog(null, "Cliente Agregado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                }
             } catch (Exception ex) {
                 Logger.getLogger(ProductiView.class.getName()).log(Level.SEVERE, null, ex);
             }
+            dispose();
         }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_buttonAddActionPerformed
 
     private void txtLAstName2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLAstName2KeyTyped
         // TODO add your handling code here:
@@ -235,8 +259,8 @@ public class Clientview_ extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
     private java.awt.Button button2;
+    private java.awt.Button buttonAdd;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;

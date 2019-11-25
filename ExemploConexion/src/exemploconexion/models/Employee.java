@@ -17,7 +17,7 @@ public class Employee {
     private String phone;
     private String workstation;
     private String NSS;
-    private float salary;
+    private String salary;
 
     /**
      * @return the name
@@ -123,14 +123,14 @@ public class Employee {
     /**
      * @return the salary
      */
-    public float getSalary() {
+    public String getSalary() {
         return salary;
     }
 
     /**
      * @param salary the salary to set
      */
-    public void setSalary(float salary) {
+    public void setSalary(String salary) {
         this.salary = salary;
     }
     

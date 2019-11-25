@@ -5,6 +5,7 @@
  */
 package exemploconexion;
 
+import exemploconexion.models.Vehicle;
 import exemploconexion.services.ProductService;
 import exemploconexion.services.VehicleService;
 import java.util.logging.Level;
@@ -17,11 +18,27 @@ import javax.swing.JOptionPane;
  */
 public class VehicleView extends javax.swing.JFrame {
 
+    boolean update = false;
+    long id;
     /**
      * Creates new form ProductiView
      */
     public VehicleView() {
         initComponents();
+    }
+
+    VehicleView(Vehicle v) {
+        initComponents();
+        update = true;
+        label1.setText("Actualiza Cliente");
+        buttonAdd.setLabel("Actualiza");
+        
+        id = v.getId();
+        txtPlaca.setText(v.getPlaca());
+        txtBrand.setText(String.valueOf(v.getBrand()));  
+        txtPrice.setText(String.valueOf(v.getWeight()));
+        
+        Disponibility.setState(v.isDisponibility());
     }
 
     /**
@@ -37,10 +54,10 @@ public class VehicleView extends javax.swing.JFrame {
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
         label4 = new java.awt.Label();
-        txtName = new java.awt.TextField();
+        txtPlaca = new java.awt.TextField();
         txtBrand = new java.awt.TextField();
         txtPrice = new java.awt.TextField();
-        button1 = new java.awt.Button();
+        buttonAdd = new java.awt.Button();
         button2 = new java.awt.Button();
         Disponibility = new java.awt.Checkbox();
 
@@ -56,8 +73,8 @@ public class VehicleView extends javax.swing.JFrame {
 
         label4.setText("Peso Soportado:");
 
-        txtName.setBackground(new java.awt.Color(255, 255, 255));
-        txtName.setForeground(new java.awt.Color(0, 0, 0));
+        txtPlaca.setBackground(new java.awt.Color(255, 255, 255));
+        txtPlaca.setForeground(new java.awt.Color(0, 0, 0));
 
         txtBrand.setBackground(new java.awt.Color(255, 255, 255));
         txtBrand.setForeground(new java.awt.Color(0, 0, 0));
@@ -75,10 +92,10 @@ public class VehicleView extends javax.swing.JFrame {
             }
         });
 
-        button1.setLabel("Agregar");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        buttonAdd.setLabel("Agregar");
+        buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                buttonAddActionPerformed(evt);
             }
         });
 
@@ -101,13 +118,13 @@ public class VehicleView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                        .addComponent(txtPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                         .addComponent(txtBrand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Disponibility, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -121,7 +138,7 @@ public class VehicleView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
@@ -135,7 +152,7 @@ public class VehicleView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Disponibility, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -149,19 +166,28 @@ public class VehicleView extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_button2ActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    void update(VehicleService service) throws Exception{
+        service.ActualizaVehiculo(id, txtPlaca.getText(), Integer.parseInt(txtBrand.getText()),
+                Integer.parseInt(txtPrice.getText()), Disponibility.getState());
+        JOptionPane.showMessageDialog(null, "Vehiculo Actualizado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
-        if (!txtName.getText().isEmpty() && !txtBrand.getText().isEmpty() && !txtPrice.getText().isEmpty() ){
+        if (!txtPlaca.getText().isEmpty() && !txtBrand.getText().isEmpty() && !txtPrice.getText().isEmpty() ){
             VehicleService service = new VehicleService();
             try {
-                service.InsertVehicle(txtName.getText(), txtBrand.getText(),  Integer.parseInt(txtPrice.getText()), Disponibility.getState());
-                JOptionPane.showMessageDialog(null, "Vehiculo Agregado", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
+                if (update )
+                    update(service);
+                else {
+                    service.InsertVehicle(txtPlaca.getText(), txtBrand.getText(),  Integer.parseInt(txtPrice.getText()), Disponibility.getState());
+                    JOptionPane.showMessageDialog(null, "Vehiculo Agregado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                }
             } catch (Exception ex) {
                 Logger.getLogger(VehicleView.class.getName()).log(Level.SEVERE, null, ex);
             }
+            dispose();
         }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_buttonAddActionPerformed
 
     private void txtPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyTyped
         // TODO add your handling code here:
@@ -217,14 +243,14 @@ public class VehicleView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Checkbox Disponibility;
-    private java.awt.Button button1;
     private java.awt.Button button2;
+    private java.awt.Button buttonAdd;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label4;
     private java.awt.TextField txtBrand;
-    private java.awt.TextField txtName;
+    private java.awt.TextField txtPlaca;
     private java.awt.TextField txtPrice;
     // End of variables declaration//GEN-END:variables
 }

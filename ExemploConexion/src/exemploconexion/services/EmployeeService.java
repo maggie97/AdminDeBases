@@ -27,7 +27,7 @@ public class EmployeeService {
         ConnectionDatabase.shared.Connecting();
         Statement st = ConnectionDatabase.shared.getConnection().createStatement();
         String stringQuery = "SELECT idEmpleado, nombre, concat(apellido1 ,' ',apellido2) \"lastname\", "
-                + "direccion, telefono, puestoTrabajo, NSS FROM Empleado";
+                + "direccion, telefono, puestoTrabajo, NSS, sueldobase FROM Empleado";
         //String stringQuery = "SELECT *  FROM empleado"; 
         ResultSet result = st.executeQuery(stringQuery);
         ArrayList<Employee> employees = new ArrayList<>();
@@ -42,6 +42,7 @@ public class EmployeeService {
             employee.setPhone(result.getString("telefono"));
             employee.setAddress(result.getString("direccion"));
             employee.setNSS(result.getString("NSS"));
+            employee.setSalary(result.getString("sueldobase"));
             
             employees.add(employee);
         }
@@ -56,7 +57,7 @@ public class EmployeeService {
        
        //ArrayList<Object[]> list = new ArrayList<>(); //= getEmployee().toArray();
        ArrayList employees = getEmployee();
-       Object[][] objects = new Object[employees.size()][6];
+       Object[][] objects = new Object[employees.size()][8];
        for(int i = 0; i < employees.size(); i++){
            Employee e = (Employee) employees.get(i);
            objects[i][0] = e.getName();
@@ -65,6 +66,7 @@ public class EmployeeService {
            objects[i][3] = e.getPhone();
            objects[i][4] = e.getWorkstation();
            objects[i][5] = e.getNSS();
+           objects[i][6] = e.getSalary();
        }
        return objects;
    }
@@ -79,11 +81,11 @@ public class EmployeeService {
         st.close();
         ConnectionDatabase.shared.Disconnect();
    }
-   public void InsertEmployee(String name, String lastname1, String lastname2, String address, int phone, String work, String nss) throws Exception{
+   public void InsertEmployee(String name, String lastname1, String lastname2, String address, int phone, String work, String nss, float salary) throws Exception{
        ConnectionDatabase.shared.Connecting();
        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
-       String stringQuery = String.format("insert into empleado (nombre, apellido1, apellido2, direccion, telefono,  puestotrabajo , nss ) "
-               + "values ('%s', '%s', '%s', '%s', %d, '%s', '%s')", name, lastname1, lastname2, address, phone, work, nss);
+       String stringQuery = String.format("insert into empleado (nombre, apellido1, apellido2, direccion, telefono,  puestotrabajo , nss, sueldobase ) "
+               + "values ('%s', '%s', '%s', '%s', %d, '%s', '%s', %f)", name, lastname1, lastname2, address, phone, work, nss, salary);
        st.executeUpdate(stringQuery);
        st.close();
    }
@@ -98,19 +100,19 @@ public class EmployeeService {
         return ClavePrimaria;
    }
    
-    public void ActualizaEmpleado(int numRow,String name, String lastname1, String lastname2, String address, int phone, String work, String nss) throws Exception{
+    public void ActualizaEmpleado(long pk, String name, String lastname1, String lastname2, String address, int phone, String work, String nss, float salary) throws Exception{
        ConnectionDatabase.shared.Connecting();
-       long pk = regresaClavePrimaria(numRow);
        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
        String stringQuery = String.format("update empleado "
-               + "set nombre='%s', "
-               + "apellido1='%s', "
-               + "apellido2='%s', "
-               + "direccion='%s', "
-               + "telefono='%s',  "
-               + "puestotrabajo='%s' , "
-               + "nss ='%s'"
-               + "where idEmpleado=%d", name, lastname1, lastname2, address, phone, work, nss,pk);
+               + "set nombre = '%s', "
+               + "apellido1 = '%s', "
+               + "apellido2 = '%s', "
+               + "direccion = '%s', "
+               + "telefono = '%s',  "
+               + "puestotrabajo = '%s' , "
+               + "nss = '%s',"
+               + "sueldobase = %f"
+               + "where idEmpleado=%d", name, lastname1, lastname2, address, phone, work, nss,salary,pk);
        st.executeUpdate(stringQuery);
        st.close();
    }

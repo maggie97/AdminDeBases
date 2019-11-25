@@ -5,6 +5,7 @@
  */
 package exemploconexion;
 
+import exemploconexion.models.Product;
 import exemploconexion.services.ProductService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,11 +17,26 @@ import javax.swing.JOptionPane;
  */
 public class ProductiView extends javax.swing.JFrame {
 
+    long id;
+    boolean update = false;
     /**
      * Creates new form ProductiView
      */
     public ProductiView() {
         initComponents();
+    }
+
+    public ProductiView(Product p) {
+        initComponents();
+        update = true;
+        label1.setText("Actualiza Producto");
+        buttonAdd.setLabel("Actualiza");
+        
+        id = p.getId();
+        txtName.setText(p.getName());
+        txtBrand.setText(p.getBrand());
+        txtPrice.setText(String.valueOf(p.getPrice()));
+        txtExistencias.setText(String.valueOf(p.getExcistences()));
     }
 
     /**
@@ -39,7 +55,7 @@ public class ProductiView extends javax.swing.JFrame {
         txtName = new java.awt.TextField();
         txtBrand = new java.awt.TextField();
         txtPrice = new java.awt.TextField();
-        button1 = new java.awt.Button();
+        buttonAdd = new java.awt.Button();
         button2 = new java.awt.Button();
         label5 = new java.awt.Label();
         txtExistencias = new java.awt.TextField();
@@ -70,10 +86,10 @@ public class ProductiView extends javax.swing.JFrame {
             }
         });
 
-        button1.setLabel("Agregar");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        buttonAdd.setLabel("Agregar");
+        buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                buttonAddActionPerformed(evt);
             }
         });
 
@@ -104,7 +120,7 @@ public class ProductiView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,7 +156,7 @@ public class ProductiView extends javax.swing.JFrame {
                 .addComponent(txtExistencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -153,19 +169,29 @@ public class ProductiView extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_button2ActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+     void update(ProductService service) throws Exception{
+        service.ActualizaProducto(id, txtName.getText(), txtBrand.getText(), 
+                Float.parseFloat(txtPrice.getText()),
+                Integer.parseInt(txtExistencias.getText()));
+        JOptionPane.showMessageDialog(null, "Producto Actualizado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
         if (!txtName.getText().isEmpty() && !txtBrand.getText().isEmpty() && !txtPrice.getText().isEmpty() ){
             ProductService service = new ProductService();
             try {
-                service.InsertProduct(txtName.getText(), txtBrand.getText(),  Integer.parseInt(txtPrice.getText()), Integer.parseInt(txtExistencias.getText()));
-                JOptionPane.showMessageDialog(null, "Producto Agregado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                if (update)
+                    update(service);
+                else {
+                    service.InsertProduct(txtName.getText(), txtBrand.getText(),  Integer.parseInt(txtPrice.getText()), Integer.parseInt(txtExistencias.getText()));
+                    JOptionPane.showMessageDialog(null, "Producto Agregado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                }
                 dispose();
             } catch (Exception ex) {
                 Logger.getLogger(ProductiView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_buttonAddActionPerformed
 
     private void txtPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyTyped
         // TODO add your handling code here:
@@ -215,8 +241,8 @@ public class ProductiView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
     private java.awt.Button button2;
+    private java.awt.Button buttonAdd;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
