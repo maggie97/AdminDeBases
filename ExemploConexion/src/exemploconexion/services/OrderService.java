@@ -9,6 +9,7 @@ import exemploconexion.ConnectionDatabase;
 import exemploconexion.models.Client;
 import exemploconexion.models.Order;
 import exemploconexion.models.OrderDetail;
+import exemploconexion.models.Product;
 import exemploconexion.models.Vehicle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -86,13 +87,35 @@ public class OrderService {
        return objects;
    }
    
+    public Object[][] getObjectsDetail(long id) throws Exception{
+       
+       //ArrayList<Object[]> list = new ArrayList<>(); //= getEmployee().toArray();
+       ArrayList orders = getDetailOrders(id);
+       Object[][] objects = new Object[orders.size()][10];
+       for(int i = 0; i < orders.size(); i++){
+           Order order = (Order) orders.get(i);
+           objects[i][0] = order.getNameClientReceives();
+           objects[i][1] = order.getNameClientSend();
+           objects[i][2] = order.getState();
+           objects[i][3] = order.getDateOrder();
+           objects[i][4] = (order.getDateDelivery() == null )? "en espera" : order.getDateDelivery() ;
+           objects[i][5] = order.getNameDriver();
+           objects[i][6] = order.getIdVehicle();
+           objects[i][7] = order.getBrandVehicle();
+           objects[i][8] = order.getLicensePlate();
+           objects[i][9] = order.getTotal();
+       }
+       return objects;
+   }
+   
+    
    public void EliminaOrder(long idOrder) throws Exception{
         ConnectionDatabase.shared.Connecting();
         Statement st = ConnectionDatabase.shared.getConnection().createStatement();
         String stringQuery = String.format("Delete from detallepedido where idpedido=%s", idOrder);
-        //String stringQuery = "SELECT *  FROM empleado"; 
-        st.executeQuery(stringQuery);
-       
+        st.executeUpdate(stringQuery);
+        stringQuery = String.format("Delete from pedido where idpedido=%s", idOrder);
+        st.executeUpdate(stringQuery);
         st.close();
         ConnectionDatabase.shared.Disconnect();
    }
@@ -105,6 +128,21 @@ public class OrderService {
        st.executeUpdate(stringQuery);
        st.close();
    }
+   public void UpdateOrder(long pk,boolean send,long sendClient, long recibeClient, long vehicle, String dateOrder, String dateRecibeOrder, long idEmpleado) throws Exception{
+       ConnectionDatabase.shared.Connecting();
+       Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+       String stringQuery = String.format("update pedido set "
+               + " clienteenvia = %d , "
+               + " clienterecibe = %d,"
+               + " unidadasignada = %d,"
+               + " estado = '%s',"
+               + " fechapedido ='%s',"
+               + " fechaentrega ='%s',"
+               + " idempleado = %d "
+               + "where idpedido = %d; ", sendClient, recibeClient, vehicle, (send)? 'S': 'N', dateOrder, dateRecibeOrder, idEmpleado, pk);
+       st.executeUpdate(stringQuery);
+       st.close();
+   }
     
    public void InsertDetailOrder(OrderDetail detail) throws SQLException, Exception{
        ConnectionDatabase.shared.Connecting();
@@ -114,7 +152,61 @@ public class OrderService {
        st.executeUpdate(stringQuery);
        st.close();
    }
-   
+   public void UpdateDetailOrder(OrderDetail detail) throws SQLException, Exception{
+       ConnectionDatabase.shared.Connecting();
+       Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+       String stringQuery = String.format("update detallepedido  "
+               + "idpedido = %d, "
+               + "idmaterial = %d, "
+               + "cantidad = %d,"
+               + " descuento = %d,"
+               + " iva = %d,"
+               + "values (%d, %d, %d, %d,  %d, 0 ); ", lastOrderID(), detail.getProduct().getId(), detail.getQuantity(),detail.getDiscount(), detail.getTaxes() );
+       st.executeUpdate(stringQuery);
+       st.close();
+   }
+   public void removeDetailOrder(long idOrder, long idProduct) throws Exception{
+        ConnectionDatabase.shared.Connecting();
+        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+        String stringQuery = String.format("Delete from detallepedido where idpedido=%s and idmaterial = %d", idOrder, idProduct);
+        //String stringQuery = "SELECT *  FROM empleado"; 
+        st.executeUpdate(stringQuery);
+
+        st.close();
+        ConnectionDatabase.shared.Disconnect();
+   }
+   public ArrayList getDetailOrders(long idpedido) throws Exception{
+       ConnectionDatabase.shared.Connecting();
+        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+        String stringQuery = "select * from detallepedido d inner join producto p on d.idmaterial = p.idproducto where idpedido = '" + idpedido + "'" ;
+        //String stringQuery = "SELECT *  FROM empleado"; 
+        ResultSet result = st.executeQuery(stringQuery);
+        //idpedido | idmaterial | cantidad | descuento | iva | subtotal  | idproducto |  nombre   | precio  |  marca  | existencias
+        ArrayList<OrderDetail> orders = new ArrayList<>();
+        while(result.next())
+        {
+            
+            Product p = new Product();
+            p.setId(result.getInt("idproducto"));
+            p.setBrand(result.getString("marca"));
+            p.setExcistences(result.getInt("existencias"));
+            p.setName(result.getString("nombre"));
+            p.setPrice(Double.parseDouble(result.getString("precio").replace('$', '0')));
+            
+            double subtotal = Double.parseDouble(result.getString("subtotal").replace('$', '0'));
+            int descuento = result.getInt("descuento");
+            int cant = result.getInt("cantidad");
+            int taxes = result.getInt("iva");
+            OrderDetail order = new OrderDetail(p, cant, descuento, taxes, subtotal);
+            order.setId(result.getInt("idpedido"));
+            orders.add(order);
+        }
+        result.close();
+        st.close();
+        ConnectionDatabase.shared.Disconnect();
+        
+        return orders;
+   }
    public long regresaClavePrimaria(int numRow)throws Exception
    {
        long ClavePrimaria=0;

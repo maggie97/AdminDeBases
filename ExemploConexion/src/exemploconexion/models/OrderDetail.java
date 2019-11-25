@@ -19,7 +19,7 @@ public class OrderDetail {
     
     public OrderDetail(Product p, int quantity, int discount, int taxes, double price){
         this.product = p;
-        this.price = price - price * discount + price * taxes;
+        this.price = price - (price * discount / 100) + (price * taxes / 100);
         this.quantity = quantity;
         this.discount = discount;
         this.taxes = taxes;

@@ -33,7 +33,7 @@ public class ScreenOne extends javax.swing.JFrame {
     private final VehicleService serviceVehicle = new VehicleService();
     private final OrderService serviceOrder = new OrderService();
     private final NominaService serviceNomina = new NominaService();
-    private final DriverService driverNomina = new DriverService();
+    private final DriverService serviceDriver = new DriverService();
     
     JPopupMenu popup = new JPopupMenu();
     JMenuItem jMItem = new JMenuItem("Eliminar registro"); 
@@ -193,11 +193,6 @@ public class ScreenOne extends javax.swing.JFrame {
                 "Client Send", "Client Receives", "State", "Date Order",  "Date Received", "Driver","Vehicle", "Brand","License plates","Total"
             }
         ));
-        tableOrder.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableOrderMouseClicked(evt);
-            }
-        });
         jScrollPane5.setViewportView(tableOrder);
 
         ProductosTab.addTab("Pedidos", jScrollPane5);
@@ -513,11 +508,6 @@ public class ScreenOne extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     
-    private void tableOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableOrderMouseClicked
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, tableOrder.rowAtPoint(evt.getPoint()), "Error", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_tableOrderMouseClicked
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
          
         int i = ProductosTab.getSelectedIndex();
@@ -618,6 +608,15 @@ public class ScreenOne extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    private void updateOrder(){
+        try {
+            int i  = tableOrder.getSelectedRow();
+            OrderView ventanaCliente = new OrderView(serviceOrder.getOrders().get(i));
+            ventanaCliente.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     private void updateProduct(){
         try {
             int i  = tableProduct.getSelectedRow();
@@ -631,6 +630,15 @@ public class ScreenOne extends javax.swing.JFrame {
         try {
             int i  = tableVehicle.getSelectedRow();
             VehicleView ventanaCliente = new VehicleView(serviceVehicle.getVehicles().get(i));
+            ventanaCliente.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void updateDriver(){
+        try {
+            int i  = tableDriver.getSelectedRow();
+            DriverView ventanaCliente = new DriverView(serviceDriver.getDrivers().get(i));
             ventanaCliente.setVisible(true);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -650,14 +658,16 @@ public class ScreenOne extends javax.swing.JFrame {
                 updateProduct();
                 break;
             case 3:
-                OrderView wOrden = new OrderView();
-                wOrden.setVisible(true);
+                updateOrder();
                 break;
             case 4:
                 JOptionPane.showMessageDialog(null, "La nomina no se debe de editar", "Error", JOptionPane.ERROR_MESSAGE);
                 break;
             case 5:
                 updateVehicle();
+                break;
+            case 6:
+                updateDriver();
                 break;
             
         }

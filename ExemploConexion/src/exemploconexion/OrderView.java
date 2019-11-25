@@ -10,7 +10,10 @@ import exemploconexion.services.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,33 +22,83 @@ import javax.swing.JOptionPane;
 public class OrderView extends javax.swing.JFrame {
 
     private final EmployeeService serviceEmployee = new EmployeeService();
+    private final DriverService serviceDriver = new DriverService();
     private final ClientService serviceClient = new ClientService();
     private final VehicleService serviceVehicle = new VehicleService();
     private final ProductService productService = new ProductService();
     
     OrderDetailView details;
     
-    ArrayList<Employee> employees;
+    ArrayList<Object[]> employees;
     ArrayList<Client> clients;
     ArrayList<Vehicle> vehicles;
     ArrayList<Product> products;
     
     ArrayList<OrderDetail> orderProduts;
+    
+    long id;
+    boolean update = false;
+    
+    JPopupMenu popup = new JPopupMenu();
+    JMenuItem jMItem = new JMenuItem("Eliminar registro"); 
     /**
      * Creates new form ProductiView
      */
     public OrderView() {
         initComponents();
+        fillData();
+        chSend.setVisible(false);
+        popup.add(jMItem);
+        jMItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                int numrowC = jTable1.getSelectedRow();
+                orderProduts.remove(numrowC);
+            }
+        });
+        jTable1.setComponentPopupMenu(popup);
+    }
+
+    OrderView(Order order) {
+        initComponents();
+        id = order.getId();
+        update = true;
+        label1.setText("Actualiza Pedido");
+        buttonAdd.setLabel("Actualiza");
+        chSend.setState(("S".equals(order.getState())));
+        chSend.isVisible();
+        txtDate.setText(order.getDateOrder().toString());
+        
+        getProducts();
+        fillData(order.getIdEmployee(), order.getClientSend(), order.getClientReceives(), order.getIdVehicle());
+        popup.add(jMItem);
+        jMItem.addActionListener((java.awt.event.ActionEvent evt) -> {
+            try {
+                OrderService service = new OrderService();
+                int numrowC = jTable1.getSelectedRow();
+                
+                DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+                model.fireTableDataChanged();
+                service.removeDetailOrder(orderProduts.get(numrowC).getId(), orderProduts.get(numrowC).getProduct().getId());
+                orderProduts.remove(numrowC);
+            } catch (Exception ex) {
+                Logger.getLogger(OrderView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        jTable1.setComponentPopupMenu(popup);
+        
+    }
+    void fillData(){
+        
         try{
-            employees = serviceEmployee.getEmployee();
+            employees = serviceDriver.getDriversWithName();
             clients = serviceClient.getClient();
             vehicles = serviceVehicle.getVehicles();
             products = productService.getProduct();
             
             orderProduts = new ArrayList();
-            
+           
             for(int i = 0; i < employees.size(); i++ ){
-                chEmployee.add(employees.get(i).getFullName());
+                chEmployee.add((String)employees.get(i)[2]);
             }
             
             for(int i = 0; i < clients.size(); i++ ){
@@ -65,7 +118,52 @@ public class OrderView extends javax.swing.JFrame {
             
         }
     }
-
+    
+    void fillData(long idEmpleado, long idClienteEnv, long idClienteRecive, long idVehicle){
+        
+        int iEmpl, iEnvia, iRecibe, iVehic, iProd;
+        iEmpl =  iEnvia=  iRecibe= iVehic=  iProd =0;
+        try{
+            employees = serviceDriver.getDriversWithName();
+            clients = serviceClient.getClient();
+            vehicles = serviceVehicle.getVehicles();
+            products = productService.getProduct();
+            
+            orderProduts = new ArrayList();
+            
+            for(int i = 0; i < employees.size(); i++ ){
+                chEmployee.add((String)employees.get(i)[2]);
+                if((long)employees.get(i)[0] == idEmpleado)
+                    iEmpl = i;
+            }
+            chEmployee.select(iEmpl);
+            
+            for(int i = 0; i < clients.size(); i++ ){
+                chSendClient.add(clients.get(i).getFullname());
+                chRecibeClient.add(clients.get(i).getFullname());
+                
+                 if(clients.get(i).getId() == idClienteEnv)
+                    iEnvia = i;
+                 if(clients.get(i).getId() == idClienteRecive)
+                    iRecibe = i;
+                
+            }
+            chSendClient.select(iEnvia);
+            chRecibeClient.select(iRecibe);
+            for(int i = 0; i < vehicles.size(); i++ ){
+                chVehicle.add(vehicles.get(i).getString());
+                 if(vehicles.get(i).getId() == idVehicle)
+                    iVehic = i;
+            }
+            chVehicle.select(iVehic);
+            for(int i = 0; i < products.size(); i++ ){
+                chProduct.add(products.get(i).toString());
+            }
+        } catch (Exception e){
+            
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,15 +177,15 @@ public class OrderView extends javax.swing.JFrame {
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
         label4 = new java.awt.Label();
-        button1 = new java.awt.Button();
+        buttonAdd = new java.awt.Button();
         button2 = new java.awt.Button();
         label5 = new java.awt.Label();
         label6 = new java.awt.Label();
-        txtDate = new java.awt.TextField();
         chSendClient = new java.awt.Choice();
         chRecibeClient = new java.awt.Choice();
         chVehicle = new java.awt.Choice();
         chEmployee = new java.awt.Choice();
+        txtDate = new java.awt.TextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -98,6 +196,7 @@ public class OrderView extends javax.swing.JFrame {
         chProduct = new java.awt.Choice();
         txtCantidad = new java.awt.TextField();
         label9 = new java.awt.Label();
+        chSend = new java.awt.Checkbox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -111,10 +210,10 @@ public class OrderView extends javax.swing.JFrame {
 
         label4.setText("UnidadAsignada:");
 
-        button1.setLabel("Agregar");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        buttonAdd.setLabel("Agregar");
+        buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                buttonAddActionPerformed(evt);
             }
         });
 
@@ -125,7 +224,7 @@ public class OrderView extends javax.swing.JFrame {
             }
         });
 
-        label5.setText("FechaEnvio  (DD/MM/YYYY) :");
+        label5.setText("FechaEnvio  (MM/DD/YYYY) :");
 
         label6.setText("Empleado:");
 
@@ -216,20 +315,18 @@ public class OrderView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Añadir Producto", jPanel1);
 
+        chSend.setLabel("enviado");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jTabbedPane1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -249,20 +346,27 @@ public class OrderView extends javax.swing.JFrame {
                                             .addComponent(chVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(10, 10, 10))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(chEmployee, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(label6, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(chEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(chSend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(210, 210, 210)
+                                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,13 +394,16 @@ public class OrderView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(chEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(chSend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -310,23 +417,33 @@ public class OrderView extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_button2ActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void update(OrderService service) throws Exception{
+        service.UpdateOrder(id, chSend.getState(), clients.get(chSendClient.getSelectedIndex()).getId() , 
+                        clients.get(chRecibeClient.getSelectedIndex()).getId(),
+                        vehicles.get(chVehicle.getSelectedIndex()).getId(), txtDate.getText(), txtDate.getText(), 
+                        (long ) employees.get(chEmployee.getSelectedIndex())[0]);
+    }
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
         if (!txtDate.getText().isEmpty() ){
             OrderService service = new OrderService();
             try {
-                service.InsertOrder(clients.get(chSendClient.getSelectedIndex()).getId() , 
-                        clients.get(chRecibeClient.getSelectedIndex()).getId(),
-                        vehicles.get(chVehicle.getSelectedIndex()).getId(), txtDate.getText(), txtDate.getText(), 
-                        employees.get(chEmployee.getSelectedIndex()).getId());
-                addProductToOrder();
-                JOptionPane.showMessageDialog(null, "Pedido Completado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                if (update){
+                    update(service);
+                }{
+                    service.InsertOrder(clients.get(chSendClient.getSelectedIndex()).getId() , 
+                            clients.get(chRecibeClient.getSelectedIndex()).getId(),
+                            vehicles.get(chVehicle.getSelectedIndex()).getId(), txtDate.getText(), txtDate.getText(), 
+                            (int)employees.get(chEmployee.getSelectedIndex())[0]);
+                    addProductToOrder();
+                    JOptionPane.showMessageDialog(null, "Pedido Completado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                }
                 dispose();
             } catch (Exception ex) {
                 Logger.getLogger(ProductiView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_buttonAddActionPerformed
 
     private void addProductToOrder(){
         if (orderProduts == null) return;
@@ -339,6 +456,14 @@ public class OrderView extends javax.swing.JFrame {
             }
         }
     }
+    private void getProducts(){
+        OrderService service = new OrderService();
+        try {
+            orderProduts =  service.getDetailOrders(id);
+        } catch (Exception ex) {
+            Logger.getLogger(OrderView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         // TODO add your handling code here:
         if (!txtCantidad.getText().isEmpty()){
@@ -348,7 +473,7 @@ public class OrderView extends javax.swing.JFrame {
                 int cant = Integer.parseInt( txtCantidad.getText());
                 double price = cant * _product.getPrice();
                 
-                OrderDetail detail = new OrderDetail(_product, cant, 0, 16, 0.0);
+                OrderDetail detail = new OrderDetail(_product, cant, 0, 16, _product.getPrice() * cant);
                 orderProduts.add(detail);
             } catch (Exception ex) {
                 Logger.getLogger(OrderDetailView.class.getName()).log(Level.SEVERE, null, ex);
@@ -376,6 +501,9 @@ public class OrderView extends javax.swing.JFrame {
 
     private Object[][] getProductsOfOrder(){
         try{
+            if (update){
+                getProducts();
+            }
             Object[][] objects = new Object[orderProduts.size()][3];
             for(int i = 0; i < orderProduts.size(); i++){
                 OrderDetail order = orderProduts.get(i);
@@ -425,12 +553,13 @@ public class OrderView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
     private java.awt.Button button2;
     private java.awt.Button button3;
+    private java.awt.Button buttonAdd;
     private java.awt.Choice chEmployee;
     private java.awt.Choice chProduct;
     private java.awt.Choice chRecibeClient;
+    private java.awt.Checkbox chSend;
     private java.awt.Choice chSendClient;
     private java.awt.Choice chVehicle;
     private javax.swing.JPanel jPanel1;

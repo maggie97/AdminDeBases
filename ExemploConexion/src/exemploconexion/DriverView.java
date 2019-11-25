@@ -28,6 +28,16 @@ public class DriverView extends javax.swing.JFrame {
      */
     public DriverView() {
         initComponents();
+        rellenaDatos();
+    }
+
+    DriverView(Driver driver) {
+        initComponents();
+        rellenaDatos(driver.getIdEmpleado(), driver.getUnidadAsignada());
+        Disponible.setState(driver.isDisponibilidad());
+    }
+    
+    public void rellenaDatos(){
         employeeService = new EmployeeService();
         vehicleService = new VehicleService();
         
@@ -43,6 +53,31 @@ public class DriverView extends javax.swing.JFrame {
         for(int i = 0; i < vehicle.size(); i++){
             cmbVehicle.addItem(vehicle.get(i).getString());
         }
+    }
+    public void rellenaDatos(int idEmployee, int idVehicle){
+        employeeService = new EmployeeService();
+        vehicleService = new VehicleService();
+        
+        int iEmpl = 0 , iVehicl = 0;
+        try {
+            employees = employeeService.getEmployee();
+            vehicle = vehicleService.getVehicles();
+        } catch (Exception ex) {
+            Logger.getLogger(DriverView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for(int i = 0; i < employees.size(); i++){
+            cmbEmployee.addItem(employees.get(i).getFullName());
+            if(employees.get(i).getId() == idEmployee)
+                iEmpl = i;
+        }
+        for(int i = 0; i < vehicle.size(); i++){
+            cmbVehicle.addItem(vehicle.get(i).getString());
+            if(vehicle.get(i).getId() == idVehicle)
+                iVehicl = i;
+        }
+        cmbEmployee.select(iEmpl);
+        cmbVehicle.select(iVehicl);
+        
     }
 
     /**

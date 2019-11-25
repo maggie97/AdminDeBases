@@ -41,6 +41,30 @@ public class DriverService {
         return drivers;
    }
    
+   public ArrayList<Object[]> getDriversWithName() throws Exception{
+        ConnectionDatabase.shared.Connecting();
+        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
+        String stringQuery = "SELECT unidadasignada, c.idempleado, concat(nombre,' ', apellido1 ,' ',apellido2) FROM Conductor c inner join empleado e on c.idempleado = e.idempleado;";
+        //String stringQuery = "SELECT *  FROM empleado"; 
+        ResultSet result = st.executeQuery(stringQuery);
+        ArrayList<Object[]> drivers = new ArrayList<>();
+        while(result.next())
+        {
+            Object[] driver = new Object[3];
+            
+            driver[0] = (result.getInt("unidadasignada"));
+            driver[1] = (result.getInt("idempleado"));
+            driver[2] = (result.getString("concat"));
+            
+            drivers.add(driver);
+        }
+        result.close();
+        st.close();
+        ConnectionDatabase.shared.Disconnect();
+        
+        return drivers;
+   }
+   
    public Object[][] getObjects() throws Exception{
        
        //ArrayList<Object[]> list = new ArrayList<>(); //= getEmployee().toArray();

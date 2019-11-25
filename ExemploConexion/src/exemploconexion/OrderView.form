@@ -23,16 +23,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTabbedPane1" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="label1" min="-2" pref="149" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -59,29 +54,39 @@
                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="chEmployee" alignment="2" min="-2" pref="270" max="-2" attributes="0"/>
-                                          <Component id="label6" alignment="2" min="-2" pref="76" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="chEmployee" min="-2" pref="270" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="txtDate" min="-2" pref="291" max="-2" attributes="0"/>
                                   <Component id="label5" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                                  <Component id="chSend" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="label1" min="-2" pref="149" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
+                              <Component id="button2" min="-2" pref="82" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonAdd" min="-2" pref="78" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="label6" min="-2" pref="76" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
-              <Component id="button2" min="-2" pref="82" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="button1" min="-2" pref="78" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -116,13 +121,18 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="label6" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="chEmployee" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="190" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="button1" min="-2" max="-2" attributes="0"/>
-                  <Component id="button2" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="chEmployee" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="jTabbedPane1" min="-2" pref="190" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="buttonAdd" min="-2" max="-2" attributes="0"/>
+                          <Component id="button2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="chSend" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
@@ -156,12 +166,12 @@
         <Property name="text" type="java.lang.String" value="UnidadAsignada:"/>
       </Properties>
     </Component>
-    <Component class="java.awt.Button" name="button1">
+    <Component class="java.awt.Button" name="buttonAdd">
       <Properties>
         <Property name="label" type="java.lang.String" value="Agregar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddActionPerformed"/>
       </Events>
     </Component>
     <Component class="java.awt.Button" name="button2">
@@ -174,7 +184,7 @@
     </Component>
     <Component class="java.awt.Label" name="label5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="FechaEnvio  (DD/MM/YYYY) :"/>
+        <Property name="text" type="java.lang.String" value="FechaEnvio  (MM/DD/YYYY) :"/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="FechaEnvio :"/>
@@ -184,6 +194,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Empleado:"/>
       </Properties>
+    </Component>
+    <Component class="java.awt.Choice" name="chSendClient">
+    </Component>
+    <Component class="java.awt.Choice" name="chRecibeClient">
+    </Component>
+    <Component class="java.awt.Choice" name="chVehicle">
+    </Component>
+    <Component class="java.awt.Choice" name="chEmployee">
     </Component>
     <Component class="java.awt.TextField" name="txtDate">
       <Properties>
@@ -195,18 +213,10 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="java.awt.Choice" name="chSendClient">
-    </Component>
-    <Component class="java.awt.Choice" name="chRecibeClient">
-    </Component>
-    <Component class="java.awt.Choice" name="chVehicle">
-    </Component>
-    <Component class="java.awt.Choice" name="chEmployee">
-    </Component>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -347,5 +357,10 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="java.awt.Checkbox" name="chSend">
+      <Properties>
+        <Property name="label" type="java.lang.String" value="enviado"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
