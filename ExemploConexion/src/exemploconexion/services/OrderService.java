@@ -191,9 +191,10 @@ public class OrderService {
             p.setBrand(result.getString("marca"));
             p.setExcistences(result.getInt("existencias"));
             p.setName(result.getString("nombre"));
-            p.setPrice(Double.parseDouble(result.getString("precio").replace('$', '0')));
+            double precio = Double.parseDouble(result.getString("precio").replace('$', '0').replaceAll("[^0-9 .]", ""));
+            p.setPrice(precio);
             
-            double subtotal = Double.parseDouble(result.getString("subtotal").replace('$', '0'));
+            double subtotal = Double.parseDouble(result.getString("subtotal").replace('$', '0').replaceAll("[^0-9 .]", ""));
             int descuento = result.getInt("descuento");
             int cant = result.getInt("cantidad");
             int taxes = result.getInt("iva");

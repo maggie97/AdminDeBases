@@ -280,7 +280,7 @@ public class EmployeeView extends javax.swing.JFrame {
                     update(service);
                 else {
                     service.InsertEmployee(txtName.getText(), txtLastName1.getText(),  txtLAstName2.getText(), 
-                        txtAddress.getText(), Integer.parseInt(txtPhone.getText()), txtWork.getText(), txtNSS.getText(), Float.parseFloat(txtSalary.getText()));
+                        txtAddress.getText(), txtPhone.getText(), txtWork.getText(), txtNSS.getText(), Float.parseFloat(txtSalary.getText()));
                     JOptionPane.showMessageDialog(null, "Empleado Agregado", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 }
                 dispose();

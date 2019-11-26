@@ -81,11 +81,11 @@ public class EmployeeService {
         st.close();
         ConnectionDatabase.shared.Disconnect();
    }
-   public void InsertEmployee(String name, String lastname1, String lastname2, String address, int phone, String work, String nss, float salary) throws Exception{
+   public void InsertEmployee(String name, String lastname1, String lastname2, String address, String phone, String work, String nss, float salary) throws Exception{
        ConnectionDatabase.shared.Connecting();
        Statement st = ConnectionDatabase.shared.getConnection().createStatement();
        String stringQuery = String.format("insert into empleado (nombre, apellido1, apellido2, direccion, telefono,  puestotrabajo , nss, sueldobase ) "
-               + "values ('%s', '%s', '%s', '%s', %d, '%s', '%s', %f)", name, lastname1, lastname2, address, phone, work, nss, salary);
+               + "values ('%s', '%s', '%s', '%s', %s, '%s', '%s', %f)", name, lastname1, lastname2, address, phone, work, nss, salary);
        st.executeUpdate(stringQuery);
        st.close();
    }

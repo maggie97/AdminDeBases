@@ -133,7 +133,8 @@ public class OrderView extends javax.swing.JFrame {
             
             for(int i = 0; i < employees.size(); i++ ){
                 chEmployee.add((String)employees.get(i)[2]);
-                if((long)employees.get(i)[0] == idEmpleado)
+                
+                if((int)employees.get(i)[0] == idEmpleado)
                     iEmpl = i;
             }
             chEmployee.select(iEmpl);
@@ -421,7 +422,7 @@ public class OrderView extends javax.swing.JFrame {
         service.UpdateOrder(id, chSend.getState(), clients.get(chSendClient.getSelectedIndex()).getId() , 
                         clients.get(chRecibeClient.getSelectedIndex()).getId(),
                         vehicles.get(chVehicle.getSelectedIndex()).getId(), txtDate.getText(), txtDate.getText(), 
-                        (long ) employees.get(chEmployee.getSelectedIndex())[0]);
+                        (int ) employees.get(chEmployee.getSelectedIndex())[0]);
     }
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
